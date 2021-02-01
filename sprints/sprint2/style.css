@@ -1,0 +1,29 @@
+/* 
+Tarea 3: añadir estilos a la tabla
+Las tablas son el elemento perfecto para ver un tipo de pseudoclases
+(https://devcode.la/tutoriales/pseudoclases-css-first-child-last-child-nth-child/)
+en CSS. Usadlas junto a los padding, border, text-align, font-size... para crear una tabla bien estilizada. Este link habla de otras propiedades de CSS para las tablas.
+https://www.w3schools.com/css/css_table.asp
+*/
+.alumnos {
+  border-collapse: collapse;
+  width: 100%;
+}
+td,
+th {
+  border: 1px solid green;
+  padding: 8px;
+}
+.alumnos tr:nth-child(even) {
+  background-color: rgb(207, 207, 188);
+}
+.alumnos tr:hover {
+  background-color: indianred;
+}
+.alumnos th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align-last: left;
+  color: white;
+  background-color: #4caf50;
+}
