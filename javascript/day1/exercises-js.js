@@ -91,7 +91,7 @@ console.log(numerosQueSeRepiten);
 console.log(linea);
 
 
-//7. Utilizando la array anterior, elimina los numeros pares
+console.log("7. Utilizando la array anterior, elimina los numeros pares");
 //for(), if(), %, splice()
 
 let nuevoArray = [];
@@ -103,9 +103,9 @@ for (let i = 0; i < numeros.length; i++) {
 
 console.log(linea);
 
-//8. Escribir un script que simule el lanzamiento de dos dados. Hacer uso de la función Math.random() para obtener números aleatorios 
+console.log("8. Escribir un script que simule el lanzamiento de dos dados. Hacer uso de la función Math.random() para obtener números aleatorios 
 //entre 1 y 6 para cada uno de los lanzamientos de los dados. Sumar el resultado de lanzar dos dados y anotar en un array el número de apariciones de dicha suma, 
-//repitiendo 36.000 veces esta operación.
+//repitiendo 36.000 veces esta operación.");
 //Math.random(), for(), push()
 
 let arrayDeSumar = [];
@@ -118,12 +118,25 @@ function lanzarDados() {
     // console.log(dado1, dado2);
     // console.log(arrayDeSumar);
 }
-for (let i = 0; i < 36001; i++) {
+for (let i = 0; i < 36000; i++) {
     lanzarDados();
 }
-//9. Haz que el ejercicio anterior pase la array obtenida a la función de este ejercicio. Calcula el promedio de todos los lanzamientos de dados.
+
+console.log(linea);
+
+console.log("9. Haz que el ejercicio anterior pase la array obtenida a la función de este ejercicio. Calcula el promedio de todos los lanzamientos de dados.");
 //for()
 
+let resultadoReduce;
+let promedio;
+
+for (let i = 0; i < arrayDeSumar.length; i++) {
+    resultadoReduce = arrayDeSumar.reduce((a, b) => a + b, 0);
+}
+promedio = resultadoReduce / 36000;
+console.log("el promedio de todos los lanzamientos de dados: " + promedio);
+
+console.log(linea);
 
 //10. Haz una copia de la array del ejercicio 3, ordenala de forma ascendente, y coloca el siguiente número donde le corresponda.
 //Array.from(), sort(), splice(), for(), if()
