@@ -169,6 +169,9 @@ let mentor = {
     }]
 };
 
+console.log(`una string con el nombre y apellido:  ${mentor.nombre} ${mentor.apellido}`);
+
+console.log(linea);
 
 //12. Dado el objecto anterior, crea una array con todas las keys y luego úsala para mostrar en consola todas las values
 //Object.keys(), for()
