@@ -58,9 +58,18 @@ console.log(numeroMenor);
 
 console.log(linea);
 
-//5. Utilizando la array anterior, encuentra el número más grande. (No utilizar Math.max())
+console.log("5. Utilizando la array anterior, encuentra el número más grande. (No utilizar Math.max())");
 //for(), if()
 
+let numeroMasGrande = numeros[0];
+
+for (let i = 0; i < numeros.length; i++) {
+    if (numeroMasGrande < numeros[i]) numeroMasGrande = numeros[i];
+}
+
+console.log(numeroMasGrande);
+
+console.log(linea);
 
 //6. Utilizando la array anterior, encontrar los números que se repiten, guardarlos en una array (si aun no existen en esta) y mostrarlos en consola
 //for(), if(), push(), includes()
