@@ -108,7 +108,19 @@ console.log(linea);
 //repitiendo 36.000 veces esta operación.
 //Math.random(), for(), push()
 
+let arrayDeSumar = [];
 
+function lanzarDados() {
+    let dado1 = Math.floor(Math.random() * 6 ) +1;
+    let dado2 = Math.floor(Math.random() * 6 ) +1;
+    let sumar = dado1 + dado2;
+    arrayDeSumar.push(sumar);
+    // console.log(dado1, dado2);
+    // console.log(arrayDeSumar);
+}
+for (let i = 0; i < 36001; i++) {
+    lanzarDados();
+}
 //9. Haz que el ejercicio anterior pase la array obtenida a la función de este ejercicio. Calcula el promedio de todos los lanzamientos de dados.
 //for()
 
