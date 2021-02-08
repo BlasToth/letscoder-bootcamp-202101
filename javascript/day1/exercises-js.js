@@ -138,9 +138,16 @@ console.log("el promedio de todos los lanzamientos de dados: " + promedio);
 
 console.log(linea);
 
-//10. Haz una copia de la array del ejercicio 3, ordenala de forma ascendente, y coloca el siguiente número donde le corresponda.
+console.log("10. Haz una copia de la array del ejercicio 3, ordenala de forma ascendente, y coloca el siguiente número donde le corresponda.");
 //Array.from(), sort(), splice(), for(), if()
 
+let arrayCopiada = [...numeros];
+let arrayAsc = [];
+
+arrayAsc = arrayCopiada.sort((a, b) => a - b);
+console.log(arrayAsc);
+
+console.log(linea);
 
 //11. Dado el siguiente objeto, muestra en consola una string con el nombre y apellido.
 let mentor = {
