@@ -94,6 +94,14 @@ console.log(linea);
 //7. Utilizando la array anterior, elimina los numeros pares
 //for(), if(), %, splice()
 
+let nuevoArray = [];
+for (let i = 0; i < numeros.length; i++) {
+    if (numeros[i] % 2) {
+       nuevoArray.push(numeros[i]);
+    }
+}
+
+console.log(linea);
 
 //8. Escribir un script que simule el lanzamiento de dos dados. Hacer uso de la función Math.random() para obtener números aleatorios 
 //entre 1 y 6 para cada uno de los lanzamientos de los dados. Sumar el resultado de lanzar dos dados y anotar en un array el número de apariciones de dicha suma, 
