@@ -185,6 +185,15 @@ for (let i = 0; i < keys.length; i++) {
 
 console.log(linea);
 
-//13. Dado el objeto anterior, añade las edades a las mascotas. Luego muestra cada una de las mascotas en consola por separado
+console.log("13. Dado el objeto anterior, añade las edades a las mascotas. Luego muestra cada una de las mascotas en consola por separado");
 let edadTuca = 4;
 let edadTam = 2;
+
+mentor.mascotas[0].edad = 4;
+mentor.mascotas[1].edad = 2;
+
+console.log(mentor.mascotas[0]);
+
+console.log(mentor.mascotas[1]);
+
+console.log(linea);
