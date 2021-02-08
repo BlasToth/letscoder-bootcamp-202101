@@ -149,7 +149,8 @@ console.log(arrayAsc);
 
 console.log(linea);
 
-//11. Dado el siguiente objeto, muestra en consola una string con el nombre y apellido.
+console.log("11. Dado el siguiente objeto, muestra en consola una string con el nombre y apellido.");
+
 let mentor = {
     nombre: "Lluís",
     apellido: "Garcia",
@@ -173,9 +174,16 @@ console.log(`una string con el nombre y apellido:  ${mentor.nombre} ${mentor.ape
 
 console.log(linea);
 
-//12. Dado el objecto anterior, crea una array con todas las keys y luego úsala para mostrar en consola todas las values
+console.log("12. Dado el objecto anterior, crea una array con todas las keys y luego úsala para mostrar en consola todas las values");
 //Object.keys(), for()
 
+let keys = Object.keys(mentor);
+
+for (let i = 0; i < keys.length; i++) {
+    console.log(keys[i]);
+}
+
+console.log(linea);
 
 //13. Dado el objeto anterior, añade las edades a las mascotas. Luego muestra cada una de las mascotas en consola por separado
 let edadTuca = 4;
