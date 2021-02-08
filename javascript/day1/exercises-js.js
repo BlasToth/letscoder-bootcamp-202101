@@ -45,10 +45,18 @@ console.log(multiplosDeTres);
 
 console.log(linea);
 
-//4. Dada la array, escribe una función que encuentre el número menor. (No utilizar Math.min())
+console.log("4. Dada la array, escribe una función que encuentre el número menor. (No utilizar Math.min())");
 //for(), if()
 
+let numeroMenor = numeros[0];
 
+for (let i = 0; i < numeros.length; i++) {
+    if (numeroMenor > numeros[i]) numeroMenor = numeros[i];
+}
+
+console.log(numeroMenor);
+
+console.log(linea);
 
 //5. Utilizando la array anterior, encuentra el número más grande. (No utilizar Math.max())
 //for(), if()
