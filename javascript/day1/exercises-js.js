@@ -71,8 +71,24 @@ console.log(numeroMasGrande);
 
 console.log(linea);
 
-//6. Utilizando la array anterior, encontrar los números que se repiten, guardarlos en una array (si aun no existen en esta) y mostrarlos en consola
+console.log("6. Utilizando la array anterior, encontrar los números que se repiten, guardarlos en una array (si aun no existen en esta) y mostrarlos en consola");
 //for(), if(), push(), includes()
+
+let numerosQueSeRepiten = [];
+
+for (let i = 0; i < numeros.length; i++) {
+    for (let j = i + 1; j < numeros.length; j++) {
+        if (numeros[i] === numeros[j]) {
+            if (!numerosQueSeRepiten.includes(numeros[i])) {
+                numerosQueSeRepiten.push(numeros[i]);
+            }
+        }
+    }
+}
+
+console.log(numerosQueSeRepiten);
+
+console.log(linea);
 
 
 //7. Utilizando la array anterior, elimina los numeros pares
