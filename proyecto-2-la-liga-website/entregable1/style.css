@@ -1,3 +1,5 @@
 table {
-    border: 5px solid black;
+    border: 5px solid burlywood;
+    border-radius: 5px;
+    background-color: cornsilk;
 }
