@@ -1,5 +1,61 @@
-table {
-    border: 5px solid burlywood;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+h1 {
+    display: flex;
+    justify-content: center;
+    font-size: 3.5em;
+    margin: 0px auto;
+    padding: 30px;
+    color: rgb(34, 126, 180);
+}
+
+.table-partidos {
+  border: 1px solid rgb(123, 123, 163);
+  border-collapse: separate;
+  margin: 0px auto;
+  font-size: 0.9em;
+  min-width: 400px;
+  max-width: 600px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+th {
     border-radius: 5px;
-    background-color: cornsilk;
+    overflow: hidden;
+}
+
+.table-partidos thead tr {
+  color: rgb(255, 255, 255);
+  font-weight: bold;
+}
+
+.table-partidos th,
+.table-partidos td {
+  padding: 12px 15px;
+}
+
+.table-partidos tbody tr {
+  border-bottom: 1px solid #ddd;
+}
+
+.table-partidos tbody tr:nth-of-type(even) {
+  background-color: #f3f3f3;
+}
+
+.table-partidos tbody tr:last-of-type {
+  border-bottom: 4px solid rgb(34, 126, 180);
+}
+
+.table-partidos tbody tr:hover {
+    background-color: rgb(34, 158, 180);
+}
+
+.table-partidos thead th {
+    position: sticky;
+    top: -1px;
+    background-color: rgb(34, 126, 180);
 }
