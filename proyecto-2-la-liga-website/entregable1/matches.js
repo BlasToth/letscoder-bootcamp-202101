@@ -1,4 +1,4 @@
-let data = {
+let matchesData = {
   count: 380,
   filters: {},
   competition: {
