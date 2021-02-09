@@ -10,6 +10,3 @@
 - Third delivery ( statistics of the groups )
 - Fourth delivery ( dynamic date form an API )
 - Fifth delivery ( presentation )
-
-## Project description in Spanish 🇪🇸
-<img src="https://github.com/BlasToth/letscoder-bootcamp-202101/blob/main/proyecto-2-la-liga-website/descripcion-del-proyecto.png" height="350" width="650" alt="proyect description in Spanish">
