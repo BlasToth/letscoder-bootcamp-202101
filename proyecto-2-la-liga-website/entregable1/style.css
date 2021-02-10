@@ -59,3 +59,9 @@ th {
     top: -1px;
     background-color: rgb(34, 126, 180);
 }
+
+/* class created by JS */
+.tdresult {
+  text-align: center;
+  font-size: 2em;
+}

@@ -10,6 +10,12 @@ function getMatches(partidos) {
   let tbody = document.getElementById("tbody-partidos");
 
   for (let i = 0; i < partidos.length; i++) {
+
+    let awayTeamID = partidos[i].awayTeam.id;
+    let homeTeamID = partidos[i].homeTeam.id;
+    let urlAwayTeam = "https://crests.football-data.org/" + awayTeamID + ".svg";
+    let urlHomeTeam = "https://crests.football-data.org/" + homeTeamID + ".svg";
+
     let tr = document.createElement("tr"); // crear tr
 
     let tdLocal = document.createElement("td"); // crear 3 td
@@ -19,7 +25,19 @@ function getMatches(partidos) {
     if (partidos[i].score.fullTime.awayTeam === null) {
       tdResult.innerText = partidos[i].status;
     } else {
-      tdResult.innerText = `${partidos[i].score.fullTime.homeTeam} - ${partidos[i].score.fullTime.awayTeam}`;
+       tdResult.classList.add("tdresult");
+
+      // tdResult.setAttribute("class", "tdresult");
+
+      // tdResult.style.textAlign = "center";
+
+      tdResult.innerHTML = `
+      <span><img src="${urlHomeTeam}" alt="PICS" width="40px"></span>
+      <span>${partidos[i].score.fullTime.homeTeam}</span>
+      -
+      <span>${partidos[i].score.fullTime.awayTeam}</span>
+      <span><img src="${urlAwayTeam}" alt="PICS" width="40px"></span>
+      `
     }
 
     let tdVisitante = document.createElement("td"); // awayTeam -3.
@@ -29,7 +47,10 @@ function getMatches(partidos) {
     tr.append(tdResult);
     tr.append(tdVisitante);
     tbody.append(tr); // append  tr to tbody
+
   }
 }
 
 getMatches(partidos);
+
+
