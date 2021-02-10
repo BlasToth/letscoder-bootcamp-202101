@@ -17,6 +17,9 @@ function getMatches(partidos) {
     let urlAwayTeam = "https://crests.football-data.org/" + awayTeamID + ".svg";
     let urlHomeTeam = "https://crests.football-data.org/" + homeTeamID + ".svg";
 
+    let awayTeamName = partidos[i].awayTeam.name;
+    let homeTeamName = partidos[i].homeTeam.name;
+
     let tr = document.createElement("tr"); // crear tr
 
     let tdLocal = document.createElement("td"); // crear 3 td
@@ -35,11 +38,11 @@ function getMatches(partidos) {
       // tdResult.style.textAlign = "center";
 
       tdResult.innerHTML = `
-      <span><img src="${urlHomeTeam}" alt="PICS" width="40px"></span>
+      <span><img src="${urlHomeTeam}" alt="${homeTeamName}" width="40px" title="${homeTeamName}"></span>
       <span>${partidos[i].score.fullTime.homeTeam}</span>
       <span>-<span>
       <span>${partidos[i].score.fullTime.awayTeam}</span>
-      <span><img src="${urlAwayTeam}" alt="PICS" width="40px"></span>
+      <span><img src="${urlAwayTeam}" alt="${awayTeamName}" width="40px" title="${awayTeamName}"></span>
       `
     }
 
