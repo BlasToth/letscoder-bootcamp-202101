@@ -69,3 +69,15 @@ th {
   color: red;
   font-size: 1.2em;
 }
+
+#search {
+  display: flex;
+  justify-content: center;
+  max-width: 600px;
+  min-width: 400px;
+  border: 5px solid rgb(34, 126, 180);
+  border-radius: 5px;
+  background-color: rgb(224, 226, 226);
+  padding: 10px;
+  margin: 10px auto;
+}

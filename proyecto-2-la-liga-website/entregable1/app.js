@@ -54,6 +54,20 @@ function getMatches(partidos) {
     tr.append(tdVisitante);
     tbody.append(tr); // append  tr to tbody
 
+    // search
+
+    const searchInput = document.getElementById("search");
+    const rows = document.querySelectorAll("tbody tr");
+
+      searchInput.addEventListener('keyup', function(event) {
+        const q = event.target.value.toLowerCase();
+        rows.forEach(row => {
+          row.querySelector('td').textContent.toLowerCase().startsWith(q) ? (row.style.display = "table-row") : (row.style.display = "none");
+      })
+    });
+
+    // end search
+
   }
 }
 
