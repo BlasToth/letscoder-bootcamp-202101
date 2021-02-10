@@ -18,7 +18,7 @@ for (let i = 0; i < tableData.length; i++) {
     let golesEnContra = tableData[i].goalsAgainst;
     let diferenciaDeGoles = tableData[i].goalDifference;
     let ultimosCinco = tableData[i].form;
-    ultimosCinco = ultimosCinco.replaceAll('W', '🏆');
+    ultimosCinco = ultimosCinco.replaceAll('W', '✔️');
     ultimosCinco = ultimosCinco.replaceAll('L', '❌');
     ultimosCinco = ultimosCinco.replaceAll('D', '〰️');
 
