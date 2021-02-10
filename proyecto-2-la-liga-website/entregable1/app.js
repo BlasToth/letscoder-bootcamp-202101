@@ -13,6 +13,7 @@ function getMatches(partidos) {
 
     let awayTeamID = partidos[i].awayTeam.id;
     let homeTeamID = partidos[i].homeTeam.id;
+
     let urlAwayTeam = "https://crests.football-data.org/" + awayTeamID + ".svg";
     let urlHomeTeam = "https://crests.football-data.org/" + homeTeamID + ".svg";
 
@@ -24,6 +25,8 @@ function getMatches(partidos) {
     let tdResult = document.createElement("td"); // resultado - 2. | 0 - 0 |
     if (partidos[i].score.fullTime.awayTeam === null) {
       tdResult.innerText = partidos[i].status;
+      tdResult.classList.add("tdresult");
+      tdResult.classList.add("red");
     } else {
        tdResult.classList.add("tdresult");
 
@@ -34,7 +37,7 @@ function getMatches(partidos) {
       tdResult.innerHTML = `
       <span><img src="${urlHomeTeam}" alt="PICS" width="40px"></span>
       <span>${partidos[i].score.fullTime.homeTeam}</span>
-      -
+      <span>-<span>
       <span>${partidos[i].score.fullTime.awayTeam}</span>
       <span><img src="${urlAwayTeam}" alt="PICS" width="40px"></span>
       `
