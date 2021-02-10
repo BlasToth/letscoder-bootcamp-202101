@@ -13,13 +13,17 @@ function getMatches(partidos) {
     let tr = document.createElement("tr"); // crear tr
 
     let tdLocal = document.createElement("td"); // crear 3 td
-       tdLocal.innerText = partidos[i].homeTeam.name; // homeTeam - 1.
+    tdLocal.innerText = partidos[i].homeTeam.name; // homeTeam - 1.
 
-    let tdResult = document.createElement("td");    // resultado - 2. | 0 - 0 |
-        tdResult.innerText = `${partidos[i].score.fullTime.homeTeam} - ${partidos[i].score.fullTime.homeTeam}`;
+    let tdResult = document.createElement("td"); // resultado - 2. | 0 - 0 |
+    if (partidos[i].score.fullTime.awayTeam === null) {
+      tdResult.innerText = partidos[i].status;
+    } else {
+      tdResult.innerText = `${partidos[i].score.fullTime.homeTeam} - ${partidos[i].score.fullTime.awayTeam}`;
+    }
 
-    let tdVisitante = document.createElement("td");    // awayTeam -3.
-        tdVisitante.innerText = partidos[i].awayTeam.name;
+    let tdVisitante = document.createElement("td"); // awayTeam -3.
+    tdVisitante.innerText = partidos[i].awayTeam.name;
 
     tr.append(tdLocal); // append td to tr
     tr.append(tdResult);
