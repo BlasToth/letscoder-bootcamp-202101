@@ -2,7 +2,13 @@ const tableData = standingsData.standings[0].table;
 const tbodyStandings = document.getElementById("tbody-standings");
 
 for (let i = 0; i < tableData.length; i++) {
-    let clubName = tableData[i].team.name;
+
+    // crests
+    let teamId = tableData[i].team.id;
+    console.log(teamId)
+    let escudos = `<img src="https://crests.football-data.org/${teamId}.svg" alt="PICS" width="20">`;
+    
+    let clubName = `${escudos} ${tableData[i].team.name}`;
     let partidosJugados = tableData[0].playedGames;
     let victorias = tableData[i].won;
     let empates = tableData[i].draw;
@@ -12,11 +18,15 @@ for (let i = 0; i < tableData.length; i++) {
     let golesEnContra = tableData[i].goalsAgainst;
     let diferenciaDeGoles = tableData[i].goalDifference;
     let ultimosCinco = tableData[i].form;
+    ultimosCinco = ultimosCinco.replaceAll('W', '🏆');
+    ultimosCinco = ultimosCinco.replaceAll('L', '❌');
+    ultimosCinco = ultimosCinco.replaceAll('D', '〰️');
+
 
     let tr = document.createElement("tr");
 
     let tdClubName = document.createElement("td");
-    tdClubName.innerText = clubName;
+    tdClubName.innerHTML = `${i + 1} ${clubName}`;
     let tdPartidosJugados = document.createElement("td");
     tdPartidosJugados.innerText = partidosJugados;
     let tdVictorias = document.createElement("td");
