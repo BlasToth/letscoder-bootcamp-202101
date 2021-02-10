@@ -57,7 +57,7 @@ image.setAttribute("src", "https://crests.football-data.org/558.svg");
 image.setAttribute("alt", "escudo equipo");
 console.log(image);
 
-div1.appendChild(image);
+div1.append(image);
 
 
 div1.setAttribute("class", "test");
