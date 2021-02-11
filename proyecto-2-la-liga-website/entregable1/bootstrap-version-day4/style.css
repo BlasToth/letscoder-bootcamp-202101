@@ -52,4 +52,14 @@ thead {
     padding: 30px;
     border: 2px solid green;
 }
-
+.football {
+    background-color: honeydew;
+    transition: transform ease-in-out .2s;
+    border: 3px solid whitesmoke;
+    border-radius: 50%;
+}
+.football:hover {
+    transform: scale(1.2);
+    border: 3px solid green;
+    background-color: green;
+}
