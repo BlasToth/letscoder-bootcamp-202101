@@ -17,9 +17,22 @@
     
 }
 
-.table {
+thead {
+    text-align: center;
+}
+
+.table-own thead th {
+    position: sticky;
+    top: -1px;
+    background-color: rgb(34, 126, 180);
+}
+
+.table-own {
     margin: 0 auto;
     width: 60%;
 }
 
+.partidos-body {
+
+}
 

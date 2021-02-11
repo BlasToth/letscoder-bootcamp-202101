@@ -1,7 +1,7 @@
 const partidos = matchesData.matches;
 
 function getMatches(partidos) {
-  let tbody = document.querySelector(".table");
+  let tbody = document.querySelector(".partidos-body");
 
   for (let i = 0; i < partidos.length; i++) {
 
@@ -22,15 +22,8 @@ function getMatches(partidos) {
     let tdResult = document.createElement("td"); // resultado - 2. | 0 - 0 |
     if (partidos[i].score.fullTime.awayTeam === null) {
       tdResult.innerText = partidos[i].status;
-      tdResult.classList.add("tdresult");
-      tdResult.classList.add("red");
     } else {
-       tdResult.classList.add("tdresult");
-        tdResult.style.textAlign = "center";
-      // tdResult.setAttribute("class", "tdresult");
-
-      // tdResult.style.textAlign = "center";
-
+       tdResult.style.textAlign = "center";
       tdResult.innerHTML = `
       <span><img src="${urlHomeTeam}" alt="${homeTeamName}" width="40px" title="${homeTeamName}"></span>
       <span>${partidos[i].score.fullTime.homeTeam}</span>
@@ -42,6 +35,7 @@ function getMatches(partidos) {
 
     let tdVisitante = document.createElement("td"); // awayTeam -3.
     tdVisitante.innerText = partidos[i].awayTeam.name;
+    tdVisitante.style.textAlign = "right";
 
     tr.append(tdLocal); // append td to tr
     tr.append(tdResult);
