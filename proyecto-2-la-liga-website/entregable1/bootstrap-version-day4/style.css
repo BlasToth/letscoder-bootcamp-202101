@@ -1,38 +1,43 @@
 .container-fluid {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-image: url(./img/football.jpg);
-    background-size: cover;
-    background-position: center;
-    height: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url(./img/football.jpg);
+  background-size: cover;
+  background-position: center;
+  height: 300px;
 }
 .welcome-header {
-    font-size: 4em;
-    font-weight: bolder;
-    padding: 40px;
-    background-color: rgb(241, 226, 226, 0.6);
-    border: 1px solid whitesmoke;
-    border-radius: 15px;
-    
+  font-size: 4em;
+  font-weight: bolder;
+  padding: 40px;
+  background-color: rgb(241, 226, 226, 0.6);
+  border: 1px solid whitesmoke;
+  border-radius: 15px;
 }
 
 thead {
-    text-align: center;
+  text-align: center;
 }
 
 .table-own thead th {
-    position: sticky;
-    top: -1px;
-    background-color: rgb(34, 126, 180);
+  position: sticky;
+  top: -1px;
+  background-color: rgb(34, 126, 180);
 }
 
 .table-own {
-    margin: 0 auto;
-    width: 60%;
+  margin: 0 auto;
+  width: 60%;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
 }
 
 .table-hover tbody tr:hover td,
 .table-hover tbody tr:hover th {
-    background-color: rgb(34, 126, 180, 0.4);
-  }
+  background-color: rgb(34, 126, 180, 0.4);
+}
+
+.table-own__class {
+    min-width: 670px;
+    max-width: 800px;
+}
