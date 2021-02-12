@@ -1,11 +1,25 @@
 const tableData = standingsData.standings[0].table;
 const tbodyStandings = document.querySelector(".clasificacion-body")
 
+// TO DO 
+// create header with JS
+const headerContent = ["Club", "PJ", "V", "E", "D", "Pts", "GF", "GC", "DG", "Ultimos 5"];
+const getHeader = document.querySelector('thead');
+let createTheadRow = document.createElement("tr");
+
+for (let j = 0; j < headerContent.length; j++) {
+    let createTHeadCells = document.createElement("th");
+    createTHeadCells.innerText = headerContent[j];
+
+    createTheadRow.append(createTHeadCells);
+    getHeader.append(createTheadRow);
+}
+
+
 for (let i = 0; i < tableData.length; i++) {
 
     // crests
     let teamId = tableData[i].team.id;
-    console.log(teamId)
     let escudos = `<img src="https://crests.football-data.org/${teamId}.svg" alt="PICS" width="20">`;
     
     let clubName = `${escudos} ${tableData[i].team.name}`;
