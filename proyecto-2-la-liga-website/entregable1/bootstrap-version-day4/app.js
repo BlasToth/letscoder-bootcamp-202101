@@ -43,6 +43,8 @@ function getMatches(partidos) {
     tr.append(tdVisitante);
     tbody.append(tr); // append  tr to tbody
 
+    // TO DO
+    // filter by name, radiobuttons
     // search
 
     // const searchInput = document.getElementById("search");

@@ -22,7 +22,7 @@ thead {
 
 .table-own thead th {
   position: sticky;
-  top: -1px;
+  top: 0px;
   background-color: rgb(34, 126, 180);
 }
 
