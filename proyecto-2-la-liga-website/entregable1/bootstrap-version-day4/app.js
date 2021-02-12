@@ -22,6 +22,7 @@ function getMatches(partidos) {
     let tdResult = document.createElement("td"); // resultado - 2. | 0 - 0 |
     if (partidos[i].score.fullTime.awayTeam === null) {
       tdResult.innerText = partidos[i].status;
+      tdResult.classList.add("scheduled");
     } else {
        tdResult.style.textAlign = "center";
       tdResult.innerHTML = `
