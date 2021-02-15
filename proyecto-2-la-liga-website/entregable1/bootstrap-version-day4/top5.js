@@ -2,9 +2,6 @@ const partidos = matchesData.matches;
 
 // 0. Crear función que va calcular las estadísticas, recibiendo como param el array de partidos
 
-let addNumberOfGoals = [];
-
-
 function countStats(partidos) {
     let statistics = [];
     
@@ -13,18 +10,23 @@ function countStats(partidos) {
         if (partidos[i].status !== "FINISHED") continue;
 
        let homeTeamFound;
+       let awayTeamFound;
 
-       for (let j = 0; j < statistics.length; j++) {
+       for (let j = 0; j < statistics.length; j++) { // statistics.length is going to increase from 0 to 20
 
-            if (statistics[j].id === partidos[i].homeTeam.id) {
+            if (statistics[j].id === partidos[i].homeTeam.id) {  // if the ids are the same, the array is being populated
                 homeTeamFound = statistics[j];
+            }
+            if (statistics[j].id === partidos[i].awayTeam.id) {
+                awayTeamFound = statistics[j];
             }
         }
 
         console.log(partidos[i].homeTeam.name, homeTeamFound);
+        console.log(partidos[i].awayTeam.name, awayTeamFound);
 
-        if (homeTeamFound == undefined){
-            console.log("add new team")
+        if (homeTeamFound == undefined){ // if there is no team, it will be added
+            console.log("add new HOME team")
             statistics.push({
                 id: partidos[i].homeTeam.id,
                 name: partidos[i].homeTeam.name,
@@ -32,12 +34,26 @@ function countStats(partidos) {
                 matches: 1
             });
         }
-        else {
-            console.log("modify existing team")
+        else {  // otherwise modification is needed only
+            console.log("modify existing HOME team")
             homeTeamFound.matches++;
             homeTeamFound.numberOfGoalsTotal += partidos[i].score.fullTime.homeTeam;
-        }   
-        
+        }    
+
+        if (awayTeamFound == undefined){ // if there is no team, it will be added
+            console.log("add new AWAY team")
+            statistics.push({
+                id: partidos[i].awayTeam.id,
+                name: partidos[i].awayTeam.name,
+                numberOfGoalsTotal: partidos[i].score.fullTime.awayTeam,
+                matches: 1
+            });
+        }
+        else {  // otherwise modification is needed only
+            console.log("modify existing AWAY team")
+            awayTeamFound.matches++;
+            awayTeamFound.numberOfGoalsTotal += partidos[i].score.fullTime.awayTeam;
+        }    
     }
 }
 
