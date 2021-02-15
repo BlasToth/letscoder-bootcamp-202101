@@ -2,11 +2,39 @@ const partidos = matchesData.matches;
 
 // 0. Crear función que va calcular las estadísticas, recibiendo como param el array de partidos
 
+let addNumberOfGoals = [];
+let total = 0;
+
+
 function countStats(partidos) {
     let statistics = [];
+    
 
     for (let i = 0; i < partidos.length; i++) {
-        if ()
+        if (partidos[i].status !== "FINISHED") continue;
+         
+       let homeTeamFound;
+
+       for (let j = 0; j < statistics.length; j++) {
+
+        if (statistics[j].id === partidos[i].homeTeam.id) {
+            homeTeamFound = statistics[j];
+        }
+
+        }
+
+        if (!statistics)
+        
+        statistics.push({
+            id: `${partidos[i].homeTeam.id}`,
+            name: `${partidos[i].homeTeam.name}`,
+            numberOfGoalsTotal: addNumberOfGoals,
+            matches: 
+        });
+        // count the number of matches
+        
+            
+        
     }
 }
 
