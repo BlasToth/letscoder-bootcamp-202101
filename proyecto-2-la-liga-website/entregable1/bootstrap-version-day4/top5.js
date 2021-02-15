@@ -1,7 +1,5 @@
 const partidos = matchesData.matches;
 
-// 0. Crear función que va calcular las estadísticas, recibiendo como param el array de partidos
-
 function countStats(partidos) {
     let statistics = [];
     
@@ -22,11 +20,11 @@ function countStats(partidos) {
             }
         }
 
-        console.log(partidos[i].homeTeam.name, homeTeamFound);
-        console.log(partidos[i].awayTeam.name, awayTeamFound);
+        // console.log(partidos[i].homeTeam.name, homeTeamFound);
+        // console.log(partidos[i].awayTeam.name, awayTeamFound);
 
         if (homeTeamFound == undefined){ // if there is no team, it will be added
-            console.log("add new HOME team")
+          //  console.log("add new HOME team")
             statistics.push({
                 id: partidos[i].homeTeam.id,
                 name: partidos[i].homeTeam.name,
@@ -35,13 +33,13 @@ function countStats(partidos) {
             });
         }
         else {  // otherwise modification is needed only
-            console.log("modify existing HOME team")
+          //  console.log("modify existing HOME team")
             homeTeamFound.matches++;
             homeTeamFound.numberOfGoalsTotal += partidos[i].score.fullTime.homeTeam;
         }    
 
         if (awayTeamFound == undefined){ // if there is no team, it will be added
-            console.log("add new AWAY team")
+          //  console.log("add new AWAY team")
             statistics.push({
                 id: partidos[i].awayTeam.id,
                 name: partidos[i].awayTeam.name,
@@ -50,14 +48,27 @@ function countStats(partidos) {
             });
         }
         else {  // otherwise modification is needed only
-            console.log("modify existing AWAY team")
+           // console.log("modify existing AWAY team")
             awayTeamFound.matches++;
             awayTeamFound.numberOfGoalsTotal += partidos[i].score.fullTime.awayTeam;
         }    
     }
+
+    for (let k = 0; k < statistics.length; k++) {
+        let average = statistics[k].numberOfGoalsTotal / statistics[k].matches;
+        let newObject = {
+            avg: average
+        };
+        Object.assign(statistics[k], newObject);
+    }
+   
+    console.table(statistics);
+
 }
 
 countStats(partidos);
+
+// 0. Crear función que va calcular las estadísticas, recibiendo como param el array de partidos
 
 // 1. Crear array vacía (será array de objetos)
 
