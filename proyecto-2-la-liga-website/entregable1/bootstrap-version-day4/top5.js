@@ -117,7 +117,8 @@ function countStats(partidos) {
                 tdTop5Name.style.textAlign = "center";
 
                 let tdTop5GoalAverage = document.createElement("td");
-                tdTop5GoalAverage.innerText = statistics[i].avg.toFixed(2);
+                tdTop5GoalAverage.innerText = statistics[i].avg.toFixed(3);
+                tdTop5GoalAverage.style.fontWeight = "bold";
 
                 let tdTop5MatchesPlayed = document.createElement("td");
                 tdTop5MatchesPlayed.innerText = statistics[i].matches;
