@@ -64,6 +64,16 @@ function countStats(partidos) {
    
     console.table(statistics);
 
+    // create the table to show top5
+
+    function createTop5Table() {
+        let theadTop5 = document.querySelector(".thead");
+        let tbodyTop5 = document.querySelector(".top-5-body");
+
+    }
+
+    createTop5Table(statistics);
+
 }
 
 countStats(partidos);
