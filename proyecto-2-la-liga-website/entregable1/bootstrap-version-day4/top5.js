@@ -70,6 +70,22 @@ function countStats(partidos) {
         let theadTop5 = document.querySelector(".thead");
         let tbodyTop5 = document.querySelector(".top-5-body");
 
+        
+        for (let i = 0; i < statistics.length; i++) {
+            let trTop5 = document.createElement("tr");
+
+            let tdIndex = document.createElement("td");
+            tdIndex.innerText = i + 1;
+            let tdTop5Name = document.createElement("td");
+            tdTop5Name.innerText = statistics[i].name;
+    
+            trTop5.append(tdIndex);
+            trTop5.append(tdTop5Name);
+
+    
+            tbodyTop5.append(trTop5);
+
+        }
     }
 
     createTop5Table(statistics);
