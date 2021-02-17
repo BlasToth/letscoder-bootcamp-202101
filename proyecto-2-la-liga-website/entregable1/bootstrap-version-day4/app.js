@@ -63,7 +63,7 @@ function getMatches(partidos) {
     searchInput.addEventListener('keyup', function(event) {
       const q = event.target.value.toLowerCase();
         rows.forEach(row => {
-          row.querySelector('td').textContent.toLowerCase().startsWith(q) ? (row.style.display = "table-row") : (row.style.display = "none");
+          row.querySelector('td').textContent.toLowerCase().indexOf(q) != -1  ? (row.style.display = "table-row") : (row.style.display = "none");
         })
       });
       
@@ -71,6 +71,7 @@ function getMatches(partidos) {
       
     }
   }
+
 
 
 //   radioButtons[0].addEventListener('click', () => {
@@ -92,13 +93,43 @@ function getMatches(partidos) {
 //     getMatches(empatados);
 // })
 
+
+
 for (let k = 0; k < radioButtons.length; k++) {
   radioButtons[k].addEventListener('click', () => {
+  
       getMatches(arrayOfFilters[k])
-      
-  });
+      console.log(arrayOfFilters[k])  
 
+    
+  });
 }
+
+
+
+// const btnSubmit = document.getElementById("submit");
+
+// btnSubmit.addEventListener("click", function() {
+//   for(var z = 0; z < radioButtons.length; z++) {
+//       radioButtons[z].onchange = function () {
+//           const radioValue = this.value;
+//           console.log(radioValue);
+//           if(radioValue == "perdidos"){
+//             getMatches(perdidos);
+//           }
+//           else if(radioValue == "partidos"){
+//             getMatches(partidos);
+//           }
+//           else if(radioValue == "ganados"){
+//             getMatches(ganados);
+//           }
+//           else if(radioValue == "empatados"){
+//             getMatches(empatados);
+//           }
+//         }
+//       }   
+// })
+        
 
 
 // radioButtons[1].addEventListener('click', () => {
@@ -115,4 +146,3 @@ for (let k = 0; k < radioButtons.length; k++) {
 //   getMatches(arrayOfFilters[3])
     
 // });
-
