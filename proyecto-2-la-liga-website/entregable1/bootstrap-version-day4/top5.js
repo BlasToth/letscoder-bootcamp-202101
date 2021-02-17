@@ -62,7 +62,6 @@ function countStats(partidos) {
         Object.assign(statistics[k], newObject);
     }
    
-    console.table(statistics);
 
     // create the table to show top5
 
@@ -142,6 +141,10 @@ function countStats(partidos) {
     createTop5Table(statistics);
 
 }
+// // TODO
+// Top 5 equipos con menos goles en contra
+// como visitante.
+
 
 countStats(partidos);
 

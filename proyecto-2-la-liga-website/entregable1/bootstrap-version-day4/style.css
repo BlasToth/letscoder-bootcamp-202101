@@ -19,11 +19,22 @@
 thead {
   text-align: center;
 }
-
+.cont {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 .table-own thead th {
   position: sticky;
-  top: 0px;
+  top: 50px;
   background-color: rgb(34, 126, 180);
+}
+#search {
+  border: 5px solid saddlebrown;
+  position: sticky;
+  top: 0px;
+  height: 50px;
+  width: 60%;
 }
 
 .table-own {
@@ -40,6 +51,11 @@ thead {
 .table-own__class {
     min-width: 670px;
     max-width: 800px;
+}
+
+.table-own__top thead th {
+  position: sticky;
+  top: 0;
 }
 
 .row {

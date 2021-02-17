@@ -10,7 +10,6 @@ function getMatches(partidos) {
   let tbody = document.getElementById("tbody-partidos");
 
   for (let i = 0; i < partidos.length; i++) {
-
     let awayTeamID = partidos[i].awayTeam.id;
     let homeTeamID = partidos[i].homeTeam.id;
 
@@ -31,7 +30,7 @@ function getMatches(partidos) {
       tdResult.classList.add("tdresult");
       tdResult.classList.add("red");
     } else {
-       tdResult.classList.add("tdresult");
+      tdResult.classList.add("tdresult");
 
       // tdResult.setAttribute("class", "tdresult");
 
@@ -43,7 +42,7 @@ function getMatches(partidos) {
       <span>-<span>
       <span>${partidos[i].score.fullTime.awayTeam}</span>
       <span><img src="${urlAwayTeam}" alt="${awayTeamName}" width="40px" title="${awayTeamName}"></span>
-      `
+      `;
     }
 
     let tdVisitante = document.createElement("td"); // awayTeam -3.
@@ -59,18 +58,17 @@ function getMatches(partidos) {
     const searchInput = document.getElementById("search");
     const rows = document.querySelectorAll("tbody tr");
 
-      searchInput.addEventListener('keyup', function(event) {
-        const q = event.target.value.toLowerCase();
-        rows.forEach(row => {
-          row.querySelector('td').textContent.toLowerCase().startsWith(q) ? (row.style.display = "table-row") : (row.style.display = "none");
-      })
+    searchInput.addEventListener("keyup", function (event) {
+      const q = event.target.value.toLowerCase();
+      rows.forEach((row) => {
+        row.querySelector("td").textContent.toLowerCase().startsWith(q)
+          ? (row.style.display = "table-row")
+          : (row.style.display = "none");
+      });
     });
 
     // end search
-
   }
 }
 
 getMatches(partidos);
-
-

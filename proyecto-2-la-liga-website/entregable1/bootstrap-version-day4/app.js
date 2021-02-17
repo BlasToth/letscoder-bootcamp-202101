@@ -47,15 +47,15 @@ function getMatches(partidos) {
     // filter by name, radiobuttons
     // search
 
-    // const searchInput = document.getElementById("search");
-    // const rows = document.querySelectorAll("tbody tr");
+    const searchInput = document.getElementById("search");
+    const rows = document.querySelectorAll("tbody tr");
 
-    //   searchInput.addEventListener('keyup', function(event) {
-    //     const q = event.target.value.toLowerCase();
-    //     rows.forEach(row => {
-    //       row.querySelector('td').textContent.toLowerCase().startsWith(q) ? (row.style.display = "table-row") : (row.style.display = "none");
-    //   })
-    // });
+      searchInput.addEventListener('keyup', function(event) {
+        const q = event.target.value.toLowerCase();
+        rows.forEach(row => {
+          row.querySelector('td').textContent.toLowerCase().startsWith(q) ? (row.style.display = "table-row") : (row.style.display = "none");
+      })
+    });
 
     // end search
 
