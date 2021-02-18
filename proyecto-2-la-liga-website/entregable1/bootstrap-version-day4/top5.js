@@ -1,6 +1,8 @@
 const partidos = matchesData.matches;
 
-function countStats(partidos) {
+countStats(partidos);
+
+function countStats(partidos) { 
     let statistics = [];
     
 
@@ -65,88 +67,84 @@ function countStats(partidos) {
 
     // create the table to show top5
 
-    function createTop5Table() {
-        let theadTop5 = document.querySelector(".thead");
-        let tbodyTop5 = document.querySelector(".top-5-body");
-        let trTop5Head = document.createElement("tr");
-        const headerArray = ["Posición", "Club", "Avg", "PJ", "GT"];
-        
-        // Sort obj by average desc
-        let statObj = statistics.sort(((a, b) => b.avg - a.avg));
-        let top5Team = [];
-
-        for (let k = 0; k < 5; k++) {
-            top5Team.push(statObj[k]);
-        }
-        
-        for (let j = 0; j < headerArray.length; j++) {
-            let th = document.createElement("th");
-            
-            th.innerText = headerArray[j];
-            
-            if ( j === 1) {
-                th.style.textAlign = "center";
-            } else {
-                th.style.textAlign = "left";
-            }
-            
-            theadTop5.append(trTop5Head);
-            trTop5Head.append(th);
-        }
-        
-        for (let i = 0; i < top5Team.length; i++) {
-            
-            const crests = "https://crests.football-data.org/" + statistics[i].id + ".svg";
-            
-
-            let trTop5 = document.createElement("tr");
-
-                let tdIndex = document.createElement("td");
-                tdIndex.innerText = i + 1;
-
-                let tdTop5Name = document.createElement("td");
-                tdTop5Name.innerHTML = `
-                    <span>
-                        ${statistics[i].name}
-                    </span>
-                    <span>
-                        <img src="${crests}" alt="${statistics[i].name}" width="40px" title="${statistics[i].name}">
-                    </span>
-                `
-                tdTop5Name.style.textAlign = "center";
-
-                let tdTop5GoalAverage = document.createElement("td");
-                tdTop5GoalAverage.innerText = statistics[i].avg.toFixed(3);
-                tdTop5GoalAverage.style.fontWeight = "bold";
-
-                let tdTop5MatchesPlayed = document.createElement("td");
-                tdTop5MatchesPlayed.innerText = statistics[i].matches;
-
-                let tdTop5NumberofGoals = document.createElement("td");
-                tdTop5NumberofGoals.innerText = statistics[i].numberOfGoalsTotal;
-                
     
-            trTop5.append(tdIndex);
-            trTop5.append(tdTop5Name);
-            trTop5.append(tdTop5GoalAverage);
-            trTop5.append(tdTop5MatchesPlayed);
-            trTop5.append(tdTop5NumberofGoals);
-
-    
-            tbodyTop5.append(trTop5);
-
-        }
-    }
-
     createTop5Table(statistics);
-
+    
 }
-// // TODO
-// Top 5 equipos con menos goles en contra
-// como visitante.
+
+function createTop5Table(statistics) {
+    let theadTop5 = document.querySelector(".thead");
+    let tbodyTop5 = document.querySelector(".top-5-body");
+    let trTop5Head = document.createElement("tr");
+    const headerArray = ["Posición", "Club", "Avg", "PJ", "GT"];
+    
+    // Sort obj by average desc
+    let statObj = statistics.sort(((a, b) => b.avg - a.avg));
+    let top5Team = [];
+
+    for (let k = 0; k < 5; k++) {
+        top5Team.push(statObj[k]);
+    }
+    
+    for (let j = 0; j < headerArray.length; j++) {
+        let th = document.createElement("th");
+        
+        th.innerText = headerArray[j];
+        
+        if ( j === 1) {
+            th.style.textAlign = "center";
+        } else {
+            th.style.textAlign = "left";
+        }
+        
+        theadTop5.append(trTop5Head);
+        trTop5Head.append(th);
+    }
+    
+    for (let i = 0; i < top5Team.length; i++) {
+        
+        const crests = "https://crests.football-data.org/" + statistics[i].id + ".svg";
+        
+
+        let trTop5 = document.createElement("tr");
+
+            let tdIndex = document.createElement("td");
+            tdIndex.innerText = i + 1;
+
+            let tdTop5Name = document.createElement("td");
+            tdTop5Name.innerHTML = `
+                <span>
+                    ${statistics[i].name}
+                </span>
+                <span>
+                    <img src="${crests}" alt="${statistics[i].name}" width="40px" title="${statistics[i].name}">
+                </span>
+            `
+            tdTop5Name.style.textAlign = "center";
+
+            let tdTop5GoalAverage = document.createElement("td");
+            tdTop5GoalAverage.innerText = statistics[i].avg.toFixed(3);
+            tdTop5GoalAverage.style.fontWeight = "bold";
+
+            let tdTop5MatchesPlayed = document.createElement("td");
+            tdTop5MatchesPlayed.innerText = statistics[i].matches;
+
+            let tdTop5NumberofGoals = document.createElement("td");
+            tdTop5NumberofGoals.innerText = statistics[i].numberOfGoalsTotal;
+            
+
+        trTop5.append(tdIndex);
+        trTop5.append(tdTop5Name);
+        trTop5.append(tdTop5GoalAverage);
+        trTop5.append(tdTop5MatchesPlayed);
+        trTop5.append(tdTop5NumberofGoals);
 
 
-countStats(partidos);
+        tbodyTop5.append(trTop5);
+
+    }
+}
+
 
 // 0. Crear función que va calcular las estadísticas, recibiendo como param el array de partidos
 
