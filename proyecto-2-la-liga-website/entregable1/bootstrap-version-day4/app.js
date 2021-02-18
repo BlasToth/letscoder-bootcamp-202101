@@ -12,6 +12,7 @@ const arrayOfFilters = [partidos, ganados, perdidos, empatados];
 
 function getMatches(partidos) {
   let tbody = document.querySelector(".partidos-body");
+  tbody.innerHTML = "";
   
   for (let i = 0; i < partidos.length; i++) {
     
@@ -97,7 +98,6 @@ function getMatches(partidos) {
 
 for (let k = 0; k < radioButtons.length; k++) {
   radioButtons[k].addEventListener('click', () => {
-  
       getMatches(arrayOfFilters[k])
       console.log(arrayOfFilters[k])  
 
