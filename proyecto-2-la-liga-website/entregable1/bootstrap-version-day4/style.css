@@ -29,6 +29,15 @@ thead {
   top: 50px;
   background-color: rgb(34, 126, 180);
 }
+.table-own__no-sticky thead th {
+  position: static;
+}
+.h2, h2{
+  color: rgb(34, 126, 180);
+  text-align: center;
+  font-size: 1.5em;
+  margin: 20px 0px;
+}
 #search {
   border: 5px solid saddlebrown;
   position: sticky;
