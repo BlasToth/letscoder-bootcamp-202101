@@ -54,20 +54,49 @@ function getMatches(partidos) {
     tr.append(tdVisitante);
     tbody.append(tr); // append  tr to tbody
     
-    // TO DO
-    // filter by name, radiobuttons
-    // search
-    
     const searchInput = document.getElementById("search");
-    const rows = document.querySelectorAll("tbody tr");
-    
-    searchInput.addEventListener('keyup', function(event) {
-      const q = event.target.value.toLowerCase();
-        rows.forEach(row => {
-          row.querySelector('td').textContent.toLowerCase().indexOf(q) != -1  ? (row.style.display = "table-row") : (row.style.display = "none");
-        })
-      });
+
+    // TODO
+    // if radio button is clicked use the corresponding array to search
+    // console.log(radioButtons[i].value);
+    if (radioButtons[0].value === "partidos") {
+     const rows = document.querySelectorAll("tbody tr");
+
+      searchInput.addEventListener('keyup', function(event) {
+        const q = event.target.value.toLowerCase();      
+          rows.forEach(row => {
+            row.querySelector('td').textContent.toLowerCase().indexOf(q) != -1  ? (row.style.display = "table-row") : (row.style.display = "none");
+          })
+        });
+    }
+    else if (radioButtons[0].value === "ganados") {
+      const rows = document.querySelectorAll("tbody tr");
       
+       searchInput.addEventListener('keyup', function(event) {
+         const q = event.target.value.toLowerCase();      
+           rows.forEach(row => {
+             row.querySelector('td').textContent.toLowerCase().indexOf(q) != -1  ? (row.style.display = "table-row") : (row.style.display = "none");
+           })
+         });
+     }else if (radioButtons[0].value === "perdidos") {
+      const rows = document.querySelectorAll("tbody tr");
+      
+       searchInput.addEventListener('keyup', function(event) {
+         const q = event.target.value.toLowerCase();      
+           rows.forEach(row => {
+             row.querySelector('td').textContent.toLowerCase().indexOf(q) != -1  ? (row.style.display = "table-row") : (row.style.display = "none");
+           })
+         });
+     }else if (radioButtons[0].value === "empatados") {
+      const rows = document.querySelectorAll("tbody tr");
+      
+       searchInput.addEventListener('keyup', function(event) {
+         const q = event.target.value.toLowerCase();      
+           rows.forEach(row => {
+             row.querySelector('td').textContent.toLowerCase().indexOf(q) != -1  ? (row.style.display = "table-row") : (row.style.display = "none");
+           })
+         });
+     }    
       // end search
       
     }
