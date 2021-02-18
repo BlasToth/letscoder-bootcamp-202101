@@ -73,7 +73,7 @@ function getMatches(partidos) {
     }
   }
 
-
+getMatches(partidos);
 
 //   radioButtons[0].addEventListener('click', () => {
 //     radioButtons[0].checked="checked";
@@ -98,10 +98,7 @@ function getMatches(partidos) {
 
 for (let k = 0; k < radioButtons.length; k++) {
   radioButtons[k].addEventListener('click', () => {
-      getMatches(arrayOfFilters[k])
-      console.log(arrayOfFilters[k])  
-
-    
+      getMatches(arrayOfFilters[k]);    
   });
 }
 
