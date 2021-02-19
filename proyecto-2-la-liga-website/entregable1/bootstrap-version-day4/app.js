@@ -2,9 +2,16 @@ const partidos = matchesData.matches;
 const radioButtons = document.getElementsByName("filter");
 
 // TODO filter for names first
+const mySearchInput = document.getElementById("search");
+let searchedExpression;
+
+mySearchInput.addEventListener("keyup", function (event) {
+  searchedExpression = mySearchInput.value.toLowerCase();
+  console.log(searchedExpression)
+});
 
 const ganados = partidos.filter(
-  (partidos) => partidos.score.winner === "HOME_TEAM"
+  (partidos) => (partidos.score.winner === "HOME_TEAM" || partidos.score.winner === "AWAY_TEAM")
 );
 
 const perdidos = partidos.filter(
@@ -60,7 +67,7 @@ function getMatches(partidos) {
     tr.append(tdVisitante);
     tbody.append(tr); // append  tr to tbody
     
-    const searchInput = document.getElementById("search");
+    // const searchInput = document.getElementById("search");
     
     // search
     
@@ -74,51 +81,51 @@ function getMatches(partidos) {
     // }
 
 // TODO function
-    if (radioButtons[0].value === "partidos") {
-      const rows = document.querySelectorAll("tbody tr");
+    // if (radioButtons[0].value === "partidos") {
+    //   const rows = document.querySelectorAll("tbody tr");
 
-      searchInput.addEventListener("keyup", function (event) {
-        const q = event.target.value.toLowerCase();
-        rows.forEach((row) => {
-          row.querySelector("td").textContent.toLowerCase().indexOf(q) != -1
-            ? (row.style.display = "table-row")
-            : (row.style.display = "none");
-        });
-      });
-    } else if (radioButtons[1].value === "ganados") {
-      const rows = document.querySelectorAll("tbody tr");
+    //   searchInput.addEventListener("keyup", function (event) {
+    //     const q = event.target.value.toLowerCase();
+    //     rows.forEach((row) => {
+    //       row.querySelector("td").textContent.toLowerCase().indexOf(q) != -1
+    //         ? (row.style.display = "table-row")
+    //         : (row.style.display = "none");
+    //     });
+    //   });
+    // } else if (radioButtons[1].value === "ganados") {
+    //   const rows = document.querySelectorAll("tbody tr");
 
-      searchInput.addEventListener("keyup", function (event) {
-        const q = event.target.value.toLowerCase();
-        rows.forEach((row) => {
-          row.querySelector("td").textContent.toLowerCase().indexOf(q) != -1
-            ? (row.style.display = "table-row")
-            : (row.style.display = "none");
-        });
-      });
-    } else if (radioButtons[2].value === "perdidos") {
-      const rows = document.querySelectorAll("tbody tr");
+    //   searchInput.addEventListener("keyup", function (event) {
+    //     const q = event.target.value.toLowerCase();
+    //     rows.forEach((row) => {
+    //       row.querySelector("td").textContent.toLowerCase().indexOf(q) != -1
+    //         ? (row.style.display = "table-row")
+    //         : (row.style.display = "none");
+    //     });
+    //   });
+    // } else if (radioButtons[2].value === "perdidos") {
+    //   const rows = document.querySelectorAll("tbody tr");
 
-      searchInput.addEventListener("keyup", function (event) {
-        const q = event.target.value.toLowerCase();
-        rows.forEach((row) => {
-          row.querySelector("td").textContent.toLowerCase().indexOf(q) != -1
-            ? (row.style.display = "table-row")
-            : (row.style.display = "none");
-        });
-      });
-    } else if (radioButtons[3].value === "empatados") {
-      const rows = document.querySelectorAll("tbody tr");
+    //   searchInput.addEventListener("keyup", function (event) {
+    //     const q = event.target.value.toLowerCase();
+    //     rows.forEach((row) => {
+    //       row.querySelector("td").textContent.toLowerCase().indexOf(q) != -1
+    //         ? (row.style.display = "table-row")
+    //         : (row.style.display = "none");
+    //     });
+    //   });
+    // } else if (radioButtons[3].value === "empatados") {
+    //   const rows = document.querySelectorAll("tbody tr");
 
-      searchInput.addEventListener("keyup", function (event) {
-        const q = event.target.value.toLowerCase();
-        rows.forEach((row) => {
-          row.querySelector("td").textContent.toLowerCase().indexOf(q) != -1
-            ? (row.style.display = "table-row")
-            : (row.style.display = "none");
-        });
-      });
-    }
+    //   searchInput.addEventListener("keyup", function (event) {
+    //     const q = event.target.value.toLowerCase();
+    //     rows.forEach((row) => {
+    //       row.querySelector("td").textContent.toLowerCase().indexOf(q) != -1
+    //         ? (row.style.display = "table-row")
+    //         : (row.style.display = "none");
+    //     });
+    //   });
+    // }
     // end search
   }
 }
