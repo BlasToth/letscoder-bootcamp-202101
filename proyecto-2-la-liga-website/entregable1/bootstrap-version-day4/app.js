@@ -2,55 +2,37 @@ const partidos = matchesData.matches;
 const radioButtons = document.getElementsByName("filter");
 
 // TODO filter for names first
-  const mySearchInput = document.getElementById("search");
-  const searchBtn = document.getElementById("searchBtn");
-  let searchedExpression = [];
+const mySearchBtn = document.getElementById("searchBtn");
+const mySearchInput = document.getElementById("search");
+let searchedExpression;
 
-  searchBtn.addEventListener('click', function () {
-    searchedExpression = mySearchInput.value;
-   
-    console.log(searchedExpression)
+mySearchBtn.addEventListener('click', (e) => {
+  e.preventDefault();
+  searchedExpression = mySearchInput.value;
+  console.log(searchedExpression);
+  let filterForName = partidos.filter(
+    (partidos) => partidos.awayTeam.name.toLowerCase().includes(searchedExpression) && partidos.score.winner === "AWAY_TEAM" 
+                  ||
+                  partidos.homeTeam.name.toLowerCase().includes(searchedExpression) && partidos.score.winner === "HOME_TEAM"
+  );
+  console.log(filterForName)
+});
 
-    
-  })
 
-// function getKeyWord(partidos) {
-//   const mySearchInput = document.getElementById("search");
-  
-//   let filteredMatches = [];
-//   mySearchInput.addEventListener("keyup", () => {
-    
-//     let filterForName = partidos.filter((matches) => {
-//       if (!mySearchInput.value) {
-//          console.log("I NEED DATA");
-//       }
-//       else if (matches.homeTeam.name.toLowerCase().includes(mySearchInput.value) ||
-//           matches.awayTeam.name.toLowerCase().includes(mySearchInput.value)) {
-//             return true
-//       }
-//       console.log(filterForName);
-        
-//     });
-//   });
- 
-// }
 
-// getKeyWord(partidos);
 
 const ganados = partidos.filter(
-  (partidos) => 
-  partidos.score.winner === "HOME_TEAM" || partidos.score.winner === "AWAY_TEAM"
+  (partidos) => (partidos.score.winner === "HOME_TEAM" || partidos.score.winner === "AWAY_TEAM")
 );
 
 
 const perdidos = partidos.filter(
-(partidos) => partidos.score.winner === "AWAY_TEAM"
+  (partidos) => partidos.score.winner === "AWAY_TEAM"
 );
 
 const empatados = partidos.filter(
-(partidos) => partidos.score.winner === "DRAW"
+  (partidos) => partidos.score.winner === "DRAW"
 );
-// filter for name ends
 
 const arrayOfFilters = [partidos, ganados, perdidos, empatados];
 
@@ -97,7 +79,7 @@ function getMatches(partidos) {
     tr.append(tdVisitante);
     tbody.append(tr); // append  tr to tbody
     
-    const searchInput = document.getElementById("search");
+    // const searchInput = document.getElementById("search");
     
     // search
     
@@ -160,11 +142,10 @@ function getMatches(partidos) {
   }
 }
 
-
+getMatches(partidos);
 
 for (let k = 0; k < radioButtons.length; k++) {
   radioButtons[k].addEventListener("click", () => {
     getMatches(arrayOfFilters[k]);
   });
 }
-
