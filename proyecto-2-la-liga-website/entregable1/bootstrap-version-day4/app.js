@@ -7,6 +7,8 @@ const mySearchInput = document.getElementById("search");
 let searchedExpression;
 
 mySearchInput.addEventListener('keyup', () => {
+  getMatches(partidos);
+  
   searchedExpression = mySearchInput.value;
 
   const filterForName = partidos.filter(
@@ -14,6 +16,10 @@ mySearchInput.addEventListener('keyup', () => {
                   ||
                   partidos.homeTeam.name.toLowerCase().includes(searchedExpression)
   );
+
+  if (
+  !filterForName.includes(searchedExpression)
+  ) console.log("NYISTA")
 
   // getMatches(filterForName);
 
