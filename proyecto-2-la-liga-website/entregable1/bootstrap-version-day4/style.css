@@ -26,7 +26,7 @@ thead {
 }
 .table-own thead th {
   position: sticky;
-  top: 50px;
+  top: 0px;
   background-color: rgb(34, 126, 180);
 }
 .table-own__no-sticky thead th {
@@ -38,12 +38,12 @@ thead {
   font-size: 1.5em;
   margin: 20px 0px;
 }
-#search {
+#search{
   border: 5px solid saddlebrown;
-  position: sticky;
+  position: static;
   top: 0px;
   height: 50px;
-  width: 60%;
+  width: 100%;
 }
 
 .table-own {

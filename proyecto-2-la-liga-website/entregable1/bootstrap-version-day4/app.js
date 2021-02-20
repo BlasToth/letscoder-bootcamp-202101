@@ -6,16 +6,16 @@ const mySearchBtn = document.getElementById("searchBtn");
 const mySearchInput = document.getElementById("search");
 let searchedExpression;
 
-mySearchBtn.addEventListener('click', (e) => {
-  e.preventDefault();
+mySearchInput.addEventListener('keyup', () => {
   searchedExpression = mySearchInput.value;
-  console.log(searchedExpression);
 
-  let filterForName = partidos.filter(
+  const filterForName = partidos.filter(
     (partidos) => partidos.awayTeam.name.toLowerCase().includes(searchedExpression) 
                   ||
                   partidos.homeTeam.name.toLowerCase().includes(searchedExpression)
   );
+
+  // getMatches(filterForName);
 
   const todosLosPartidosPorNombre = filterForName.filter(
     (matches) => matches.score.winner === "HOME_TEAM" || matches.score.winner === "AWAY_TEAM" || matches.score.winner === "DRAW" || matches.status !== "FINISHED"
@@ -36,15 +36,19 @@ mySearchBtn.addEventListener('click', (e) => {
   const empatados = filterForName.filter(
     (matches) => matches.score.winner === "DRAW"
   )
+
+  const proximos = filterForName.filter(
+    (matches) => matches.status !== "FINISHED"
+  )
   
-  const arrayOfFilters = [todosLosPartidosPorNombre, ganados, perdidos, empatados];
+  const arrayOfFilters = [todosLosPartidosPorNombre, ganados, perdidos, empatados, proximos];
 
   for (let k = 0; k < radioButtons.length; k++) {
     radioButtons[k].addEventListener("click", () => {
       getMatches(arrayOfFilters[k]);
     });
   }
-  
+
 });
 
 
