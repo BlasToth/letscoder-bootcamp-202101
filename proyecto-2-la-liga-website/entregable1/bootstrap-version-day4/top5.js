@@ -11,9 +11,9 @@ function getDataFetch() {
             return response.json();
         }
     }).then(data => {
-        const partidos = data
+        const partidos = data.standings[0].table;
         console.log(partidos);
-        countStats(partidos);
+        createTop5Table(partidos);
     }).catch(error => console.log('ERROR'));
 }
 
