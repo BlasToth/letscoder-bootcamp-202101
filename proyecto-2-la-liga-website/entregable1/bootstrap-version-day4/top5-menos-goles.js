@@ -100,4 +100,4 @@ function countStats(partidos) {
   createTop5Table(statisticsLeastGoals);
 }
 
-countStats(partidos);
+// countStats(partidos);
