@@ -1,4 +1,5 @@
 const partidos = matchesData.matches;
+const error = "ERROR";
 const radioButtons = document.getElementsByName("filter");
 
 // TODO filter for names first
@@ -7,7 +8,7 @@ const mySearchInput = document.getElementById("search");
 let searchedExpression;
 
 mySearchInput.addEventListener('keyup', () => {
-  getMatches(partidos);
+  // getMatches(partidos);
   
   searchedExpression = mySearchInput.value;
 
@@ -17,9 +18,18 @@ mySearchInput.addEventListener('keyup', () => {
                   partidos.homeTeam.name.toLowerCase().includes(searchedExpression)
   );
 
-  if (
-  !filterForName.includes(searchedExpression)
-  ) console.log("NYISTA")
+  // error message
+  if (filterForName.length < 1) {
+    const newP = document.createElement("p");
+    newP.innerText = `Desafortunadamente no hemos encontrado nada con la palabra: ${searchedExpression}`
+    newP.style.textAlign = "center";
+    newP.style.color = "red"
+    newP.style.fontSize = "1.1em"
+    document.body.append(newP);
+  }
+  // end error message
+
+  console.log(filterForName)
 
   // getMatches(filterForName);
 
