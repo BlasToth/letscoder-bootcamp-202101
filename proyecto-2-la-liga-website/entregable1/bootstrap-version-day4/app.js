@@ -10,31 +10,45 @@ mySearchBtn.addEventListener('click', (e) => {
   e.preventDefault();
   searchedExpression = mySearchInput.value;
   console.log(searchedExpression);
+
   let filterForName = partidos.filter(
-    (partidos) => partidos.awayTeam.name.toLowerCase().includes(searchedExpression) && partidos.score.winner === "AWAY_TEAM" 
+    (partidos) => partidos.awayTeam.name.toLowerCase().includes(searchedExpression) 
                   ||
-                  partidos.homeTeam.name.toLowerCase().includes(searchedExpression) && partidos.score.winner === "HOME_TEAM"
+                  partidos.homeTeam.name.toLowerCase().includes(searchedExpression)
   );
-  console.log(filterForName)
+
+  const todosLosPartidosPorNombre = filterForName.filter(
+    (matches) => matches.score.winner === "HOME_TEAM" || matches.score.winner === "AWAY_TEAM" || matches.score.winner === "DRAW" || matches.status !== "FINISHED"
+  );
+
+  const ganados = filterForName.filter(
+    (matches) => matches.awayTeam.name.toLowerCase().includes(searchedExpression) && matches.score.winner === "AWAY_TEAM"
+                  ||
+                  matches.homeTeam.name.toLowerCase().includes(searchedExpression) && matches.score.winner === "HOME_TEAM"
+  );
+
+  const perdidos = filterForName.filter(
+    (matches) => matches.awayTeam.name.toLowerCase().includes(searchedExpression) && matches.score.winner === "HOME_TEAM"
+                  ||
+                  matches.homeTeam.name.toLowerCase().includes(searchedExpression) && matches.score.winner === "AWAY_TEAM"
+  )
+
+  const empatados = filterForName.filter(
+    (matches) => matches.score.winner === "DRAW"
+  )
+  
+  const arrayOfFilters = [todosLosPartidosPorNombre, ganados, perdidos, empatados];
+
+  for (let k = 0; k < radioButtons.length; k++) {
+    radioButtons[k].addEventListener("click", () => {
+      getMatches(arrayOfFilters[k]);
+    });
+  }
+  
 });
 
 
 
-
-const ganados = partidos.filter(
-  (partidos) => (partidos.score.winner === "HOME_TEAM" || partidos.score.winner === "AWAY_TEAM")
-);
-
-
-const perdidos = partidos.filter(
-  (partidos) => partidos.score.winner === "AWAY_TEAM"
-);
-
-const empatados = partidos.filter(
-  (partidos) => partidos.score.winner === "DRAW"
-);
-
-const arrayOfFilters = [partidos, ganados, perdidos, empatados];
 
 function getMatches(partidos) {
   let tbody = document.querySelector(".partidos-body");
@@ -142,10 +156,4 @@ function getMatches(partidos) {
   }
 }
 
-getMatches(partidos);
-
-for (let k = 0; k < radioButtons.length; k++) {
-  radioButtons[k].addEventListener("click", () => {
-    getMatches(arrayOfFilters[k]);
-  });
-}
+// getMatches(partidos);
