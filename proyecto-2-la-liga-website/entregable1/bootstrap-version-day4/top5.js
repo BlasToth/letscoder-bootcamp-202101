@@ -1,5 +1,5 @@
 function getDataFetch() {
-    const url = "https://api.football-data.org/v2/competitions/2014/standings";
+    const url = "https://api.football-data.org/v2/competitions/2014/matches";
     fetch(url, {
         method: "GET",
         headers: {
@@ -10,88 +10,90 @@ function getDataFetch() {
             console.log(response);
             return response.json();
         }
-    }).then(data => {
-        const partidos = data.standings[0].table;
-        console.log(partidos);
-        createTop5Table(partidos);
-    }).catch(error => console.log('ERROR'));
+    }).then((data) => {
+        partidos = data.matches;
+        
+
+        function countStats(partidos) { 
+            let statistics = [];
+            
+        
+            for (let i = 0; i < partidos.length; i++) {
+                if (partidos[i].status !== "FINISHED") continue;
+        
+               let homeTeamFound;
+               let awayTeamFound;
+        
+               for (let j = 0; j < statistics.length; j++) { // statistics.length is going to increase from 0 to 20
+        
+                    if (statistics[j].id === partidos[i].homeTeam.id) {  // if the ids are the same, the array is being populated
+                        homeTeamFound = statistics[j];
+                    }
+                    if (statistics[j].id === partidos[i].awayTeam.id) {
+                        awayTeamFound = statistics[j];
+                    }
+                }
+        
+                // console.log(partidos[i].homeTeam.name, homeTeamFound);
+                // console.log(partidos[i].awayTeam.name, awayTeamFound);
+        
+                if (homeTeamFound == undefined){ // if there is no team, it will be added
+                  //  console.log("add new HOME team")
+                    statistics.push({
+                        id: partidos[i].homeTeam.id,
+                        name: partidos[i].homeTeam.name,
+                        numberOfGoalsTotal: partidos[i].score.fullTime.homeTeam,
+                        matches: 1
+                    });
+                }
+                else {  // otherwise modification is needed only
+                  //  console.log("modify existing HOME team")
+                    homeTeamFound.matches++;
+                    homeTeamFound.numberOfGoalsTotal += partidos[i].score.fullTime.homeTeam;
+                }    
+        
+                if (awayTeamFound == undefined){ // if there is no team, it will be added
+                  //  console.log("add new AWAY team")
+                    statistics.push({
+                        id: partidos[i].awayTeam.id,
+                        name: partidos[i].awayTeam.name,
+                        numberOfGoalsTotal: partidos[i].score.fullTime.awayTeam,
+                        matches: 1
+                    });
+                }
+                else {  // otherwise modification is needed only
+                   // console.log("modify existing AWAY team")
+                    awayTeamFound.matches++;
+                    awayTeamFound.numberOfGoalsTotal += partidos[i].score.fullTime.awayTeam;
+                }    
+            }
+        
+            for (let k = 0; k < statistics.length; k++) {
+                let average = statistics[k].numberOfGoalsTotal / statistics[k].matches;
+                let newObject = {
+                    avg: average
+                };
+                Object.assign(statistics[k], newObject);
+            }
+           
+        
+            // create the table to show top5
+        
+            
+            createTop5Table(statistics);
+            
+        }
+        countStats(partidos)
+       
+       
+    })
 }
 
 getDataFetch();
 
-
-
  
 
-function countStats(partidos) { 
-    let statistics = [];
-    
 
-    for (let i = 0; i < partidos.length; i++) {
-        if (partidos[i].status !== "FINISHED") continue;
-
-       let homeTeamFound;
-       let awayTeamFound;
-
-       for (let j = 0; j < statistics.length; j++) { // statistics.length is going to increase from 0 to 20
-
-            if (statistics[j].id === partidos[i].homeTeam.id) {  // if the ids are the same, the array is being populated
-                homeTeamFound = statistics[j];
-            }
-            if (statistics[j].id === partidos[i].awayTeam.id) {
-                awayTeamFound = statistics[j];
-            }
-        }
-
-        // console.log(partidos[i].homeTeam.name, homeTeamFound);
-        // console.log(partidos[i].awayTeam.name, awayTeamFound);
-
-        if (homeTeamFound == undefined){ // if there is no team, it will be added
-          //  console.log("add new HOME team")
-            statistics.push({
-                id: partidos[i].homeTeam.id,
-                name: partidos[i].homeTeam.name,
-                numberOfGoalsTotal: partidos[i].score.fullTime.homeTeam,
-                matches: 1
-            });
-        }
-        else {  // otherwise modification is needed only
-          //  console.log("modify existing HOME team")
-            homeTeamFound.matches++;
-            homeTeamFound.numberOfGoalsTotal += partidos[i].score.fullTime.homeTeam;
-        }    
-
-        if (awayTeamFound == undefined){ // if there is no team, it will be added
-          //  console.log("add new AWAY team")
-            statistics.push({
-                id: partidos[i].awayTeam.id,
-                name: partidos[i].awayTeam.name,
-                numberOfGoalsTotal: partidos[i].score.fullTime.awayTeam,
-                matches: 1
-            });
-        }
-        else {  // otherwise modification is needed only
-           // console.log("modify existing AWAY team")
-            awayTeamFound.matches++;
-            awayTeamFound.numberOfGoalsTotal += partidos[i].score.fullTime.awayTeam;
-        }    
-    }
-
-    for (let k = 0; k < statistics.length; k++) {
-        let average = statistics[k].numberOfGoalsTotal / statistics[k].matches;
-        let newObject = {
-            avg: average
-        };
-        Object.assign(statistics[k], newObject);
-    }
-   
-
-    // create the table to show top5
-
-    
-    createTop5Table(statistics);
-    
-}
 
 function createTop5Table(statistics) {
     let theadTop5 = document.querySelector(".thead");

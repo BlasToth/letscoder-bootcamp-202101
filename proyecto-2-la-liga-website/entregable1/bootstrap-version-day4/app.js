@@ -7,8 +7,20 @@ const mySearchBtn = document.getElementById("searchBtn");
 const mySearchInput = document.getElementById("search");
 let searchedExpression;
 
+ getMatches(partidos);
+ 
+ function callError() {
+   let tbody = document.querySelector(".partidos-body");
+   tbody.innerHTML = "";
+   let newP = document.createElement("p");
+   newP.innerText = `No hemos encontrado nada con la palabra: ${searchedExpression}`
+   newP.style.textAlign = "center";
+   newP.style.color = "red";
+   newP.style.fontSize = "1.1em";
+   tbody.append(newP);
+ }
+ 
 mySearchInput.addEventListener('keyup', () => {
-  // getMatches(partidos);
   
   searchedExpression = mySearchInput.value;
 
@@ -17,18 +29,13 @@ mySearchInput.addEventListener('keyup', () => {
                   ||
                   partidos.homeTeam.name.toLowerCase().includes(searchedExpression)
   );
-
+  
   // error message
   if (filterForName.length < 1) {
-    const newP = document.createElement("p");
-    newP.innerText = `Desafortunadamente no hemos encontrado nada con la palabra: ${searchedExpression}`
-    newP.style.textAlign = "center";
-    newP.style.color = "red"
-    newP.style.fontSize = "1.1em"
-    document.body.append(newP);
-  }
+    callError();
+  } 
   // end error message
-
+  
   console.log(filterForName)
 
   // getMatches(filterForName);
