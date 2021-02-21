@@ -1,3 +1,5 @@
+
+
 function countStats(partidos) {
   let statisticsLeastGoals = [];
 
