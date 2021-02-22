@@ -1,10 +1,3 @@
-// const partidos = matchesData.matches;
-const error = "ERROR";
-const radioButtons = document.getElementsByName("filter");
-
-// TODO filter for names first
-const mySearchBtn = document.getElementById("searchBtn");
-const mySearchInput = document.getElementById("search");
 let searchedExpression;
 
 getDataFetch();
@@ -30,7 +23,6 @@ function getDataFetch() {
       spinnerWrapper.parentElement.removeChild(spinnerWrapper);
   })
 }
-
 // fetch end
 
 
@@ -92,6 +84,10 @@ function callError() {
 }
 
 function search(partidos) {
+  const mySearchBtn = document.getElementById("searchBtn");
+  const mySearchInput = document.getElementById("search");
+  const radioButtons = document.getElementsByName("filter");
+
   mySearchInput.addEventListener('keyup', () => {
   
     searchedExpression = mySearchInput.value;

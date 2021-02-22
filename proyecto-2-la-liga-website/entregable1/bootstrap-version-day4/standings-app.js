@@ -15,7 +15,9 @@ function getDataFetch() {
         }
     }).then((data) => {
         let tableData = data.standings[0].table;   
-        createTable(tableData);   
+        createTable(tableData);  
+        const spinnerWrapper = document.querySelector('.spinner-wrapper');
+        spinnerWrapper.parentElement.removeChild(spinnerWrapper); 
     })
 }
 
