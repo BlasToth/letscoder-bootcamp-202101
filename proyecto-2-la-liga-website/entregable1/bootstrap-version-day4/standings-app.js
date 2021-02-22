@@ -1,3 +1,6 @@
+createHead();
+getDataFetch();
+
 // fetch start
 function getDataFetch() {
     const url = "https://api.football-data.org/v2/competitions/2014/standings";
@@ -11,17 +14,16 @@ function getDataFetch() {
             return response.json();
         }
     }).then((data) => {
-        tableData = data.standings[0].table;   
-        createTable(tableData);    
+        let tableData = data.standings[0].table;   
+        createTable(tableData);   
     })
 }
 
-getDataFetch();
 // fetch end 
 
-const tbodyStandings = document.querySelector(".clasificacion-body")
 
-function createTable() {
+function createTable(tableData) {
+    const tbodyStandings = document.querySelector(".clasificacion-body")
     for (let i = 0; i < tableData.length; i++) {
 
         // crests
@@ -99,6 +101,5 @@ function createHead() {
     }
 }
 
-createHead();
 
 
