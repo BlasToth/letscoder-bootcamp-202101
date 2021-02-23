@@ -180,13 +180,13 @@ function countStats2(partidos) {
       statisticsLeastGoals.push({
         id: partidos[i].awayTeam.id,
         name: partidos[i].awayTeam.name,
-        numberOfGoalsTotal: partidos[i].score.fullTime.awayTeam,
+        numberOfGoalsTotal: partidos[i].score.fullTime.homeTeam,
         matches: 1,
       });
     } else {
       // otherwise modification is needed only
       awayTeamFound.matches++;
-      awayTeamFound.numberOfGoalsTotal += partidos[i].score.fullTime.awayTeam;
+      awayTeamFound.numberOfGoalsTotal += partidos[i].score.fullTime.homeTeam;
     }
   }
 

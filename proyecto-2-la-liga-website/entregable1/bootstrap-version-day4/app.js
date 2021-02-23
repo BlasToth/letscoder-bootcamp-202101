@@ -72,19 +72,46 @@ function getMatches(partidos) {
   }
 }
 
-function callError() {
+function callError(filterForName, todosLosPartidosPorNombre, ganados, perdidos, empatados, proximos) {
+  const inputs = document.getElementsByName("filter");
   let tbody = document.querySelector(".partidos-body");
   tbody.innerHTML = "";
   let newP = document.createElement("p");
-  newP.innerText = `No hemos encontrado nada con la palabra: ${searchedExpression}`
+  if (inputs[1].checked) {
+    newP.innerText = `Entre los partidos GANADOS no hay nada con la palabra: ${searchedExpression}`;
   newP.style.textAlign = "center";
   newP.style.color = "red";
   newP.style.fontSize = "1.1em";
   tbody.append(newP);
+  } else if (inputs[2].checked) {
+    newP.innerText = `Entre los partidos PERDIDOS no hay nada con la palabra: ${searchedExpression}`;
+    newP.style.textAlign = "center";
+    newP.style.color = "red";
+    newP.style.fontSize = "1.1em";
+    tbody.append(newP);
+  } else if (inputs[3].checked) {
+    newP.innerText = `Entre los partidos EMPATADOS no hay nada con la palabra: ${searchedExpression}`;
+    newP.style.textAlign = "center";
+    newP.style.color = "red";
+    newP.style.fontSize = "1.1em";
+    tbody.append(newP);
+  } else if (inputs[4].checked) {
+    newP.innerText = `Entre los partidos PRÓXIMOS no hay nada con la palabra: ${searchedExpression}`;
+    newP.style.textAlign = "center";
+    newP.style.color = "red";
+    newP.style.fontSize = "1.1em";
+    tbody.append(newP);
+  }
+   else {
+    newP.innerText = `No hemos encontrado nada con la palabra: ${searchedExpression}`
+    newP.style.textAlign = "center";
+    newP.style.color = "red";
+    newP.style.fontSize = "1.1em";
+    tbody.append(newP);
+  }
 }
 
 function search(partidos) {
-  const mySearchBtn = document.getElementById("searchBtn");
   const mySearchInput = document.getElementById("search");
   const radioButtons = document.getElementsByName("filter");
 
@@ -97,46 +124,45 @@ function search(partidos) {
                     ||
                     partido.homeTeam.name.toLowerCase().includes(searchedExpression)
     );
-  
-    // error message
-    if (filterForName.length < 1) {
-      callError();
-    } 
-    // end error message
-  
+
     console.log(filterForName)
   
     // getMatches(filterForName);
   
     const todosLosPartidosPorNombre = filterForName.filter(
-      (matches) => matches.score.winner === "HOME_TEAM" || matches.score.winner === "AWAY_TEAM" || matches.score.winner === "DRAW" || matches.status !== "FINISHED"
+      (match) => match.score.winner === "HOME_TEAM" || match.score.winner === "AWAY_TEAM" || match.score.winner === "DRAW" || match.status !== "FINISHED"
     );
   
     const ganados = filterForName.filter(
-      (matches) => matches.awayTeam.name.toLowerCase().includes(searchedExpression) && matches.score.winner === "AWAY_TEAM"
+      (match) => match.awayTeam.name.toLowerCase().includes(searchedExpression) && match.score.winner === "AWAY_TEAM"
                     ||
-                    matches.homeTeam.name.toLowerCase().includes(searchedExpression) && matches.score.winner === "HOME_TEAM"
+                    match.homeTeam.name.toLowerCase().includes(searchedExpression) && match.score.winner === "HOME_TEAM"
     );
   
     const perdidos = filterForName.filter(
-      (matches) => matches.awayTeam.name.toLowerCase().includes(searchedExpression) && matches.score.winner === "HOME_TEAM"
+      (match) => match.awayTeam.name.toLowerCase().includes(searchedExpression) && match.score.winner === "HOME_TEAM"
                     ||
-                    matches.homeTeam.name.toLowerCase().includes(searchedExpression) && matches.score.winner === "AWAY_TEAM"
+                    match.homeTeam.name.toLowerCase().includes(searchedExpression) && match.score.winner === "AWAY_TEAM"
     )
   
     const empatados = filterForName.filter(
-      (matches) => matches.score.winner === "DRAW"
+      (match) => match.score.winner === "DRAW"
     )
   
     const proximos = filterForName.filter(
-      (matches) => matches.status !== "FINISHED"
+      (match) => match.status !== "FINISHED"
     )
-    
+
     const arrayOfFilters = [todosLosPartidosPorNombre, ganados, perdidos, empatados, proximos];
   
     for (let k = 0; k < radioButtons.length; k++) {
       radioButtons[k].addEventListener("click", () => {
-        getMatches(arrayOfFilters[k]);
+        // error message
+        if (filterForName.length < 1) {
+          callError(filterForName, todosLosPartidosPorNombre, ganados, perdidos, empatados, proximos);
+        } 
+        // end error message
+        else getMatches(arrayOfFilters[k]);
       });
     }
   
