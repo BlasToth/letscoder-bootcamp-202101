@@ -39,7 +39,7 @@ You can:
 ### TECHNICAL DESCRIPTION 
 
 To be able to use the application, an API key is required. 
-<a href="https://www.football-data.org" target="new">HERE you can have one.</a>
+<a href="https://www.football-data.org" target="_blank">HERE you can have one.</a>
 
 In the app.js file at line 11 ("X-Auth-Token": `${api_key}`) instead of api_key you can insert your own.
 
