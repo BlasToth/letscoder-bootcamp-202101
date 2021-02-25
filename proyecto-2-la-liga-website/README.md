@@ -38,7 +38,7 @@ You can:
 
 ### TECHNICAL DESCRIPTION 
 
-
+- app.js (fetches data, creates table for the matches, calls error, filters matches)
 
 ### TECHNOLOGIES 
 
