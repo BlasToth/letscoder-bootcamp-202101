@@ -48,6 +48,13 @@ function getMatches(partidos) {
     let tdResult = document.createElement("td"); // resultado - 2. | 0 - 0 |
     if (partidos[i].score.fullTime.awayTeam === null) {
       tdResult.innerText = partidos[i].status;
+      tdResult.innerHTML = `
+      <span><img src="${urlHomeTeam}" alt="${homeTeamName}" width="40px" title="${homeTeamName}"></span>
+      
+      <span>SCHEDULED<span>
+      
+      <span><img src="${urlAwayTeam}" alt="${awayTeamName}" width="40px" title="${awayTeamName}"></span>
+      `;
       tdResult.classList.add("scheduled");
     } else {
       tdResult.style.textAlign = "center";
