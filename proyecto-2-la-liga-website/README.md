@@ -42,10 +42,10 @@ You can:
 
 ### TECHNOLOGIES 
 
-[HTML](html)<img src="https://github.com/tkswann2/tech-logos/blob/master/html5.png" height="40">
-[CSS](CSS)<img src="https://github.com/tkswann2/tech-logos/blob/master/css3.png" height="40">
-[JavaScript](JavaScript)<img src="https://github.com/tkswann2/tech-logos/blob/master/jslogo.png" height="40">
-[BootStrap](BootStrap)<img src="https://github.com/tkswann2/tech-logos/blob/master/bootstrap.png" height="40">
+- [HTML](html)<img src="https://github.com/tkswann2/tech-logos/blob/master/html5.png" height="40">
+- [CSS](CSS)<img src="https://github.com/tkswann2/tech-logos/blob/master/css3.png" height="40">
+- [JavaScript](JavaScript)<img src="https://github.com/tkswann2/tech-logos/blob/master/jslogo.png" height="40">
+- [BootStrap](BootStrap)<img src="https://github.com/tkswann2/tech-logos/blob/master/bootstrap.png" height="40">
 
 
 
