@@ -72,7 +72,7 @@ function getMatches(partidos) {
   }
 }
 
-function callError(filterForName, todosLosPartidosPorNombre, ganados, perdidos, empatados, proximos) {
+function callError() {
   const inputs = document.getElementsByName("filter");
   let tbody = document.querySelector(".partidos-body");
   tbody.innerHTML = "";
