@@ -42,7 +42,7 @@ You can:
 
 ### TECHNOLOGIES 
 
-![HTML]<img src="https://github.com/tkswann2/tech-logos/blob/master/html5.png" height="40">
+[HTML](html)<img src="https://github.com/tkswann2/tech-logos/blob/master/html5.png" height="40">
 
 ![CSS](https://github.com/tkswann2/tech-logos/blob/master/css3.png)
 
