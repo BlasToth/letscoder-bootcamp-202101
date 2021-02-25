@@ -38,6 +38,11 @@ You can:
 
 ### TECHNICAL DESCRIPTION 
 
+To be able to use the application, an API key is required. 
+[HERE you can have one](https://www.football-data.org/)
+
+In the app.js file at line 11 ("X-Auth-Token": `${api_key}`) instead of api_key you can insert your own.
+
 - app.js (fetches data, creates table for the matches, calls error, filters matches)
 
 ### TECHNOLOGIES 
