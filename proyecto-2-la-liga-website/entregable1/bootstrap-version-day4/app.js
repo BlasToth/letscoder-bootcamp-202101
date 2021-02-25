@@ -123,7 +123,7 @@ function search(partidos) {
   const radioButtons = document.getElementsByName("filter");
 
   mySearchInput.addEventListener('keyup', () => {
-  
+    
     searchedExpression = mySearchInput.value;
   
     const filterForName = partidos.filter(
@@ -172,6 +172,12 @@ function search(partidos) {
         else getMatches(arrayOfFilters[k]);
       });
     }
-  
+    return noenter();
+
   });
 }
+
+function noenter() {
+  return !(window.event && window.event.keyCode == 13);
+}
+
