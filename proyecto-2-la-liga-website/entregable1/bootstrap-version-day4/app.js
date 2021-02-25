@@ -173,7 +173,6 @@ function search(partidos) {
       });
     }
     return noenter();
-
   });
 }
 
