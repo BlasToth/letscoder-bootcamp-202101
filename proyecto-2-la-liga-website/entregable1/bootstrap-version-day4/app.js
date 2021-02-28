@@ -122,7 +122,7 @@ function search(partidos) {
   const mySearchInput = document.getElementById("search");
   const radioButtons = document.getElementsByName("filter");
 
-  mySearchInput.addEventListener('keyup', () => {
+  mySearchInput.addEventListener('keypress', () => {
     
     searchedExpression = mySearchInput.value;
   
@@ -172,11 +172,11 @@ function search(partidos) {
         else getMatches(arrayOfFilters[k]);
       });
     }
-    return noenter();
   });
 }
 
 function noenter() {
   return !(window.event && window.event.keyCode == 13);
 }
+
 
