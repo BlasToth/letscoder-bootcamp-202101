@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin</title>
+    <script src="./admin-app.js" defer></script>
+</head>
+<h1>ADMIN</h1>
+<body>
+    <form action="/post-feedback" method="POST">
+<p>Name (v0): <input type="text" name="source" /></p>
+<p>ID: <input type="text" name="id" /></p>
+<p>Date: <input type="date" name="date"></p>
+<p>Known: <input type="radio" name="known" value="true"> True
+            <input type="radio" name="known" value="false"> False
+<p>V1: <input type="text" name="v1" /></p>
+<p>V2: <input type="text" name="v2" /></p>
+<p>V3: <input type="text" name="v3" /></p>
+<p>WrongV3: <input type="text" name="wrongv3" /></p>
+<p>WrongV3: <input type="text" name="wrongv3" /></p>
+<p>WrongV3: <input type="text" name="wrongv3" /></p>
+<input type="submit" name="sub" value="Submit" />
+</form>
+    
+</body>
+</html>
