@@ -3,6 +3,7 @@ const app = express();
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const port = 4000;
+const verbs = require('./router/verb-router');
 
 app.use(bodyParser.urlencoded( {extended: true} ));
 
@@ -22,59 +23,60 @@ mongoose
     console.log(`THERE WAS AN ERROR: ${err.message}`);
 });
 
-// create a data schema
-const Schema = mongoose.Schema;
+// // create a data schema
+// const Schema = mongoose.Schema;
 
-const verbsSchema = new Schema({
-    sourceName: String,
-    v1: String,
-    v2: String,
-    v3: String,
-    wrongV1: String,
-    wrongV2: String,
-    wrongV3: String
-});
-// We'll work with this model in our code
-// Mongoose makes the name into lower case and makes it plural
-const Verb = mongoose.model('Verb', verbsSchema);
+// const verbsSchema = new Schema({
+//     sourceName: String,
+//     v1: String,
+//     v2: String,
+//     v3: String,
+//     wrongV1: String,
+//     wrongV2: String,
+//     wrongV3: String
+// });
+// // We'll work with this model in our code
+// // Mongoose makes the name into lower case and makes it plural
+// const Verb = mongoose.model('Verb', verbsSchema);
 
 app.get("/", (req, res) => {
     res.sendFile(__dirname + "/admin/admin.html");
 })
 
+app.use("/verbs", verbs);
 
 
-app.post("/", (req, res) => {
-    console.log(req.body)
-    const verb = new Verb({
-        sourceName: req.body.sourceName,
-        v1: req.body.v1,
-        v2: req.body.v2,
-        v3: req.body.v3,
-        wrongV1: req.body.wrongv1,
-        wrongV2: req.body.wrongv2,
-        wrongV3: req.body.wrongv3
-    })
-    console.log(verb)
-    verb
-    .save()
-    .then(result => {
-        console.log('Created Verb');
-    })
-    .catch(err => {
-        console.log(err);
-    })
-    res.redirect('/');
-})
+// app.post("/", (req, res) => {
+//     console.log(req.body)
+//     const verb = new Verb({
+//         sourceName: req.body.sourceName,
+//         v1: req.body.v1,
+//         v2: req.body.v2,
+//         v3: req.body.v3,
+//         wrongV1: req.body.wrongv1,
+//         wrongV2: req.body.wrongv2,
+//         wrongV3: req.body.wrongv3
+//     })
+//     console.log(verb)
+//     verb
+//     .save()
+//     .then(result => {
+//         console.log('Created Verb');
+//     })
+//     .catch(err => {
+//         console.log(err);
+//     })
+//     res.redirect('/');
+// })
 
-app.get("/verbs", (req, res) => {
-    Verb.find({}, (err, verbs) => {
-        if (err) {
-            res.status(404).send(err.response.data);
-        }
-        res.json(verbs)
-    })
-})
+// app.get("/verbs", (req, res) => {
+//     Verb.find({}, (err, verbs) => {
+//         if (err) {
+//             res.status(404).send(err.response.data);
+//         }
+//         res.json(verbs)
+//     })
+// })
 
 
 
