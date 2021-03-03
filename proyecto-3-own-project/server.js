@@ -4,6 +4,7 @@ const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const port = 4000;
 const verbs = require('./router/verb-router');
+const login = require('./router/login-router');
 
 app.use(bodyParser.urlencoded( {extended: true} ));
 
@@ -28,4 +29,6 @@ app.get("/", (req, res) => {
 })
 
 app.use("/verbs", verbs);
+
+app.use("/login", login);
 
