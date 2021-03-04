@@ -12,8 +12,11 @@ app.use(bodyParser.urlencoded( {extended: true} ));
 mongoose
 .connect(
     "mongodb+srv://bago:BfLExgnD2F19btN5@bcapp.eoazq.mongodb.net/verbs",
-    { useNewUrlParser: true },
-    { useUnifiedTopology: true } 
+    {
+     useNewUrlParser: true ,
+     useUnifiedTopology: true ,
+     useCreateIndex: true
+    }
 )
 .then(result => {
     app.listen(port, () => {
