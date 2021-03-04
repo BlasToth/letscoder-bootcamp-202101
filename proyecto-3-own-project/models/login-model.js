@@ -11,10 +11,9 @@ const loginSchema = new Schema({
         type: String,
         required: true,
     },
-    nick: {
+    nickname: {
         type: String,
-        required: true,
-        unique: true
+        required: true
     }
 });
 
