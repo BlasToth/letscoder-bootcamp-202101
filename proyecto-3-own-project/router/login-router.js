@@ -14,7 +14,7 @@ loginRouter
 loginRouter
     .route('/')
     .get((req, res) => {
-        res.render('login')
+        res.render('login', { title: "Login" })
     })
 
 

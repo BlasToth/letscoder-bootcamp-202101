@@ -4,21 +4,11 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Admin</title>
+    <title>BACKEND | <%= title %></title>
   </head>
 
   <body>
-    <nav>
-      <div class="site-title">
-        <a href="/"><h1>Backend site</h1></a>
-        <p>Control panel</p>
-      </div>
-      <ul>
-        <li><a href="/">Home</a></li>
-        <li><a href="/login">Login</a></li>
-        <li><a href="/verbs/create">Create a verb</a></li>
-      </ul>
-    </nav>
+    <%- include('./partials/nav.ejs') %>
 
     <h1>ADMIN</h1>
     <h2>Posting data from HTML to MongoDB Atlas</h2>

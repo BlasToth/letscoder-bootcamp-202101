@@ -7,7 +7,6 @@ const port = process.env.PORT;
 const DB_URL = process.env.DB_URL;
 const verbs = require('./router/verb-router');
 const logins = require('./router/login-router');
-const loginRouter = require("./router/login-router");
 
 app.use(bodyParser.urlencoded( {extended: true} ));
 
@@ -35,12 +34,21 @@ app.set('view engine', 'ejs');
 
 app.get("/", (req, res) => {
     // res.sendFile(__dirname + "/admin/admin.html");
-    res.render('index');
+    Verb.find({}, (err, verbs) => {
+        if (err) {
+            res.status(404).send(err.response.data);
+        } else {
+           const showVerbs = verbs;
+           res.render('index', { title: 'Home', showVerbs });
+           
+        }
+    })
+    
 })
 
-app.get("/verbs/create", (req, res) => {
-    res.render('create-verbs')
-})
+// app.get("/verbs/create", (req, res) => {
+//     res.render('create-verbs', { title: 'Create verbs' })
+// })
 
 app.post("/log", (req, res) => {
     console.log(req.body);
@@ -89,6 +97,6 @@ app.use("/verbs", verbs);
 app.use("/login", logins);
 
 app.use((req, res) => {
-    res.status(404).render('404');
+    res.status(404).render('404', { title: "404 - Not found" });
 })
 

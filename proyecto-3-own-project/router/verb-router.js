@@ -2,7 +2,7 @@ const express = require('express');
 const verbRouter = express.Router();
 const Verb = require('../models/verb-model');
 
-
+// everything inside /verbs
 verbRouter
 .route('/verbs')
 .get((req, res) => {
@@ -10,15 +10,17 @@ verbRouter
         if (err) {
             res.status(404).send(err.response.data);
         } else {
-            res.json(verbs);
+           res.send(verbs);
+           
         }
     })
 })
 
 verbRouter
-    .route('/verbs/create')
+    .route('/create')
     .get((req, res) => {
-        res.render('create-verbs')
+        
+        res.render('create-verbs', { title: "Create a verb" })
     })
 
 verbRouter
