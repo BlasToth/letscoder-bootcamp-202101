@@ -14,14 +14,7 @@ loginRouter
 loginRouter
     .route('/')
     .get((req, res) => {
-        Login.find({}, (err, logins) => {
-            if (err) {
-                res.status(404).send(err.response.data);
-            } else {
-                // res.json(logins);
-                res.send("LOGIN")
-            }
-        })
+        res.render('login')
     })
 
 

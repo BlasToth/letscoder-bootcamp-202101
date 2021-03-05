@@ -30,8 +30,16 @@ mongoose
     console.log(`THERE WAS AN ERROR: ${err.message}`);
 });
 
+// register view engine
+app.set('view engine', 'ejs');
+
 app.get("/", (req, res) => {
-    res.sendFile(__dirname + "/admin/admin.html");
+    // res.sendFile(__dirname + "/admin/admin.html");
+    res.render('index');
+})
+
+app.get("/verbs/create", (req, res) => {
+    res.render('create-verbs')
 })
 
 app.post("/log", (req, res) => {
@@ -79,4 +87,8 @@ app.post("/", (req, res) => {
 app.use("/verbs", verbs);
 
 app.use("/login", logins);
+
+app.use((req, res) => {
+    res.status(404).render('404');
+})
 

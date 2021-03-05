@@ -2,16 +2,23 @@ const express = require('express');
 const verbRouter = express.Router();
 const Verb = require('../models/verb-model');
 
+
 verbRouter
-    .route('/verbs')
+.route('/verbs')
+.get((req, res) => {
+    Verb.find({}, (err, verbs) => {
+        if (err) {
+            res.status(404).send(err.response.data);
+        } else {
+            res.json(verbs);
+        }
+    })
+})
+
+verbRouter
+    .route('/verbs/create')
     .get((req, res) => {
-        Verb.find({}, (err, verbs) => {
-            if (err) {
-                res.status(404).send(err.response.data);
-            } else {
-                res.json(verbs);
-            }
-        })
+        res.render('create-verbs')
     })
 
 verbRouter
