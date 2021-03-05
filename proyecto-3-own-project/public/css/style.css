@@ -23,7 +23,10 @@
           background-color: rgb(162, 221, 255);
         }
         .mystyle-card-image {
-          padding: 40px;
+          padding: 30px;
+          margin: 0px auto;
+          
+          
         }
         .sourcename {
           color: rgb(14, 0, 139);
