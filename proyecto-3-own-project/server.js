@@ -29,6 +29,10 @@ mongoose
     console.log(`THERE WAS AN ERROR: ${err.message}`);
 });
 
+// static files
+app.use(express.static('public'));
+app.use('/css', express.static(__dirname + 'public/css'));
+
 // register view engine
 app.set('view engine', 'ejs');
 

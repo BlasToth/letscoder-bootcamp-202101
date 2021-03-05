@@ -3,14 +3,29 @@
 <%- include('./partials/head.ejs') %>
 <body>
     <%- include('./partials/nav.ejs') %>
-
+    <h1>HOME</h1>
+    <h2>Retrieving data and SSR</h2>
     <div class="verbs content"> 
         <h2>All verbs</h2>
 
         <% if (showVerbs.length > 0) { %>
             <% showVerbs.forEach(v => { %>
-                <h3 class="sourcename"><%= v.sourceName %></h3>
-                <p class="rest"><%= v.v1 %>, <%= v.v2 %>, <%= v.v3 %></p>
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="card mystyle-card">
+                    <img class="card-img-top mystyle-card-image" src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/Emoji_u263a.svg/1200px-Emoji_u263a.svg.png" alt="Card image cap">
+                    <div class="card-body">
+                      <h5 class="card-title sourcename"><%= v.sourceName %></h5>
+                      <p class="card-text rest"><%= v.v1 %>, <%= v.v2 %>, <%= v.v3 %></p>
+                      <a href="#" class="card-link">Card link</a>
+                      <a href="#" class="card-link">Another link</a>
+                    </div>
+                  </div>
+            </div>
+        </div>
+                    <!-- <h3 class="sourcename"><%= v.sourceName %></h3>
+                    <p class="rest"><%= v.v1 %>, <%= v.v2 %>, <%= v.v3 %></p> -->
+                
                 <% }) %>
             <% } else { %>
                 <p>There are no verbs to display</p>
