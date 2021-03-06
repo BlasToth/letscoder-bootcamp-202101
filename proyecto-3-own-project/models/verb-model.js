@@ -8,7 +8,8 @@ const verbSchema = new Schema({
     v3: String,
     wrongV1: String,
     wrongV2: String,
-    wrongV3: String
+    wrongV3: String,
+    gifUrl: String,
 });
 
 module.exports = Verb = mongoose.model('Verb', verbSchema);
