@@ -44,12 +44,7 @@ app.get("/", (req, res) => {
     } else {
       const showVerbs = verbs;
       res.render("index", { title: "Home", showVerbs });
-    //   console.log(showVerbs[1].v1, showVerbs.length);
-    //   let keyWords = [];
-    //   for (i = 0; i < showVerbs.length; i++) {
-    //     keyWords.push(showVerbs[i].v1);
-    //   }
-    //   console.log(keyWords);
+    
     }
   });
 });

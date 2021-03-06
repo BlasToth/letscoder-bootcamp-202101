@@ -1,5 +1,4 @@
 require('dotenv').config();
-const { Logger } = require('mongodb');
 const fetch = require("node-fetch");
 const API_KEY = process.env.API;
 getGifFetch();
@@ -23,8 +22,3 @@ const searchExp = req.body.v1;
   })
 }
 // fetch end
-
-function doLog(gifUrl) {
-    gifUrl = "MERD";
-    console.log(gifUrl);
-}
