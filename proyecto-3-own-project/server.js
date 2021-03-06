@@ -94,35 +94,31 @@ app.post("/", (req, res) => {
         }
       })
       .then((data) => {
-        //   console.log(`miezmar: ${data.data[0].images.downsized_medium.url}`);
         const fetchedGifUrl = data.data[0].images.downsized_medium.url;
-        function returnFetch(fetchedGifUrl){
-            return fetchedGifUrl;
-        }
-        //   console.log(gifUrl)
+        const verb = new Verb({
+            sourceName: req.body.sourceName,
+            v1: req.body.v1,
+            v2: req.body.v2,
+            v3: req.body.v3,
+            wrongV1: req.body.wrongv1,
+            wrongV2: req.body.wrongv2,
+            wrongV3: req.body.wrongv3,
+            gifUrl: fetchedGifUrl
+          });
+          console.log(verb);
+          verb
+            .save()
+            .then((result) => {
+              console.log("Created Verb");
+            })
+            .catch((err) => {
+              console.log(err);
+            });
+          res.redirect("/");
       });
   }
   // fetch end
-  const verb = new Verb({
-    sourceName: req.body.sourceName,
-    v1: req.body.v1,
-    v2: req.body.v2,
-    v3: req.body.v3,
-    wrongV1: req.body.wrongv1,
-    wrongV2: req.body.wrongv2,
-    wrongV3: req.body.wrongv3,
-    gifUrl: returnFetch()
-  });
-  console.log(verb);
-  verb
-    .save()
-    .then((result) => {
-      console.log("Created Verb");
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-  res.redirect("/");
+
 });
 
 app.use("/verbs", verbs);
