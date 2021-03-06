@@ -19,8 +19,8 @@
                       <p class="card-text rest"><%= v.v1 %>, <%= v.v2 %>, <%= v.v3 %></p>
                       <a href="#" class="card-link">Card link</a>
                       <figure>
-                          <figcaption>🔉</figcaption>
-                          <audio controls="true" preload="none" controlsList="nodownload">
+                          <figcaption id="figcaption">🔉</figcaption>
+                          <audio id="audio" hidden>
                             <source src="https://media.merriam-webster.com/audio/prons/en/us/mp3/number/3d000001.mp3" type="audio/mp3">
                             </audio>
                       </figure>
@@ -39,5 +39,19 @@
     </div>
     
     <%- include('./partials/footer.ejs') %>
+    <script>
+        let a = 0;
+        document.getElementById("figcaption").addEventListener("click",function(){
+            if(a==0) {
+                document.getElementById("audio").play();
+                a++;
+                document.getElementById("figcaption").style.opacity="1";
+            }else{
+                document.getElementById("audio").pause();
+                a--;
+                document.getElementById("figcaption").style.opacity=".5";
+            }
+        });
+    </script>
 </body>
 </html>
