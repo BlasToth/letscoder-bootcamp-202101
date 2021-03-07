@@ -10,6 +10,7 @@ const verbSchema = new Schema({
     wrongV2: String,
     wrongV3: String,
     gifUrl: String,
+    audioUrl: String
 });
 
 module.exports = Verb = mongoose.model('Verb', verbSchema);

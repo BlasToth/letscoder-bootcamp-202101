@@ -6,7 +6,7 @@ getSoundFetch();
 
 // fetch start
 function getSoundFetch() {
-const searchExp = "freeze" //req.body.v1;
+const searchExp = "retard" //req.body.v1;
   const url = `https://www.dictionaryapi.com/api/v3/references/collegiate/json/${searchExp}?key=${API_KEY_S}`;
   fetch(url, {
       method: "GET"
@@ -15,8 +15,11 @@ const searchExp = "freeze" //req.body.v1;
         //   console.log(response);
           return response.json();
       }
-  }).then((data) => {
-    console.log(data[0].hwi.prs[0].sound.audio);
+  }).then((data) => {;
+    const audioName = data[0].hwi.prs[0].sound.audio;
+    const dictName = audioName.charAt(0);
+    const audioUrl = `https://media.merriam-webster.com/audio/prons/en/us/mp3/${dictName}/${audioName}.mp3`
+    console.log(audioUrl);
 
   })
 }
