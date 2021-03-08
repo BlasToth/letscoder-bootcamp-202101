@@ -6,7 +6,7 @@ getSoundFetch();
 
 // fetch start
 function getSoundFetch() {
-const searchExp = "retard" //req.body.v1;
+const searchExp = "win" //req.body.v1;
   const url = `https://www.dictionaryapi.com/api/v3/references/collegiate/json/${searchExp}?key=${API_KEY_S}`;
   fetch(url, {
       method: "GET"
