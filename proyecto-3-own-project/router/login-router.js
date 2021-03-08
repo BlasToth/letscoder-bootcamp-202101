@@ -17,6 +17,28 @@ loginRouter
         res.render('login', { title: "Login" })
     })
 
+loginRouter
+    .route('/')
+    .post((req, res) => {
+        const user = new User({
+            email: req.body.email,
+            password: req.body.password,
+            nickname: req.body.nickname
+          });
+
+          console.log(user);
+          user
+            .save()
+            .then((result) => {
+                
+              console.log("Created User");
+            })
+            .catch((err) => {
+              console.log(err);
+            });
+          res.redirect("/login");
+    })
+
 
 
 module.exports = loginRouter;

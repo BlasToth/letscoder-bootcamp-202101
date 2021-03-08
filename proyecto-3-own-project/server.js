@@ -50,24 +50,24 @@ app.get("/", (req, res) => {
   });
 });
 
-app.post("/log", (req, res) => {
-  console.log(req.body);
-  const loginUser = new Login({
-    email: req.body.email,
-    password: req.body.password,
-    nickname: req.body.nickname,
-  });
-  console.log(loginUser);
-  loginUser
-    .save()
-    .then((result) => {
-      console.log("Created USER");
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-  res.redirect("login/log");
-});
+// app.post("/log", (req, res) => {
+//   console.log(req.body);
+//   const loginUser = new Login({
+//     email: req.body.email,
+//     password: req.body.password,
+//     nickname: req.body.nickname,
+//   });
+//   console.log(loginUser);
+//   loginUser
+//     .save()
+//     .then((result) => {
+//       console.log("Created USER");
+//     })
+//     .catch((err) => {
+//       console.log(err);
+//     });
+//   res.redirect("login/log");
+// });
 
 app.post("/", (req, res) => {
   console.log(req.body);

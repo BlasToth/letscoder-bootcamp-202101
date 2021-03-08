@@ -3,9 +3,7 @@
 
         for (let i = 0; i < figcaptions.length; i++) {
             figcaptions[i].addEventListener("click",() => {
-                
-                    sounds[i].play();
-            
+                sounds[i].play();
             });
         }
     
