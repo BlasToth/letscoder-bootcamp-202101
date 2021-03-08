@@ -50,10 +50,6 @@ app.get("/", (req, res) => {
   });
 });
 
-// app.get("/verbs/create", (req, res) => {
-//     res.render('create-verbs', { title: 'Create verbs' })
-// })
-
 app.post("/log", (req, res) => {
   console.log(req.body);
   const loginUser = new Login({
@@ -130,42 +126,3 @@ app.use("/login", logins);
 app.use((req, res) => {
   res.status(404).render("404", { title: "404 - Not found" });
 });
-
-// // fetch start
-// function getGifFetch() {
-//   const searchExp = req.body.v1;
-//   const url = `https://api.giphy.com/v1/gifs/search?api_key=${API_KEY}&limit=1&q=${searchExp}`;
-//   fetch(url, {
-//     method: "GET",
-//   })
-//     .then((response) => {
-//       if (response.ok) {
-//         console.log(response);
-//         return response.json();
-//       }
-//     })
-//     .then((data) => {
-//       const fetchedGifUrl = data.data[0].images.downsized_medium.url;
-//       const verb = new Verb({
-//           sourceName: req.body.sourceName,
-//           v1: req.body.v1,
-//           v2: req.body.v2,
-//           v3: req.body.v3,
-//           wrongV1: req.body.wrongv1,
-//           wrongV2: req.body.wrongv2,
-//           wrongV3: req.body.wrongv3,
-//           gifUrl: fetchedGifUrl
-//         });
-//         console.log(verb);
-//         verb
-//           .save()
-//           .then((result) => {
-//             console.log("Created Verb");
-//           })
-//           .catch((err) => {
-//             console.log(err);
-//           });
-//         res.redirect("/");
-//     });
-// }
-// // fetch end

@@ -1,12 +1,11 @@
-        // let a = 0;
-        document.getElementById("figcaption").addEventListener("click",function(){
-            // if(a==0) {
-                document.getElementById("audio").play();
-                // a++;
-                // document.getElementById("figcaption").style.opacity="1";
-            // }else{
-            //     document.getElementById("audio").pause();
-            //     a--;
-                // document.getElementById("figcaption").style.opacity=".5";
-            // }
-        });
+        const figcaptions = document.querySelectorAll(".figcaption");
+        const sounds = document.querySelectorAll(".audio");
+
+        for (let i = 0; i < figcaptions.length; i++) {
+            figcaptions[i].addEventListener("click",() => {
+                
+                    sounds[i].play();
+            
+            });
+        }
+    
