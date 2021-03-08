@@ -2,6 +2,8 @@ const express = require('express');
 const loginRouter = express.Router();
 const Login = require('../models/login-model');
 const path = require('path');
+const bcrypt = require('bcrypt');
+
 
 loginRouter
     .route('/log')
@@ -19,24 +21,30 @@ loginRouter
 
 loginRouter
     .route('/')
-    .post((req, res) => {
-        const user = new User({
-            email: req.body.email,
-            password: req.body.password,
-            nickname: req.body.nickname
-          });
+    .post( async (req, res) => {
+        try {
+            // const salt = await bcrypt.genSalt();
+            const hashedPassword = await bcrypt.hash(req.body.password, 10);
 
-          console.log(user);
-          user
-            .save()
-            .then((result) => {
-                
-              console.log("Created User");
-            })
-            .catch((err) => {
-              console.log(err);
-            });
-          res.redirect("/login");
+            const user = new User({
+                email: req.body.email,
+                password: hashedPassword,
+                nickname: req.body.nickname
+              });
+              console.log(user);
+              user
+                .save()
+                .then((result) => {
+                  console.log("Created User");
+                })
+                .catch((err) => {
+                  console.log(err);
+                });
+              res.redirect("/login");
+        } catch  {
+            res.status(500).send();
+        }
+
     })
 
 
