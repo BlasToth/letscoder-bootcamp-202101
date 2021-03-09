@@ -6,7 +6,8 @@ const bodyParser = require("body-parser");
 const port = process.env.PORT;
 const DB_URL = process.env.DB_URL;
 const verbs = require("./router/verb-router");
-const logins = require("./router/login-router");
+const signups = require("./router/signup-router");
+const logins = require("./router/login-router")
 const fetch = require("node-fetch");
 const API_KEY = process.env.API;
 const API_KEY_S = process.env.API_S;
@@ -49,25 +50,6 @@ app.get("/", (req, res) => {
     }
   });
 });
-
-// app.post("/log", (req, res) => {
-//   console.log(req.body);
-//   const loginUser = new Login({
-//     email: req.body.email,
-//     password: req.body.password,
-//     nickname: req.body.nickname,
-//   });
-//   console.log(loginUser);
-//   loginUser
-//     .save()
-//     .then((result) => {
-//       console.log("Created USER");
-//     })
-//     .catch((err) => {
-//       console.log(err);
-//     });
-//   res.redirect("login/log");
-// });
 
 app.post("/", (req, res) => {
   console.log(req.body);
@@ -120,8 +102,8 @@ app.post("/", (req, res) => {
 });
 
 app.use("/verbs", verbs);
-
-app.use("/login", logins);
+app.use("/signup", signups);
+app.use("/login", logins); 
 
 app.use((req, res) => {
   res.status(404).render("404", { title: "404 - Not found" });
