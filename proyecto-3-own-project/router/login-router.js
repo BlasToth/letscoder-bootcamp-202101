@@ -1,5 +1,6 @@
 const express = require('express');
 const loginRouter = express.Router();
+const bcrypt = require('bcrypt');
 
 const path = require('path');
 
@@ -21,7 +22,31 @@ loginRouter
 loginRouter
     .route('/')
     .post( (req, res) => {
-        console.log(req.body.password)
+        User.find({}, (err, users) => {
+            if (err) {
+                res.status(404).send(err.response.data);
+            } else {
+            //    res.send(users);
+               console.log(users)
+               const authUser = users.find(u => u.email === req.body.email);
+               console.log("authUser: " + authUser)
+               if (authUser == null) {
+                   return res.status(400).send('Cannot find user');
+               }
+              
+                bcrypt.compare(req.body.password, authUser.password)
+                .then((result) => {
+                    if (result){
+                        res.send('Logged in')
+                    } else {
+                        res.send('Access denied')
+                    }
+                }); 
+               
+            }
+        })
+        // console.log(req.body.email)
+        // console.log(req.body.password)
     })
         
 
