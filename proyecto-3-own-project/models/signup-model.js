@@ -1,3 +1,4 @@
+const { ObjectID } = require("bson");
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
@@ -15,6 +16,14 @@ const userSchema = new Schema({
         type: String,
         required: true,
         unique: true
+    },
+    knownVerbs: [{
+        type: Schema.Types.ObjectId,
+        ref: Verb
+    }],
+
+    points: {
+        type: Number
     }
 });
 
