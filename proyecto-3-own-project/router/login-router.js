@@ -37,7 +37,8 @@ loginRouter
                 bcrypt.compare(req.body.password, authUser.password)
                 .then((result) => {
                     if (result){
-                        res.send('Logged in')
+                        
+                        res.send(`You are logged in as ${authUser.nickname.toUpperCase()}`)
                     } else {
                         res.send('Access denied')
                     }
