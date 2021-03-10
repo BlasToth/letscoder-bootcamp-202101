@@ -4,15 +4,6 @@ const bcrypt = require('bcrypt');
 
 const path = require('path');
 
-
-// loginRouter
-//     .route('/log')
-//     .get ((req, res) => {
-//         const loginPath = path.join(__dirname, '../admin/login.html')
-//     res.sendFile(loginPath);
-//     // res.sendFile(__dirname + "../admin/login.html");
-// })
-
 loginRouter
     .route('/')
     .get((req, res) => {
@@ -37,8 +28,8 @@ loginRouter
                 bcrypt.compare(req.body.password, authUser.password)
                 .then((result) => {
                     if (result){
-                        
-                        res.send(`You are logged in as ${authUser.nickname.toUpperCase()}`)
+                        const nick = authUser.nickname;
+                        res.render('user', { title: `${authUser.nickname}`, nick });
                     } else {
                         res.send('Access denied')
                     }
