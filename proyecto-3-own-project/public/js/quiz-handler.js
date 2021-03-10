@@ -24,8 +24,8 @@ function setNextQuestion() {
   showQuestion()
 }
 
-function showQuestion(questions) {
-  questionElement.innerText = questions[0].question
+function showQuestion() {
+  questionElement.innerText = questions.question
   question.answers.forEach(answer => {
     const button = document.createElement('button')
     button.innerText = answer.text
@@ -97,5 +97,5 @@ function handleQuestions(sourceName) {
     ]
   }
 ]
-return questions;
+
 }
