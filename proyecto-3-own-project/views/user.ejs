@@ -6,9 +6,19 @@
     <%- include('./partials/nav.ejs') %>
     
     <div class="user content">
-    <h1>Welcome <%= nick %></h1>
+    <h1>Welcome <%= nick %>! You already have: <%= points %> points</h1>
+    <hr>
+
     <h2>This is the content a logged in user can see</h2>
 
+    <h3>
+      <%= randomNumber = Math.floor(Math.random() * dbVerbs.length) %>
+      <%= dbVerbs[randomNumber].sourceName %>
+      <%= dbVerbs[randomNumber].v1 %>
+      <%= dbVerbs[randomNumber].v2 %>
+      <%= dbVerbs[randomNumber].v3 %>
+      
+    </h3>
 
         <div class="container">
             <div id="question-container" class="hide">

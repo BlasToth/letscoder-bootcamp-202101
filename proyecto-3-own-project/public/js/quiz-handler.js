@@ -4,7 +4,7 @@ const questionContainerElement = document.getElementById('question-container')
 const questionElement = document.getElementById('question')
 const answerButtonsElement = document.getElementById('answer-buttons')
 
-let shuffledQuestions, currentQuestionIndex
+let currentQuestionIndex
 
 startButton.addEventListener('click', startGame)
 nextButton.addEventListener('click', () => {
@@ -14,7 +14,6 @@ nextButton.addEventListener('click', () => {
 
 function startGame() {
   startButton.classList.add('hide')
-  shuffledQuestions = questions.sort(() => Math.random() - .5)
   currentQuestionIndex = 0
   questionContainerElement.classList.remove('hide')
   setNextQuestion()
@@ -22,11 +21,11 @@ function startGame() {
 
 function setNextQuestion() {
   resetState()
-  showQuestion(shuffledQuestions[currentQuestionIndex])
+  showQuestion()
 }
 
-function showQuestion(question) {
-  questionElement.innerText = question.question
+function showQuestion(questions) {
+  questionElement.innerText = questions[0].question
   question.answers.forEach(answer => {
     const button = document.createElement('button')
     button.innerText = answer.text
@@ -54,7 +53,7 @@ function selectAnswer(e) {
   Array.from(answerButtonsElement.children).forEach(button => {
     setStatusClass(button, button.dataset.correct)
   })
-  if (shuffledQuestions.length > currentQuestionIndex + 1) {
+  if (1 > currentQuestionIndex + 1) {
     nextButton.classList.remove('hide')
   } else {
     startButton.innerText = 'Restart'
@@ -76,23 +75,27 @@ function clearStatusClass(element) {
   element.classList.remove('wrong')
 }
 
-const questions = [
+fetch('http://localhost:4000/verbs/onerandomverb')
+	.then(response => response.json())
+	.then( data => {
+    console.log(data);
+    const sourceName = data.sourceName;
+    handleQuestions(sourceName);
+
+    })
+	.catch(err => console.error(err));
+
+function handleQuestions(sourceName) {
+  const questions = [
   {
-    question: 'Cuál es la forma correcta del verbo irregular: comprar? buy, ____, bought ',
+    question: `Cuál es la forma correcta del verbo irregular: ${sourceName}? buy, ____, bought `,
     answers: [
       { text: 'bought', correct: true },
       { text: 'buy', correct: false },
       { text: 'to buy', correct: false },
       { text: 'bay', correct: false }
     ]
-  },
-  {
-    question: 'Cuál es la forma correcta del verbo irregular: coger? ____, took, taken ',
-    answers: [
-      { text: 'take', correct: true },
-      { text: 'took', correct: false },
-      { text: 'taken', correct: false },
-      { text: 'taking', correct: false }
-    ]
   }
 ]
+return questions;
+}

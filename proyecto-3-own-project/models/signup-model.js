@@ -19,11 +19,12 @@ const userSchema = new Schema({
     },
     knownVerbs: [{
         type: Schema.Types.ObjectId,
-        ref: Verb
+        ref: 'Verb'
     }],
 
     points: {
-        type: Number
+        type: Number,
+        default: 0
     }
 });
 

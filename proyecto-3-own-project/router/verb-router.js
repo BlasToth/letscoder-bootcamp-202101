@@ -11,7 +11,6 @@ verbRouter
             res.status(404).send(err.response.data);
         } else {
            res.send(verbs);
-           
         }
     })
 })
@@ -31,6 +30,18 @@ verbRouter
             res.status(404).send(err.response.data);
         } else {
             res.json(verbs[2]);
+        }
+    })
+})
+
+verbRouter
+.route('/onerandomverb')
+.get((req, res) => {
+    Verb.find({}, (err, verbs) => {
+        if (err) {
+            res.status(404).send(err.response.data);
+        } else {
+            res.json(verbs[Math.floor(Math.random() * verbs.length)]);
         }
     })
 })

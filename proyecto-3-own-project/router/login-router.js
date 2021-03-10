@@ -29,7 +29,21 @@ loginRouter
                 .then((result) => {
                     if (result){
                         const nick = authUser.nickname;
-                        res.render('user', { title: `${authUser.nickname}`, nick });
+                        const points = authUser.points;
+                        // Verb
+                        Verb.find({}, (err, verbs) => {
+                            if (err) {
+                                res.status(404).send(err.response.data);
+                            } else {
+                               const dbVerbs = verbs;
+                               res.render('user', { title: `${authUser.nickname}`, nick, dbVerbs, points });
+                               ///
+                                
+                               ///
+                            }
+                        })
+                        // Verb end
+                        
                     } else {
                         res.send('Access denied')
                     }
