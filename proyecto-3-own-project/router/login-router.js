@@ -1,8 +1,10 @@
 const express = require('express');
 const loginRouter = express.Router();
 const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
 
 const path = require('path');
+const { JsonWebTokenError } = require('jsonwebtoken');
 
 loginRouter
     .route('/')
@@ -30,6 +32,9 @@ loginRouter
                     if (result){
                         const nick = authUser.nickname;
                         const points = authUser.points;
+                        // JWT
+                        jwt.sign(nick, process.env.ACCESS_TOKEN_SECRET)
+                        // JWT ends
                         // Verb
                         Verb.find({}, (err, verbs) => {
                             if (err) {
@@ -37,13 +42,11 @@ loginRouter
                             } else {
                                const dbVerbs = verbs;
                                res.render('user', { title: `${authUser.nickname}`, nick, dbVerbs, points });
-                               ///
-                                
-                               ///
+                              
                             }
                         })
                         // Verb end
-                        
+
                     } else {
                         res.send('Access denied')
                     }

@@ -5,6 +5,7 @@ const path = require('path');
 const bcrypt = require('bcrypt');
 
 
+
 signupRouter
     .route('/log')
     .get ((req, res) => {
@@ -40,7 +41,7 @@ signupRouter
                 .catch((err) => {
                   console.log(err);
                 });
-              res.redirect("/signup");
+              res.redirect("/login");
         } catch  {
             res.status(500).send();
         }
