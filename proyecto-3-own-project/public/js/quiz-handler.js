@@ -24,9 +24,10 @@ function setNextQuestion() {
   showQuestion()
 }
 
-function showQuestion() {
-  questionElement.innerText = questions.question
-  question.answers.forEach(answer => {
+function showQuestion(questions) {
+  console.log(questions)
+  questionElement.innerText = questions[0].question
+  questions[0].answers.forEach(answer => {
     const button = document.createElement('button')
     button.innerText = answer.text
     button.classList.add('btn')
@@ -79,23 +80,26 @@ fetch('http://localhost:4000/verbs/onerandomverb')
 	.then(response => response.json())
 	.then( data => {
     console.log(data);
-    const sourceName = data.sourceName;
-    handleQuestions(sourceName);
+    const {sourceName, v1, v2, v3, wrongV1, wrongV2, wrongV3} = data;
+    const wrongV2Array = wrongV2.split(',');
+    console.log(wrongV2Array)
+    handleQuestions(sourceName, v1, v2, v3, wrongV1, wrongV2, wrongV3, wrongV2Array);
 
     })
 	.catch(err => console.error(err));
 
-function handleQuestions(sourceName) {
+function handleQuestions(sourceName, v1, v2, v3, wrongV1, wrongV2, wrongV3, wrongV2Array) {
+  
   const questions = [
   {
-    question: `Cuál es la forma correcta del verbo irregular: ${sourceName}? buy, ____, bought `,
+    question: `Cuál es la forma correcta del verbo irregular: ${sourceName}? ${v1}, ____, ${v3} `,
     answers: [
-      { text: 'bought', correct: true },
-      { text: 'buy', correct: false },
-      { text: 'to buy', correct: false },
-      { text: 'bay', correct: false }
+      { text: v2, correct: true },
+      { text: wrongV2Array[0], correct: false },
+      { text: wrongV2Array[1], correct: false },
+      { text: wrongV2Array[2], correct: false }
     ]
   }
 ]
-
+  showQuestion(questions)
 }
