@@ -26,8 +26,9 @@ function setNextQuestion() {
 
 function showQuestion(questions) {
   console.log(questions)
-  questionElement.innerText = questions[0].question
-  questions[0].answers.forEach(answer => {
+  const source = questions[0].question;
+  questionElement.innerText = source;
+  questions.answers.forEach(answer => {
     const button = document.createElement('button')
     button.innerText = answer.text
     button.classList.add('btn')
