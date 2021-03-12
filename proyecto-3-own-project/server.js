@@ -2,17 +2,18 @@ require("dotenv").config();
 const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
-const bodyParser = require("body-parser");
 const port = process.env.PORT;
 const DB_URL = process.env.DB_URL;
 const verbs = require("./router/verb-router");
 const signups = require("./router/signup-router");
 const logins = require("./router/login-router");
 const roots = require("./router/root-router");
+const jwt = require("jsonwebtoken");
+const authenticateToken = require("./middlewares.js");
 
 
 
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: true }));
 
 // connect to DB with mongoose
 mongoose
@@ -38,9 +39,33 @@ app.use("/css", express.static(__dirname + "public/css"));
 // register view engine
 app.set("view engine", "ejs");
 
+
+//try auth
+const posts = [
+  {
+    username: 'John',
+    title: 'This is the message of John Doe'
+  },
+  {
+    username: 'Pepito',
+    title: 'This is the message of Pepito Grillo'
+  }
+]
+app.get('/posts', authenticateToken, (req, res) => {
+  res.json(posts);
+})
+
+app.post('/logintry', (req, res) => {
+
+  const username = req.body.username;
+  const user = { name: username };
+
+  const accessToken = jwt.sign(user, process.env.ACCESS_TOKEN_SECRET);
+  res.json({ accessToken: accessToken })
+})
 // routes
 app.use("/", roots);
-app.use("/verbs", verbs);
+app.use("/verbs", authenticateToken, verbs);
 app.use("/signup", signups);
 app.use("/login", logins); 
 
@@ -48,3 +73,5 @@ app.use("/login", logins);
 app.use((req, res) => {
   res.status(404).render("404", { title: "404 - Not found" });
 });
+
+

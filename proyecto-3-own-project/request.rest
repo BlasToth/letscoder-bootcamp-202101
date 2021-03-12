@@ -1,0 +1,7 @@
+GET http://localhost:4000/posts
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2MTU0OTE0MjB9.UYho1vzhe0lWvcbO7vc8b812XCbONxls_vE-bhRPGB0
+###
+
+POST http://localhost:4000/logintry
+Content-Type: application/json
+
