@@ -37,7 +37,8 @@ loginRouter
                         
                         // JWT
                         const accessToken = jwt.sign({_id: authUser._id}, process.env.ACCESS_TOKEN_SECRET);
-                        res.header('auth-token', accessToken).send(`This is the token: ${accessToken}`)
+                        res.header('auth-token', accessToken)
+                        // .send(`This is the token: ${accessToken}`)
 
                         // JWT ends
                         // Verb

@@ -16,6 +16,26 @@ verbRouter
 })
 
 verbRouter
+.route('/answers')
+.get((req, res) => {
+    Verb.find({}, (err, verbs) => {
+        if (err) {
+            res.status(404).send(err.response.data);
+        } else {
+            const randomVerb = (verbs[Math.floor(Math.random() * verbs.length)]);
+            const { sourceName, v1, v2, v3, wrongV1, wrongV2, wrongV3 } = randomVerb;
+            console.log(v1, v2)
+             const answers = [sourceName, v1, v2, v3, wrongV1, wrongV2, wrongV3]
+            res.send(answers)
+        }
+    })
+           
+    
+   
+          
+})
+
+verbRouter
     .route('/create')
     .get((req, res) => {
         

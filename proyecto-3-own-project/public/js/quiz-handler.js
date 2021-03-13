@@ -77,7 +77,7 @@ function clearStatusClass(element) {
   element.classList.remove('wrong')
 }
 
-fetch('http://localhost:4000/verbs/onerandomverb')
+fetch('http://localhost:4000/verbs/answers')
 	.then(response => response.json())
 	.then( data => {
     console.log(data);
