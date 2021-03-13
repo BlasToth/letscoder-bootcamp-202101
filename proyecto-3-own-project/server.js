@@ -65,7 +65,7 @@ app.post('/logintry', (req, res) => {
 })
 // routes
 app.use("/", roots);
-app.use("/verbs", authenticateToken, verbs);
+app.use("/verbs", verbs);
 app.use("/signup", signups);
 app.use("/login", logins); 
 
