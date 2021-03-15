@@ -45,10 +45,10 @@ verbRouter
                 let answersForCase2 = wrongV3.split(", ");
                 answersForCase2.push(v3);
                 shuffle(answersForCase2);
-                showVForm.push(v1, v2, "case2", _id, answersForCase2);
+                showVForm.push(v1, v2, "case 2", _id, answersForCase2);
             }
             // send random v form end
-            showVForm.push(gifUrl, audioUrl);
+            showVForm.push(gifUrl, audioUrl, sourceName);
             console.log(showVForm)
             res.send(showVForm);
         }
