@@ -52,12 +52,14 @@ verbRouter
             console.log(showVForm)
             res.send(showVForm);
         }
-    })
-           
-    
-   
-          
+    })      
 })
+
+verbRouter
+    .route('/check')
+    .post((req, res) => {
+        console.log(req.body.decide);
+    })
 
 verbRouter
     .route('/create')

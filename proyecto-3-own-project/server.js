@@ -14,6 +14,7 @@ const authenticateToken = require("./middlewares.js");
 
 
 app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 
 // connect to DB with mongoose
 mongoose
