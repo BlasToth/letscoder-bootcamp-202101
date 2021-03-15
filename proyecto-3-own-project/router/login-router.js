@@ -22,9 +22,8 @@ loginRouter
                 res.status(404).send(err.response.data);
             } else {
             //    res.send(users);
-               console.log(users)
                const authUser = users.find(u => u.email === req.body.email);
-               console.log("authUser: " + authUser)
+               
                if (authUser == null) {
                    return res.status(400).send('Cannot find user');
                }

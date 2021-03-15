@@ -58,7 +58,10 @@ verbRouter
 verbRouter
     .route('/check')
     .post((req, res) => {
-        console.log(req.body.decide);
+       const response = req.body.decide;
+       console.log(response);
+       // TODO check if the answer is correct
+    
     })
 
 verbRouter
@@ -88,18 +91,6 @@ verbRouter
             res.status(404).send(err.response.data);
         } else {
             res.json(verbs[Math.floor(Math.random() * verbs.length)]);
-        }
-    })
-})
-
-verbRouter
-.route('/oneverb/sourcename')
-.get((req, res) => {
-    Verb.find({}, (err, verbs) => {
-        if (err) {
-            res.status(404).send(err.response.data);
-        } else {
-            res.json(verbs[2].sourceName);
         }
     })
 })
