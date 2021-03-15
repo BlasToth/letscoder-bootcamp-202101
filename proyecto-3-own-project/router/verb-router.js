@@ -2,6 +2,13 @@ const express = require('express');
 const verbRouter = express.Router();
 const Verb = require('../models/verb-model');
 
+function shuffle(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+      let j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]];
+    }
+  }
+
 // everything inside /verbs
 verbRouter
 .route('/verbs')
@@ -22,11 +29,33 @@ verbRouter
         if (err) {
             res.status(404).send(err.response.data);
         } else {
-            const randomVerb = (verbs[Math.floor(Math.random() * verbs.length)]);
-            const { sourceName, v1, v2, v3, wrongV1, wrongV2, wrongV3 } = randomVerb;
-            console.log(v1, v2)
-             const answers = [sourceName, v1, v2, v3, wrongV1, wrongV2, wrongV3]
-            res.send(answers)
+            const randomVerb = (verbs[Math.floor(Math.random() * verbs.length)]); 
+            const { sourceName, v1, v2, v3, wrongV1, wrongV2, wrongV3, _id } = randomVerb;
+            
+            // send random v form
+            const vForms = [v1, v2, v3];
+            randomVFormNum = Math.floor(Math.random() * 3);
+            // take out the random numbers place from the sent data
+            let showVForm = []
+            if (randomVFormNum === 0) {
+                let answersForCase0 = wrongV1.split(", ");
+                answersForCase0.push(v1);
+                shuffle(answersForCase0);
+                showVForm.push("case 0", v2, v3, _id, answersForCase0)
+            } else if (randomVFormNum === 1) {
+                let answersForCase1 = wrongV2.split(", ");
+                answersForCase1.push(v2);
+                shuffle(answersForCase1);
+                showVForm.push(v1, "case 1", v3, _id, answersForCase1)
+            } else if (randomVFormNum === 2) {
+                let answersForCase2 = wrongV3.split(", ");
+                answersForCase2.push(v3);
+                shuffle(answersForCase2);
+                showVForm.push(v1, v2, "case2", _id, answersForCase2);
+            }
+            console.log(showVForm)
+            // send random v form end
+            res.send(showVForm);
         }
     })
            
