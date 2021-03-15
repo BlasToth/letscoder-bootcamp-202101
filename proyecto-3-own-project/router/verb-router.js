@@ -24,12 +24,12 @@ verbRouter
             res.status(404).send(err.response.data);
         } else {
             const randomVerb = (verbs[Math.floor(Math.random() * verbs.length)]); 
-            const { sourceName, v1, v2, v3, wrongV1, wrongV2, wrongV3, _id } = randomVerb;
+            const { sourceName, v1, v2, v3, wrongV1, wrongV2, wrongV3, _id, gifUrl, audioUrl } = randomVerb;
             
             // send random v form
             const vForms = [v1, v2, v3];
             randomVFormNum = Math.floor(Math.random() * 3);
-            // take out the random numbers place from the sent data
+            // subtract one from the forms
             let showVForm = []
             if (randomVFormNum === 0) {
                 let answersForCase0 = wrongV1.split(", ");
@@ -47,8 +47,9 @@ verbRouter
                 shuffle(answersForCase2);
                 showVForm.push(v1, v2, "case2", _id, answersForCase2);
             }
-            console.log(showVForm)
             // send random v form end
+            showVForm.push(gifUrl, audioUrl);
+            console.log(showVForm)
             res.send(showVForm);
         }
     })
