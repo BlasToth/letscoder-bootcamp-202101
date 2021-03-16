@@ -7,14 +7,6 @@ const bcrypt = require('bcrypt');
 
 
 signupRouter
-    .route('/log')
-    .get ((req, res) => {
-        const loginPath = path.join(__dirname, '../admin/login.html')
-    res.sendFile(loginPath);
-    // res.sendFile(__dirname + "../admin/login.html");
-})
-
-signupRouter
     .route('/')
     .get((req, res) => {
         res.render('signup', { title: "Sign up" })

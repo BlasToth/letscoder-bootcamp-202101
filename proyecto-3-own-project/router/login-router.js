@@ -46,7 +46,8 @@ loginRouter
                                 res.status(404).send(err.response.data);
                             } else {
                                const dbVerbs = verbs;
-                               res.render('user', { title: `${authUser.nickname}`, nick, dbVerbs, points });
+                               res.redirect("/login/" + authUser._id);
+                               
                               
                             }
                         })
@@ -56,14 +57,30 @@ loginRouter
                         res.send('<h1>Access denied</h1>')
                     }
                 }); 
+            }
+        })
+    })
+
+    loginRouter
+    .route('/:id')
+    .get((req, res) => {
+        User.find({}, (err, users) => {
+            if (err) {
+                res.status(404).send(err.response.data);
+            } else {
+            const nick = users.nickname;
+            const points = users.points;
+            res.render('user', { title: "Login", nick, points })
                
             }
         })
-        // console.log(req.body.email)
-        // console.log(req.body.password)
+
+
     })
+
+        // res.send(req.params.id)
         
+    
 
-
-
+    
 module.exports = loginRouter;

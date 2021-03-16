@@ -16,6 +16,9 @@ const authenticateToken = require("./middlewares.js");
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
+// deprecation
+mongoose.set('useFindAndModify', false);
+
 // connect to DB with mongoose
 mongoose
   .connect(DB_URL, {

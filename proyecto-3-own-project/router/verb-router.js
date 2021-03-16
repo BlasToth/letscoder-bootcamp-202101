@@ -3,6 +3,22 @@ const verbRouter = express.Router();
 const Verb = require('../models/verb-model');
 const shuffle = require('../utils/shuffle')
 
+function addPoints() {
+    // add points to the counter
+    User.find({_id : req.params.id}, (err, user) => {
+        if (err) {
+            res.status(404).send(err.response.data);
+        } else {
+            userPoints = user[0].points;
+            User
+            .findOneAndUpdate({points:userPoints}, {points:userPoints + 5})
+            .then(() => {
+                User.findOne({_id: User._id})
+            })
+        }
+    })
+}
+
 // everything inside /verbs
 verbRouter
 .route('/verbs')
@@ -65,15 +81,17 @@ verbRouter
             if (err) {
                 res.status(404).send(err.response.data);
             } else {
-                if (response[0] === "case 0" && response[2] === verb[0].v1) {
+                if (response[0] === "case 0" && response[2] === verb[0].v1) {   
+                    addPoints()
+                    // Verdict
                     res.json({verdict: true});
-                    // TODO add points to the counter
                     // TODO remove the verb from the array to avoid repetition
                 } else if (response[0] === "case 1" && response[2] === verb[0].v2) {
+                    addPoints()
                     res.json({verdict: true});
-                    // TODO add points to the counter
                     // TODO remove the verb from the array to avoid repetition
                 } else if (response[0] === "case 2" && response[2] === verb[0].v3) {
+                    addPoints()
                     res.json({verdict: true});
                 } else {
                     res.json({verdict: false});
@@ -89,18 +107,6 @@ verbRouter
         
         res.render('create-verbs', { title: "Create a verb" })
     })
-
-verbRouter
-.route('/oneverb')
-.get((req, res) => {
-    Verb.find({}, (err, verbs) => {
-        if (err) {
-            res.status(404).send(err.response.data);
-        } else {
-            res.json(verbs[2]);
-        }
-    })
-})
 
 verbRouter
 .route('/onerandomverb')
