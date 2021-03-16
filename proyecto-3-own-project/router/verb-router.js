@@ -54,14 +54,33 @@ verbRouter
         }
     })      
 })
-
+// FE sends back the answer
 verbRouter
     .route('/check')
     .post((req, res) => {
        const response = req.body.decide;
        console.log(response);
        // TODO check if the answer is correct
-    
+        Verb.find({_id : response[1]}, (err, verb) => {
+            if (err) {
+                res.status(404).send(err.response.data);
+            } else {
+                if (response[0] === "case 0" && response[2] === verb[0].v1) {
+                    res.json({verdict: true});
+                    // TODO add points to the counter
+                    // TODO remove the verb from the array to avoid repetition
+                } else if (response[0] === "case 1" && response[2] === verb[0].v2) {
+                    res.json({verdict: true});
+                    // TODO add points to the counter
+                    // TODO remove the verb from the array to avoid repetition
+                } else if (response[0] === "case 2" && response[2] === verb[0].v3) {
+                    res.json({verdict: true});
+                } else {
+                    res.json({verdict: false});
+                }
+
+            }
+        })
     })
 
 verbRouter

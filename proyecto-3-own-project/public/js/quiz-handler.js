@@ -55,9 +55,19 @@ function getButtonText(buttonText, sendAnswerToBack) {
       },
       body: JSON.stringify({decide: sendAnswerToBack})
     }).then(res => {
-      return res.json()
+      return res.json();
     })
-    .then(data => console.log(data))
+    .then(data => {
+      console.log(data) //FE console verdict
+      // TODO change color by verdict
+      if (data.verdict === true) {
+        document.body.classList.add('correct'); 
+      } else {
+        document.body.classList.add('not-correct');
+      }
+      
+    }) 
+    send.disabled = true;
   })
 }
 

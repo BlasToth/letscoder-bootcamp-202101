@@ -5,7 +5,12 @@
           padding: 0 20px;
           font-family: 'Noto Serif', serif;
           background-color: rgb(253, 246, 236);
-          
+        }
+        .correct {
+          background-color: rgb(136, 236, 136);
+        }
+        .not-correct {
+          background-color: rgb(236, 148, 136);
         }
         p, h1, h2, h3, a, ul{
           margin: 0;
