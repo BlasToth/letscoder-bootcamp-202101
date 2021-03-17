@@ -6,14 +6,14 @@ const authenticateToken = require("../middlewares.js");
 const jwt = require("jsonwebtoken");
 
 
-function addPoints(currentUserId) {
+function addPoints(currentUserId = "60490778d57a380850401982") {
     // add points to the counter
-
+    console.log(currentUserId)
     User.find({_id : currentUserId}, (err, user) => {
         if (err) {
             res.status(404).send(err.response.data);
         } else {
-            console.log("This is User.points from Verb: " + user[0].points)
+            // console.log("This is User.points from Verb: " + user[0].points)
             userPoints = user[0].points;
             User
             .findOneAndUpdate({_id:currentUserId}, {points:userPoints + 5})
@@ -70,7 +70,7 @@ verbRouter
             }
             // send random v form end
             showVForm.push(gifUrl, audioUrl, sourceName);
-            console.log(showVForm)
+            // console.log(showVForm)
             res.send(showVForm);
         }
     })      
@@ -81,7 +81,7 @@ verbRouter
     .post((req, res) => {
         const userId = req.user;
        const response = req.body.decide;
-       console.log(response);
+       
        // TODO check if the answer is correct
         Verb.find({_id : response[1]}, (err, verb) => {
             if (err) {

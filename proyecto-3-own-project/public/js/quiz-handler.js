@@ -3,7 +3,7 @@ const buttons = document.querySelectorAll('.btn');
 const send = document.querySelector('.send-btn');
 
 
-fetch('http://localhost:4000/verbs/answers'})
+fetch('http://localhost:4000/verbs/answers')
 .then(response => response.json())
 .then( data => {
   // console.log(data);

@@ -35,7 +35,11 @@ loginRouter
                         const points = authUser.points;
                         
                         // JWT
-                        const accessToken = jwt.sign({_id: authUser._id}, process.env.ACCESS_TOKEN_SECRET);
+                        const accessToken = jwt.sign({
+                            _id: authUser._id, 
+                            nickname: authUser.nickname
+                        }, process.env.ACCESS_TOKEN_SECRET);
+
                         res.header('auth-token', accessToken)
                         // .send(`This is the token: ${accessToken}`)
 
@@ -63,16 +67,17 @@ loginRouter
 
     loginRouter
     .route('/:id')
-    .get(authenticateToken, (req, res) => {
+    .get( (req, res) => {
         const currentUserId = req.params.id;
         User.find({_id: currentUserId}, (err, user) => {
             if (err) {
                 res.status(404).send(err.response.data);
             } else {
-                console.log("HERE IS THE ID: " + currentUserId)
-                console.log(user[0].nickname)
+                // console.log("HERE IS THE ID: " + currentUserId)
+                // console.log(user[0].nickname)
             const nick = user[0].nickname;
             const points = user[0].points;
+            
             res.render('user', { title: "Login", nick, points })
                
             }
