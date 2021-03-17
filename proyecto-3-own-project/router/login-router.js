@@ -63,13 +63,16 @@ loginRouter
 
     loginRouter
     .route('/:id')
-    .get((req, res) => {
-        User.find({}, (err, users) => {
+    .get(authenticateToken, (req, res) => {
+        const currentUserId = req.params.id;
+        User.find({_id: currentUserId}, (err, user) => {
             if (err) {
                 res.status(404).send(err.response.data);
             } else {
-            const nick = users.nickname;
-            const points = users.points;
+                console.log("HERE IS THE ID: " + currentUserId)
+                console.log(user[0].nickname)
+            const nick = user[0].nickname;
+            const points = user[0].points;
             res.render('user', { title: "Login", nick, points })
                
             }
@@ -78,7 +81,7 @@ loginRouter
 
     })
 
-        // res.send(req.params.id)
+        
         
     
 

@@ -1,19 +1,24 @@
 const express = require('express');
 const verbRouter = express.Router();
 const Verb = require('../models/verb-model');
-const shuffle = require('../utils/shuffle')
+const shuffle = require('../utils/shuffle');
+const authenticateToken = require("../middlewares.js");
+const jwt = require("jsonwebtoken");
 
-function addPoints() {
+
+function addPoints(currentUserId) {
     // add points to the counter
-    User.find({_id : req.params.id}, (err, user) => {
+
+    User.find({_id : currentUserId}, (err, user) => {
         if (err) {
             res.status(404).send(err.response.data);
         } else {
+            console.log("This is User.points from Verb: " + user[0].points)
             userPoints = user[0].points;
             User
-            .findOneAndUpdate({points:userPoints}, {points:userPoints + 5})
+            .findOneAndUpdate({_id:currentUserId}, {points:userPoints + 5})
             .then(() => {
-                User.findOne({_id: User._id})
+                User.findOne({_id: currentUserId})
             })
         }
     })
@@ -74,6 +79,7 @@ verbRouter
 verbRouter
     .route('/check')
     .post((req, res) => {
+        const userId = req.user;
        const response = req.body.decide;
        console.log(response);
        // TODO check if the answer is correct
@@ -82,35 +88,34 @@ verbRouter
                 res.status(404).send(err.response.data);
             } else {
                 if (response[0] === "case 0" && response[2] === verb[0].v1) {   
-                    addPoints()
+                    addPoints(userId)
                     // Verdict
                     res.json({verdict: true});
                     // TODO remove the verb from the array to avoid repetition
                 } else if (response[0] === "case 1" && response[2] === verb[0].v2) {
-                    addPoints()
+                    addPoints(userId)
                     res.json({verdict: true});
                     // TODO remove the verb from the array to avoid repetition
                 } else if (response[0] === "case 2" && response[2] === verb[0].v3) {
-                    addPoints()
+                    addPoints(userId)
                     res.json({verdict: true});
                 } else {
                     res.json({verdict: false});
                 }
-
             }
         })
     })
 
 verbRouter
     .route('/create')
-    .get((req, res) => {
+    .get(authenticateToken, (req, res) => {
         
         res.render('create-verbs', { title: "Create a verb" })
     })
 
 verbRouter
 .route('/onerandomverb')
-.get((req, res) => {
+.get(authenticateToken, (req, res) => {
     Verb.find({}, (err, verbs) => {
         if (err) {
             res.status(404).send(err.response.data);

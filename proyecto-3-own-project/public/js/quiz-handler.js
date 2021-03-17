@@ -3,10 +3,10 @@ const buttons = document.querySelectorAll('.btn');
 const send = document.querySelector('.send-btn');
 
 
-fetch('http://localhost:4000/verbs/answers')
+fetch('http://localhost:4000/verbs/answers'})
 .then(response => response.json())
 .then( data => {
-  console.log(data);
+  // console.log(data);
   const sourceName = data[7];
   const buttonText = data[4];
   const id = data[3];
@@ -27,7 +27,7 @@ fetch('http://localhost:4000/verbs/answers')
     sendAnswerToBack.push("case 2", id);
     v3 = gap;
   }
-  console.log(sendAnswerToBack)
+  // console.log(sendAnswerToBack)
 
   getQuestionText(sourceName, v1, v2, v3)
   getButtonText(buttonText, sendAnswerToBack)

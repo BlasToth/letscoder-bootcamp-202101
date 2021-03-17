@@ -69,9 +69,9 @@ app.post('/logintry', (req, res) => {
 })
 // routes
 app.use("/", roots);
-app.use("/verbs", verbs);
+app.use("/verbs",  verbs);
 app.use("/signup", signups);
-app.use("/login", logins); 
+app.use("/login",  logins); 
 
 // not found
 app.use((req, res) => {
