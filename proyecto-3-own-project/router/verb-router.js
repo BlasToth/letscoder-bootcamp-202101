@@ -6,7 +6,7 @@ const authenticateToken = require("../middlewares.js");
 const jwt = require("jsonwebtoken");
 
 
-function addPoints(currentUserId = "60490778d57a380850401982") {
+function addPoints(currentUserId) {
     // add points to the counter
     console.log(currentUserId)
     User.find({_id : currentUserId}, (err, user) => {
@@ -30,10 +30,9 @@ verbRouter
 .get((req, res) => {
     Verb.find({}, (err, verbs) => {
         if (err) {
-            res.status(404).send(err.response.data);
-        } else {
-           res.send(verbs);
-        }
+            return res.status(404).send(err.message);  
+        } 
+        return res.send(verbs);
     })
 })
 
@@ -78,8 +77,9 @@ verbRouter
 // FE sends back the answer
 verbRouter
     .route('/check')
-    .post((req, res) => {
-        const userId = req.user;
+    .post(authenticateToken, (req, res) => {
+        const userId = req.user._id;
+        console.log(userId);
        const response = req.body.decide;
        
        // TODO check if the answer is correct
@@ -109,7 +109,7 @@ verbRouter
 verbRouter
     .route('/create')
     .get(authenticateToken, (req, res) => {
-        
+        console.log(req.user);
         res.render('create-verbs', { title: "Create a verb" })
     })
 

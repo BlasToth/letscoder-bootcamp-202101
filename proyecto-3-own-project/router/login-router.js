@@ -40,25 +40,25 @@ loginRouter
                             nickname: authUser.nickname
                         }, process.env.ACCESS_TOKEN_SECRET);
 
-                        res.header('auth-token', accessToken)
-                        // .send(`This is the token: ${accessToken}`)
+                        // res.header('auth-token', accessToken)
+                        res.send({token: accessToken})
 
                         // JWT ends
                         // Verb
-                        Verb.find({}, (err, verbs) => {
-                            if (err) {
-                                res.status(404).send(err.response.data);
-                            } else {
-                               const dbVerbs = verbs;
-                               res.redirect("/login/" + authUser._id);
+                        // Verb.find({}, (err, verbs) => {
+                        //     if (err) {
+                        //         res.status(404).send(err.response.data);
+                        //     } else {
+                        //        const dbVerbs = verbs;
+                            //    res.redirect("/login/" + authUser._id);
                                
                               
-                            }
-                        })
+                        //     }
+                        // })
                         // Verb end
 
                     } else {
-                        res.send('<h1>Access denied</h1>')
+                        res.status(401).send("Acces denied") //json 401
                     }
                 }); 
             }
