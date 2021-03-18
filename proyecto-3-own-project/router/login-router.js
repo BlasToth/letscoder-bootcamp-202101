@@ -11,7 +11,7 @@ const authenticateToken = require('../middlewares');
 loginRouter
     .route('/')
     .get((req, res) => {
-        res.render('login', { title: "Login" })
+        res.send("Login")
     })
 
 loginRouter
@@ -65,26 +65,26 @@ loginRouter
         })
     })
 
-    loginRouter
-    .route('/:id')
-    .get( (req, res) => {
-        const currentUserId = req.params.id;
-        User.find({_id: currentUserId}, (err, user) => {
-            if (err) {
-                res.status(404).send(err.response.data);
-            } else {
-                // console.log("HERE IS THE ID: " + currentUserId)
-                // console.log(user[0].nickname)
-            const nick = user[0].nickname;
-            const points = user[0].points;
+    // loginRouter
+    // .route('/:id')
+    // .get( (req, res) => {
+    //     const currentUserId = req.params.id;
+    //     User.find({_id: currentUserId}, (err, user) => {
+    //         if (err) {
+    //             res.status(404).send(err.response.data);
+    //         } else {
+    //             // console.log("HERE IS THE ID: " + currentUserId)
+    //             // console.log(user[0].nickname)
+    //         const nick = user[0].nickname;
+    //         const points = user[0].points;
             
-            res.render('user', { title: "Login", nick, points })
+    //         res.render('user', { title: "Login", nick, points })
                
-            }
-        })
+    //         }
+    //     })
 
 
-    })
+    // })
 
         
         

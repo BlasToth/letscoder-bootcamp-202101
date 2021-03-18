@@ -5,12 +5,11 @@ const path = require('path');
 const bcrypt = require('bcrypt');
 
 
-
 signupRouter
     .route('/')
     .get((req, res) => {
-        res.render('signup', { title: "Sign up" })
-    })
+        res.send("ciao")
+      })
 
 signupRouter
     .route('/')
@@ -33,11 +32,10 @@ signupRouter
                 .catch((err) => {
                   console.log(err);
                 });
-              res.redirect("/login");
+              res.send(user);
         } catch  {
             res.status(500).send();
         }
-
     })
 
 

@@ -25,6 +25,7 @@ function addPoints(currentUserId) {
 }
 
 // everything inside /verbs
+// public route
 verbRouter
 .route('/verbs')
 .get((req, res) => {
@@ -36,9 +37,10 @@ verbRouter
     })
 })
 
+// send possible answers to FE
 verbRouter
 .route('/answers')
-.get((req, res) => {
+.get(authenticateToken,(req, res) => {
     Verb.find({}, (err, verbs) => {
         if (err) {
             res.status(404).send(err.response.data);
@@ -50,7 +52,7 @@ verbRouter
             const vForms = [v1, v2, v3];
             randomVFormNum = Math.floor(Math.random() * 3);
             // subtract one from the forms
-            let showVForm = []
+            let showVForm = [];
             if (randomVFormNum === 0) {
                 let answersForCase0 = wrongV1.split(", ");
                 answersForCase0.push(v1);
@@ -69,7 +71,6 @@ verbRouter
             }
             // send random v form end
             showVForm.push(gifUrl, audioUrl, sourceName);
-            // console.log(showVForm)
             res.send(showVForm);
         }
     })      
@@ -80,10 +81,10 @@ verbRouter
     .post(authenticateToken, (req, res) => {
         const userId = req.user._id;
         console.log(userId);
-       const response = req.body.decide;
+       const response = ["case 0", "604600574209114940f1320f", "freeze" ]//req.body.decide; 
        
-       // TODO check if the answer is correct
-        Verb.find({_id : response[1]}, (err, verb) => {
+       // check if the answer is correct
+        Verb.find({_id : "604600574209114940f1320f"}, (err, verb) => {
             if (err) {
                 res.status(404).send(err.response.data);
             } else {
@@ -104,13 +105,6 @@ verbRouter
                 }
             }
         })
-    })
-
-verbRouter
-    .route('/create')
-    .get(authenticateToken, (req, res) => {
-        console.log(req.user);
-        res.render('create-verbs', { title: "Create a verb" })
     })
 
 verbRouter

@@ -5,18 +5,20 @@ const API_KEY_S = process.env.API_S;
 const fetch = require("node-fetch");
 
 // everything inside /
-rootRouter.route("/").get((req, res) => {
+rootRouter.route("/")
+.get((req, res) => {
   Verb.find({}, (err, verbs) => {
     if (err) {
       res.status(404).send(err.response.data);
     } else {
       const showVerbs = verbs;
-      res.render("index", { title: "Home", showVerbs });
+      res.send({showVerbs})
     }
   });
 });
 
-rootRouter.route("/").post((req, res) => {
+rootRouter.route("/re")
+.post((req, res) => {
   console.log(req.body);
   const searchExp = req.body.v1;
   Promise.all([
@@ -53,8 +55,8 @@ rootRouter.route("/").post((req, res) => {
         wrongV1: req.body.wrongv1,
         wrongV2: req.body.wrongv2,
         wrongV3: req.body.wrongv3,
-        gifUrl: fetchedGifUrl,
-        audioUrl: fetchedSoundUrl,
+        // gifUrl: fetchedGifUrl,
+        // audioUrl: fetchedSoundUrl,
       });
 
       console.log(verb);
@@ -62,6 +64,7 @@ rootRouter.route("/").post((req, res) => {
         .save()
         .then((result) => {
           console.log("Created Verb");
+          result.json({message: "Verb Created"})
         })
         .catch((err) => {
           console.log(err);
