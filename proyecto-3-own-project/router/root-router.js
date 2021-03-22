@@ -3,6 +3,7 @@ const rootRouter = express.Router();
 const API_KEY = process.env.API;
 const API_KEY_S = process.env.API_S;
 const fetch = require("node-fetch");
+const axios = require("axios");
 
 // everything inside /
 rootRouter.route("/")
@@ -23,29 +24,19 @@ rootRouter.route("/createverb")
   // console.log(req.body);
   const searchExp = req.body.v1;
   Promise.all([
-    fetch(
+    axios.get(
       `https://www.dictionaryapi.com/api/v3/references/collegiate/json/${searchExp}?key=${API_KEY_S}`
     ),
-    fetch(
+    axios.get(
       `https://api.giphy.com/v1/gifs/search?api_key=${API_KEY}&limit=1&q=${searchExp}`
     ),
   ])
-    .then(function (responses) {
-      // console.log(responses)
-      // Get an object from each of the responses
-      return Promise.all(
-        responses.map(function (response) {
-          // console.log(response)
-          return response.json();
-        })
-      );
-    })
     .then((data) => {
-      // console.log(data)
+      // console.log(data[0].data)
       // Work with both sets of data
-      const fetchedGifData = data[1];
-      const fetchedSoundData = data[0];
-      console.log(fetchedGifData)
+      const fetchedGifData = data[1].data;
+      const fetchedSoundData = data[0].data;
+      // console.log(fetchedGifData)
       const fetchedGifUrl = fetchedGifData.data[0].images.downsized_medium.url;
 
       const audioName = fetchedSoundData[0].hwi.prs[0].sound.audio;
@@ -70,12 +61,12 @@ rootRouter.route("/createverb")
         .then((result) => {
           console.log("Created Verb");
           // result.json({message: "Verb Created"})
-          res.send('Verb created')
+          res.send({verb})
         })
         .catch((err) => {
           console.log(err);
         });
-      // res.redirect("/");
+    //   // res.redirect("/");
     })
     .catch((error) => {
       // if there's an error
