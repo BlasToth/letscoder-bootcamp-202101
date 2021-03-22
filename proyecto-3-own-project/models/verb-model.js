@@ -2,13 +2,38 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const verbSchema = new Schema({
-    sourceName: String,
-    v1: String,
-    v2: String,
-    v3: String,
-    wrongV1: String,
-    wrongV2: String,
-    wrongV3: String,
+    sourceName: {
+        type: String,
+        required: true,
+        unique: true
+    },
+    v1: {
+        type: String,
+        required: true,
+        unique: true
+    },
+    v2: {
+        type: String,
+        required: true,
+        unique: true
+    },
+    v3: {
+        type: String,
+        required: true,
+        unique: true
+    },
+    wrongV1: {
+        type: String,
+        required: true,
+    },
+    wrongV2: {
+        type: String,
+        required: true,
+    },
+    wrongV3: {
+        type: String,
+        required: true,
+    },
     gifUrl: String,
     audioUrl: String
 });

@@ -11,7 +11,7 @@ const jwt = require("jsonwebtoken");
 
 function addPoints(currentUserId) {
     // add points to the counter
-    console.log(currentUserId)
+    // console.log(currentUserId)
     User.find({_id : currentUserId}, (err, user) => {
         if (err) {
             res.status(404).send(err.response.data);
@@ -20,6 +20,25 @@ function addPoints(currentUserId) {
             userPoints = user[0].points;
             User
             .findOneAndUpdate({_id:currentUserId}, {points:userPoints + 5})
+            .then(() => {
+                User.findOne({_id: currentUserId})
+            })
+        }
+    })
+}
+
+function addVerbToKnownArray(currentUserId, response) {
+    // add verb to the knownVerbs array
+    // console.log(currentUserId)
+    User.find({_id : currentUserId}, (err, user) => {
+        if (err) {
+            res.status(404).send(err.response.data);
+        } else {
+            // console.log("This is User.points from Verb: " + user[0].points)
+            console.log("This is: " + response[1])
+            userknownVerbs = response[1];
+            User
+            .findOneAndUpdate({_id:currentUserId}, {$addToSet: {knownVerbs: userknownVerbs + ", " + Date.now()}})
             .then(() => {
                 User.findOne({_id: currentUserId})
             })
@@ -83,25 +102,29 @@ verbRouter
     .route('/check')
     .post(authenticateToken, (req, res) => {
         const userId = req.user._id;
-        console.log(userId);
-       const response = ["case 0", "604600574209114940f1320f", "freeze" ]//req.body.decide; 
+        // console.log(req.user._id);
+        console.log(req.body)
+       const response = req.body; 
        
        // check if the answer is correct
-        Verb.find({_id : "604600574209114940f1320f"}, (err, verb) => {
+        Verb.find({_id : response[1]}, (err, verb) => {
             if (err) {
                 res.status(404).send(err.response.data);
             } else {
                 if (response[0] === "case 0" && response[2] === verb[0].v1) {   
                     addPoints(userId)
+                    addVerbToKnownArray(userId, response)
                     // Verdict
                     res.json({verdict: true});
                     // TODO remove the verb from the array to avoid repetition
                 } else if (response[0] === "case 1" && response[2] === verb[0].v2) {
                     addPoints(userId)
+                    addVerbToKnownArray(userId, response)
                     res.json({verdict: true});
                     // TODO remove the verb from the array to avoid repetition
                 } else if (response[0] === "case 2" && response[2] === verb[0].v3) {
                     addPoints(userId)
+                    addVerbToKnownArray(userId, response)
                     res.json({verdict: true});
                 } else {
                     res.json({verdict: false});

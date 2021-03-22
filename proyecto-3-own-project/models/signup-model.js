@@ -18,14 +18,13 @@ const userSchema = new Schema({
         unique: true
     },
     knownVerbs: [{
-        type: Schema.Types.ObjectId,
-        ref: 'Verb'
+        type: String
     }],
-
     points: {
         type: Number,
         default: 0
-    }
-});
+    } 
+}, 
+{ timestamps: true });
 
 module.exports = User = mongoose.model('User', userSchema);
