@@ -17,9 +17,10 @@ rootRouter.route("/")
   });
 });
 
-rootRouter.route("/re")
+
+rootRouter.route("/createverb")
 .post((req, res) => {
-  console.log(req.body);
+  // console.log(req.body);
   const searchExp = req.body.v1;
   Promise.all([
     fetch(
@@ -30,17 +31,21 @@ rootRouter.route("/re")
     ),
   ])
     .then(function (responses) {
+      // console.log(responses)
       // Get an object from each of the responses
       return Promise.all(
         responses.map(function (response) {
+          // console.log(response)
           return response.json();
         })
       );
     })
     .then((data) => {
+      // console.log(data)
       // Work with both sets of data
       const fetchedGifData = data[1];
       const fetchedSoundData = data[0];
+      console.log(fetchedGifData)
       const fetchedGifUrl = fetchedGifData.data[0].images.downsized_medium.url;
 
       const audioName = fetchedSoundData[0].hwi.prs[0].sound.audio;
@@ -55,8 +60,8 @@ rootRouter.route("/re")
         wrongV1: req.body.wrongv1,
         wrongV2: req.body.wrongv2,
         wrongV3: req.body.wrongv3,
-        // gifUrl: fetchedGifUrl,
-        // audioUrl: fetchedSoundUrl,
+        gifUrl: fetchedGifUrl,
+        audioUrl: fetchedSoundUrl,
       });
 
       console.log(verb);
@@ -64,12 +69,13 @@ rootRouter.route("/re")
         .save()
         .then((result) => {
           console.log("Created Verb");
-          result.json({message: "Verb Created"})
+          // result.json({message: "Verb Created"})
+          res.send('Verb created')
         })
         .catch((err) => {
           console.log(err);
         });
-      res.redirect("/");
+      // res.redirect("/");
     })
     .catch((error) => {
       // if there's an error

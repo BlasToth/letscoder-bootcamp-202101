@@ -4,7 +4,10 @@ const Verb = require('../models/verb-model');
 const shuffle = require('../utils/shuffle');
 const authenticateToken = require("../middlewares.js");
 const jwt = require("jsonwebtoken");
+// const app = express();
 
+// app.use(express.urlencoded({ extended: true }));
+// app.use(express.json());
 
 function addPoints(currentUserId) {
     // add points to the counter
