@@ -74,4 +74,12 @@ rootRouter.route("/createverb")
     });
 });
 
+rootRouter.route("/deleteverb")
+.delete((req, res) => {
+  Verb.deleteOne({ _id: "605a61c571a2d02c5ca63b7e" }, function (err) {
+    if (err) return handleError(err);
+    else res.json({message: `Verb deleted  `})
+  });
+})
+
 module.exports = rootRouter;

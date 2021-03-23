@@ -4,10 +4,7 @@ const Verb = require("../models/verb-model");
 const shuffle = require("../utils/shuffle");
 const authenticateToken = require("../middlewares.js");
 const jwt = require("jsonwebtoken");
-// const app = express();
 
-// app.use(express.urlencoded({ extended: true }));
-// app.use(express.json());
 
 function addPoints(currentUserId) {
   // add points to the counter
@@ -73,7 +70,8 @@ verbRouter.route("/answers").get(authenticateToken, (req, res) => {
           const usersToArray = [...users];
           // console.log(usersToArray)
           const filteredUser = usersToArray.filter((el) => {
-            return el._id == "6050f7da172f0e3eb05408b7"; //hardcoded ID --> TODO change it to dynamic
+            console.log(req.user)
+            return el._id == req.user._id; //hardcoded ID --> TODO change it to dynamic
           });
           // console.log(filteredUser)
           const filteredKnownVerbsOfTheUser = filteredUser[0].knownVerbs;

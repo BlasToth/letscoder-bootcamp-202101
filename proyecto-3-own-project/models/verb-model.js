@@ -24,15 +24,15 @@ const verbSchema = new Schema({
     },
     wrongV1: {
         type: String,
-        required: true,
+        // required: true
     },
     wrongV2: {
         type: String,
-        required: true,
+        // required: true
     },
     wrongV3: {
         type: String,
-        required: true,
+        // required: true
     },
     gifUrl: String,
     audioUrl: String
