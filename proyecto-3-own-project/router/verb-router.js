@@ -70,40 +70,33 @@ verbRouter.route("/answers").get(authenticateToken, (req, res) => {
         if (err) {
           res.status(404).send(err.response.data);
         } else {
-            getFilter();
-          function getFilter() {
             const usersToArray = [...users];
             // console.log(usersToArray)
-            const filteredUsers = usersToArray.filter((el) => {
-              return el._id == "6050f7da172f0e3eb05408b7";
+            const filteredUser = usersToArray.filter((el) => {
+              return el._id == "6050f7da172f0e3eb05408b7"; //hardcoded ID --> TODO change it to dynamic
             });
-            const filteredKnownVerbsOfTheUser = filteredUsers[0].knownVerbs;
-            console.log("ID: " + filteredKnownVerbsOfTheUser);
+            // console.log(filteredUser)
+            const filteredKnownVerbsOfTheUser = filteredUser[0].knownVerbs;
+            // console.log("ID: " + filteredKnownVerbsOfTheUser); // 3 ID
+            const slicedId = filteredKnownVerbsOfTheUser.slice(",");
+            console.log(slicedId)
             const verbsToArray = [...verbs];
-            // console.log(verbsToArray)
-            for (let i = 0; i < filteredKnownVerbsOfTheUser.length; i++) {
-              const filteredVerbs = verbsToArray.filter((el) => {
-                // these are the verbs I don't want to show again (filteredVerbs)
-                return el._id == filteredKnownVerbsOfTheUser[i];
-              });
-              filterForRandom(filteredVerbs);
-              return filteredVerbs
-            }
+            // console.log(verbsToArray) -- length: 6
+            const finalVerbsArray = [];
+            
+              verbsToArray.filter((el) => {
+                for (let i = 0; i < slicedId.length; i++) {
+                  if (el._id != slicedId[i]) {
+                    finalVerbsArray.push(el._id)
+                  }
+                }
+                const set = new Set(finalVerbsArray);
+                const backToArray = [...set];
+
+                console.log(`This is the final: ${backToArray} and this is the length: ${backToArray.length}`)
+              })
+            
           }
-          function filterForRandom(filteredVerbs) {
-            for (let j = 0; j < filteredVerbs.length; j++) {
-              const onlyNewRandomVerbs = verbsToArray.filter((el) => {
-                return el._id != filteredVerbs[j];
-              });
-              console.log(
-                "ONLY NEW: " +
-                  onlyNewRandomVerbs +
-                  " " +
-                  onlyNewRandomVerbs.length
-              );
-            }
-          }
-        }
       });
 
       // filter ends
