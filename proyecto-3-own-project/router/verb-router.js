@@ -70,33 +70,40 @@ verbRouter.route("/answers").get(authenticateToken, (req, res) => {
         if (err) {
           res.status(404).send(err.response.data);
         } else {
-            const usersToArray = [...users];
-            // console.log(usersToArray)
-            const filteredUser = usersToArray.filter((el) => {
-              return el._id == "6050f7da172f0e3eb05408b7"; //hardcoded ID --> TODO change it to dynamic
-            });
-            // console.log(filteredUser)
-            const filteredKnownVerbsOfTheUser = filteredUser[0].knownVerbs;
-            // console.log("ID: " + filteredKnownVerbsOfTheUser); // 3 ID
-            const slicedId = filteredKnownVerbsOfTheUser.slice(",");
-            console.log(slicedId)
-            const verbsToArray = [...verbs];
-            // console.log(verbsToArray) -- length: 6
-            const finalVerbsArray = [];
-            
-              verbsToArray.filter((el) => {
-                for (let i = 0; i < slicedId.length; i++) {
-                  if (el._id != slicedId[i]) {
-                    finalVerbsArray.push(el._id)
-                  }
-                }
-                const set = new Set(finalVerbsArray);
-                const backToArray = [...set];
-
-                console.log(`This is the final: ${backToArray} and this is the length: ${backToArray.length}`)
-              })
-            
+          const usersToArray = [...users];
+          // console.log(usersToArray)
+          const filteredUser = usersToArray.filter((el) => {
+            return el._id == "6050f7da172f0e3eb05408b7"; //hardcoded ID --> TODO change it to dynamic
+          });
+          // console.log(filteredUser)
+          const filteredKnownVerbsOfTheUser = filteredUser[0].knownVerbs;
+          // console.log("ID: " + filteredKnownVerbsOfTheUser); // 3 ID
+          const slicedId = filteredKnownVerbsOfTheUser.slice(",");
+          console.log(slicedId);
+          const verbsToArray = [...verbs];
+          let verbsToArrayId = [];
+          for (let i = 0; i < verbsToArray.length; i++) {
+            verbsToArrayId.push(verbsToArray[i]._id);
           }
+          // console.log(verbsToArrayId)
+
+          // console.log(verbsToArray) -- length: 6
+
+          let difference = verbsToArrayId.filter(
+            (el) => !slicedId.includes(el)
+          );
+          // console.log(difference);
+          // Find the verbs with these new IDs
+          Verb.find({_id: difference}, (err, verbs) => {
+            if (err) {
+              res.status(404).send(err.response.data);
+            } else {
+              const filteredVerbs = verbs
+              console.log(`new verbs: ${filteredVerbs}` )
+            }
+          });
+          // Find ends here
+        }
       });
 
       // filter ends
