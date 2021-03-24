@@ -1,9 +1,11 @@
 import './App.css';
+import Verb from './Verb';
 
 function App() {
   return (
     <div className="App">
-      <h1>Today's First React App</h1>
+      <Verb />
+      <Verb />
     </div>
   );
 }
