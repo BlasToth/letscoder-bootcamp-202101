@@ -1,5 +1,5 @@
+import './MyComponent.css';
 import { useEffect, useState } from "react";
-import Button from "react-bootstrap/Button";
 
 function MyComponent() {
   const [error, setError] = useState(null);
