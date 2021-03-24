@@ -1,7 +1,11 @@
 import './Verb.css';
+import Button from 'react-bootstrap/Button';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function Verb() {
     return (
+        <>
+        <Button variant="success" style={{ border: "2px solid black" }}>Test Button</Button>
       <div className="verb">
         <div className="row">
             <div className="col-sm-6">
@@ -21,6 +25,7 @@ function Verb() {
             </div>
         </div>
       </div>
+      </>
     );
   }
   
