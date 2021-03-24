@@ -2,6 +2,8 @@ import './Verb.css';
 import Button from 'react-bootstrap/Button';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
+
+
 function Verb() {
     return (
         <>
@@ -10,7 +12,7 @@ function Verb() {
         <div className="row">
             <div className="col-sm-6">
                 <div className="card mystyle-card">
-                    <img className="card-img-top mystyle-card-image" src="https://media0.giphy.com/media/o75ajIFH0QnQC3nCeD/giphy.gif?cid=e1c45ae7htzz02slu3tnu36bwhmw7y80ss7eow7ug97iotv6&rid=giphy.gif" alt="Card image cap"></img>
+                    <img className="card-img-top mystyle-card-image" src="https://media0.giphy.com/media/o75ajIFH0QnQC3nCeD/giphy.gif?cid=e1c45ae7htzz02slu3tnu36bwhmw7y80ss7eow7ug97iotv6&rid=giphy.gif" alt="Verb card"></img>
                     <div className="card-body">
                       <h5 className="card-title sourcename">ganar</h5>
                       <p className="card-text rest">win, won, won</p>
