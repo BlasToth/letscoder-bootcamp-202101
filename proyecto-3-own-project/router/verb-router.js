@@ -52,6 +52,7 @@ verbRouter.route("/verbs").get((req, res) => {
     if (err) {
       return res.status(404).send(err.message);
     }
+    res.setHeader("Access-Control-Allow-Origin", "http://localhost:3000");
     return res.send(verbs);
   });
 });
