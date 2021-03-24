@@ -5,7 +5,6 @@ import MyComponent from './MyComponent'
 function App() {
   return (
     <div className="App">
-      <Verb />
       <MyComponent />
     </div>
   );
