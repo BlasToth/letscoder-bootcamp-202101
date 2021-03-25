@@ -3,10 +3,10 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 
-function Randomverb() {
+function Home() {
     return (
-        <h1>Random verb</h1>
+        <h1>Home</h1>
     );
   }
   
-  export default Randomverb;
+  export default Home;

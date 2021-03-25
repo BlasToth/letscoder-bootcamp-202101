@@ -8,6 +8,7 @@ function Nav() {
         <nav>
             <h3>Logo</h3>
             <ul>
+                <li>Home</li>
                 <li>Admin</li>
                 <li>All verbs</li>
                 <li>Random verb</li>
