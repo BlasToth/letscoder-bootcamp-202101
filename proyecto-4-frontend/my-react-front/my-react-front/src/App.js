@@ -1,5 +1,4 @@
 import "./App.css";
-import Verb from "./Verb";
 import MyComponent from "./MyComponent";
 import Nav from "./components/Nav";
 import Admin from "./components/Admin";

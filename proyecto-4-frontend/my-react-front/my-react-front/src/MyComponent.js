@@ -6,7 +6,7 @@ function MyComponent() {
   const [isLoaded, setIsLoaded] = useState(false);
   const [items, setItems] = useState([]);
 
-  // Note: the empty deps array [] means
+  // Note: the empty array [] means
   // this useEffect will run once
   // similar to componentDidMount()
   useEffect(() => {
@@ -17,9 +17,6 @@ function MyComponent() {
           setIsLoaded(true);
           setItems(result);
         },
-        // Note: it's important to handle errors here
-        // instead of a catch() block so that we don't swallow
-        // exceptions from actual bugs in components.
         (error) => {
           setIsLoaded(true);
           setError(error);
