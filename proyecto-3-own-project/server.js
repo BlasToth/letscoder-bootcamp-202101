@@ -10,10 +10,12 @@ const logins = require("./router/login-router");
 const roots = require("./router/root-router");
 const jwt = require("jsonwebtoken");
 const authenticateToken = require("./middlewares.js");
+const cors = require("cors");
 
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use(cors());
 
 // deprecation
 mongoose.set('useFindAndModify', false);
