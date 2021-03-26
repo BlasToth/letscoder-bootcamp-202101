@@ -2,30 +2,27 @@ import { useEffect, useState } from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function Allverbs() {
-    const [error, setError] = useState(null);
-    const [isLoaded, setIsLoaded] = useState(false);
-    const [items, setItems] = useState([]);
-  
-    // Note: the empty deps array [] means
-    // this useEffect will run once
-    // similar to componentDidMount()
-    useEffect(() => {
-      fetch("verbs/verbs")
-        .then((res) => res.json())
-        .then(
-          (result) => {
-            setIsLoaded(true);
-            setItems(result);
-          },
-          // Note: it's important to handle errors here
-          // instead of a catch() block so that we don't swallow
-          // exceptions from actual bugs in components.
-          (error) => {
-            setIsLoaded(true);
-            setError(error);
-          }
-        );
-    }, []);
+   useEffect(() => {
+     fetchItems();
+   }, []);
+
+   const [items, setItems] = useState([]);
+   const [isLoaded, setIsLoaded] = useState(false);
+   const [error, setError] = useState(null);
+ 
+
+   const fetchItems = async () => {
+     const data = await fetch(
+       '/verbs/verbs'
+     );
+
+     const items = await data.json();
+     if (items.length) {
+       setIsLoaded(true);
+       setItems(items);
+     }
+     console.log(items);
+   }
   
     function audioHandler() {
       const figcaptions = document.querySelectorAll(".figcaption");
