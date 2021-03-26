@@ -11,7 +11,7 @@ const authenticateToken = require('../middlewares');
 loginRouter
     .route('/')
     .get((req, res) => {
-        res.send("Login")
+        res.send({token: "1232"})
     })
 
 loginRouter
