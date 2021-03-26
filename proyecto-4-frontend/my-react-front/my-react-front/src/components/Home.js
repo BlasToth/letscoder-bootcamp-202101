@@ -1,70 +1,26 @@
 // import './Nav.css';
 import "bootstrap/dist/css/bootstrap.min.css";
-import { useReducer, useState } from "react";
 
-const formReducer = (state, event) => {
-    if (event.reset) {
-        return {
-            email: '',
-            password: ''
-        }
-    }
-    return {
-        ...state,
-        [event.name]: event.value
-    }
-}
 
 function Home() {
-    const [formData, setFormData] = useReducer(formReducer, {});
-    const [submitting, setSubmitting] = useState(false);
-    const handleSubmit = event => {
-        event.preventDefault();
-        setSubmitting(true);
-
-        setTimeout(() => {
-            setSubmitting(false);
-        setFormData({
-            reset: true
-        })
-          }, 3000);
-    }
-
-    const handleChange = event => {
-        const isCheckbox = event.target.type === 'checkbox';
-        setFormData({
-            name: event.target.name,
-            value: isCheckbox ? event.target.checked : event.target.value
-        });
-    }
-
-
+    
   return (
     <>
       <h1>Welcome!</h1>
       <h2>Please log in!</h2>
       <div className="login content">
-      {submitting &&
-       <div>
-         You are submitting the following:
-         <ul>
-           {Object.entries(formData).map(([name, value]) => (
-             <li key={name}><strong>{name}</strong>:{value.toString()}</li>
-           ))}
-         </ul>
-       </div>
-      }
-        <form onSubmit={handleSubmit}>
+      
+        <form>
           <fieldset>
             <label>
               <p>Email</p>
-              <input name="email" onChange={handleChange} value={formData.email || ''}/>
+              <input name="email" type="email" />
             </label>
           </fieldset>
           <fieldset>
             <label>
               <p>Password</p>
-              <input name="password" onChange={handleChange} value={formData.password || ''}/>
+              <input name="password" type="password" />
             </label>
           </fieldset>
           <button type="submit">LOG IN</button>
@@ -91,5 +47,7 @@ function Home() {
     </>
   );
 }
+
+
 
 export default Home;
