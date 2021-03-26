@@ -6,10 +6,7 @@ const formReducer = (state, event) => {
     if (event.reset) {
         return {
             email: '',
-            password: '',
-            apple: '',
-            count: 0,
-            'gift-wrap': false
+            password: ''
         }
     }
     return {
@@ -70,25 +67,6 @@ function Home() {
               <input name="password" onChange={handleChange} value={formData.password || ''}/>
             </label>
           </fieldset>
-          <fieldset>
-         <label>
-           <p>Apples</p>
-           <select name="apple" onChange={handleChange} value={formData.apple || ''}>
-               <option value="">--Please choose an option--</option>
-               <option value="fuji">Fuji</option>
-               <option value="jonathan">Jonathan</option>
-               <option value="honey-crisp">Honey Crisp</option>
-           </select>
-         </label>
-         <label>
-           <p>Count</p>
-           <input type="number" name="count" onChange={handleChange} step="1" value={formData.count || ''}/>
-         </label>
-         <label>
-           <p>Gift Wrap</p>
-           <input type="checkbox" name="gift-wrap" onChange={handleChange} checked={formData['gift-wrap'] || false} disabled={formData.apple !== 'fuji'}/>
-         </label>
-       </fieldset>
           <button type="submit">LOG IN</button>
         </form>
       </div>
