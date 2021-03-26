@@ -40,7 +40,7 @@ loginRouter
                             nickname: authUser.nickname
                         }, process.env.ACCESS_TOKEN_SECRET);
 
-                        // res.header('auth-token', accessToken)
+                        res.header('auth-token', accessToken)
                         res.send({token: accessToken})
 
                         // JWT ends

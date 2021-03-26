@@ -138,6 +138,7 @@ verbRouter.route("/answers").get(authenticateToken, (req, res) => {
               }
               // send random v form end
               showVForm.push(gifUrl, audioUrl, sourceName);
+              res.header('auth-token', accessToken)
               res.send(showVForm);
             }
           });
@@ -183,7 +184,7 @@ verbRouter.route("/check").post(authenticateToken, (req, res) => {
   });
 });
 
-verbRouter.route("/onerandomverb").get(authenticateToken, (req, res) => {
+verbRouter.route("/onerandomverb").get( (req, res) => {
   Verb.find({}, (err, verbs) => {
     if (err) {
       res.status(404).send(err.response.data);
