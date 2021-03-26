@@ -20,7 +20,7 @@ function Randomverb() {
           }
         );
     }, []);
-  
+
     function audioHandler() {
       const figcaptions = document.querySelectorAll(".figcaption");
       const sounds = document.querySelectorAll(".audio");
@@ -38,26 +38,22 @@ function Randomverb() {
       return <div>Loading...</div>;
     } else {
       return (
-        <ul>
-          {items.map((item) => (
-            <li key={item._id} style={{ listStyleType: "none" }}>
-              <>
-                {/* <Button variant="success" style={{ border: "2px solid black" }}>Test Button</Button> */}
+
                 <div className="verb">
                   <div className="row">
                     <div className="col-sm-6">
                       <div className="card mystyle-card">
                         <img
                           className="card-img-top mystyle-card-image"
-                          src={item.gifUrl}
+                          src={items.gifUrl}
                           alt="Verb card"
                         ></img>
                         <div className="card-body">
                           <h5 className="card-title sourcename">
-                            {item.sourceName}
+                            {items.sourceName}
                           </h5>
                           <p className="card-text rest">
-                            {item.v1}, {item.v2}, {item.v3}
+                            {items.v1}, {items.v2}, {items.v3}
                           </p>
                           <figure>
                             <figcaption
@@ -68,7 +64,7 @@ function Randomverb() {
                             </figcaption>
                             <audio className="audio" hidden>
                               <source
-                                src={item.audioUrl}
+                                src={items.audioUrl}
                                 type="audio/mp3"
                               ></source>
                             </audio>
@@ -78,12 +74,7 @@ function Randomverb() {
                     </div>
                   </div>
                 </div>
-              </>
-            </li>
-          ))}
-        </ul>
-      );
-    }
-  }
-  
+          )}
+
+      }
   export default Randomverb;
