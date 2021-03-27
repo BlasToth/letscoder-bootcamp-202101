@@ -19,11 +19,12 @@ const posts = [
 ]
 
 app.use('/login', authenticateToken, (req, res) => {
-    const username = "Pepito Grillo"
+    const username = "Jon Nieve"
     const user = { name: username };
     
     const accToken = jwt.sign(user, process.env.ACCESS_TOKEN_SECRET)
     res.json({
+        username,
         token: accToken
     });
 });
