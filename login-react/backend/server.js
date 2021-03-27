@@ -18,16 +18,20 @@ const posts = [
     }
 ]
 
-
 app.use('/login', authenticateToken, (req, res) => {
     const username = "Pepito Grillo"
     const user = { name: username };
-
+    
     const accToken = jwt.sign(user, process.env.ACCESS_TOKEN_SECRET)
     res.json({
         token: accToken
     });
 });
+
+app.get('/posts', (req, res) =>{
+    const username = "Jon Nieve"
+    res.json(posts.filter(post => post.username === username))
+})
 
 function authenticateToken(req, res, next) {
     const authHeader = req.headers['authorization'];
