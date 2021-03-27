@@ -5,7 +5,6 @@ import Dashboard from "./components/Dashboard/Dashboard";
 import Login from "./components/Login/Login";
 import Preferences from "./components/Preferences/Preferences";
 import useToken from './useToken';
-import Message from './Message'
 
 
 function handleLogOut() {
