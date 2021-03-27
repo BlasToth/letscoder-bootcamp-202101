@@ -5,18 +5,18 @@ import Dashboard from "./components/Dashboard/Dashboard";
 import Login from "./components/Login/Login";
 import Preferences from "./components/Preferences/Preferences";
 import useToken from './useToken';
+import Message from './Message'
+
 
 function handleLogOut() {
-  localStorage.removeItem('token');   
-  <p>kshfghk</p> 
+  localStorage.removeItem('token');    
 }
 
-function alertLOggedOut() {
-  alert("Logged Out!");
-}
 
 function App() {
   const { token, setToken } = useToken();
+
+  const [message, setMessage] = useState("");
 
   if (!token) {
     return <Login setToken={setToken}/>
@@ -27,8 +27,11 @@ function App() {
       <h1>Application</h1>
       <button onClick={() => {
         handleLogOut();
-        alertLOggedOut();
+        setMessage("Logged Out!");
+
       }}>Log Out</button>
+      <h1>{message}</h1>
+
       <Router>
         <Switch>
           <Route path="/dashboard">
