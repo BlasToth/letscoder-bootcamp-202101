@@ -138,8 +138,8 @@ verbRouter.route("/answers").get(authenticateToken, (req, res) => {
               }
               // send random v form end
               showVForm.push(gifUrl, audioUrl, sourceName);
-              res.header('auth-token', accessToken)
-              res.send(showVForm);
+              // res.header('auth-token', accessToken)
+              res.json(showVForm);
             }
           });
           // Find ends here
