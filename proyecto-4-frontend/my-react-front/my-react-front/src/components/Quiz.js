@@ -11,8 +11,10 @@ function Quiz() {
         .then((res) => res.json())
         .then(
           (result) => {
+            const data = result;
             setIsLoaded(true);
             setItems(result);
+            return data;
           },
           (error) => {
             setIsLoaded(true);
