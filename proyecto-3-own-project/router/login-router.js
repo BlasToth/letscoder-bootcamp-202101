@@ -11,7 +11,7 @@ const authenticateToken = require('../middlewares');
 loginRouter
     .route('/')
     .get((req, res) => {
-        res.send({token: "1232"})
+        res.send({message: "Please Log in!"})
     })
 
 loginRouter
@@ -23,6 +23,7 @@ loginRouter
             } else {
             //    res.send(users);
                const authUser = users.find(u => u.email === req.body.email);
+               console.log(req.body)
                
                if (authUser == null) {
                    return res.status(400).send('Cannot find user');
@@ -37,11 +38,12 @@ loginRouter
                         // JWT
                         const accessToken = jwt.sign({
                             _id: authUser._id, 
-                            nickname: authUser.nickname
+                            nickname: nick,
+                            points: points
                         }, process.env.ACCESS_TOKEN_SECRET);
 
-                        res.header('auth-token', accessToken)
-                        res.send({token: accessToken})
+                        // res.header('auth-token', accessToken)
+                        res.json({token: accessToken})
 
                         // JWT ends
                         // Verb
