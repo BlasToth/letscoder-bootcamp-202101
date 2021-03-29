@@ -1,11 +1,11 @@
 import React from 'react';
 
 
-export default function Userpoints() {
+export default function Userpoints(props) {
     
     return (
         <div>
-            Points: 100
+            Points: <span className="strong">{props.points}</span>
         </div>
     )
 }
