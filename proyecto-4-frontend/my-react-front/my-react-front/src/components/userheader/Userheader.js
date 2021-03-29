@@ -4,12 +4,15 @@ import Userpoints from './Userpoints';
 import Logout from './Logout'
 import jwt_decode from "jwt-decode";
 import './Userheader.css';
+import Login from '../Login';
 
-const token = localStorage.getItem('token');
-const decoded = jwt_decode(token);
-const {nickname, points} = decoded;
+
 
 export default function Userheader() {
+    const token = localStorage.getItem('token');
+    const decoded = jwt_decode(token);
+    const {nickname, points} = decoded;
+    
     return (
         <div className="user-header">
             <Username nickname={nickname} />
