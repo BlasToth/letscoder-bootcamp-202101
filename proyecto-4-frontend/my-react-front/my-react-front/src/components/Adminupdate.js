@@ -6,7 +6,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 function Adminupdate() {
     return (
         <>
-        <div class="update-verb content">
+        <div className="update-verb content">
         <h2>Update a verb</h2>
             <form action="/" method="POST">
                 <p>ID of the verb: <input type="text" name="sourceName" required/></p>

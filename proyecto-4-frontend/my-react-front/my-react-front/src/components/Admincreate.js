@@ -5,7 +5,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 function Admincreate() {
     return (
         <>
-        <div class="create-verb content">
+        <div className="create-verb content">
         <h2>Create new verb</h2>
             <form action="/" method="POST">
                 <p>Source name: <input type="text" name="sourceName" required/></p>

@@ -1,9 +1,8 @@
 import React, { useState } from "react";
-import './Login.css';
-import PropTypes from 'prop-types';
+import './Signup.css';
 
-async function loginUser(credentials) {
-    return fetch('http://localhost:4000/login', {
+async function signupUser(credentials) {
+    return fetch('http://localhost:4000/signup', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -13,22 +12,24 @@ async function loginUser(credentials) {
     .then(data => data.json())
 }
 
-export default function Login({ setToken }) {
+export default function Signup() {
     const [email, setEmail] = useState();
     const [password, setPassword] = useState();
+    const [nickname, setNickname] = useState();
 
-    const handleSubmit = async e => {
-        e.preventDefault();
-        const token = await loginUser({
-            email,
-            password
-        });
-        setToken(token);
-    }
+        const handleSubmit = async e => {
+            e.preventDefault();
+            const regData = await signupUser({
+                email,
+                password, 
+                nickname
+            });
+            signupUser(regData);
+        }
 
   return (
-    <div className="login-wrapper">
-    <h1>Please Log In</h1>
+    <div className="signup-wrapper">
+    <h1>Sign up if you are new here:</h1>
       <form onSubmit={handleSubmit}>
         <fieldset>
           <label>
@@ -42,14 +43,18 @@ export default function Login({ setToken }) {
             <input name="password" type="password" onChange={e => setPassword(e.target.value)} />
           </label>
         </fieldset>
+        <fieldset>
+            <label>
+              <p>Nickname</p>
+              <input name="nickname" type="text" onChange={e => setNickname(e.target.value)} />
+            </label>
+          </fieldset>
         <button type="submit" >
-          LOG IN
+          SIGN UP
         </button>
       </form>
     </div>
   );
 }
 
-// Login.propTypes = {
-//     setToken: PropTypes.func.isRequired
-// }
+
