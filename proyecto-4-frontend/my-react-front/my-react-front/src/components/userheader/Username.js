@@ -1,9 +1,10 @@
 import React from 'react'
 
-export default function Username() {
+export default function Username(props) {
     return (
         <div>
-            Username: Piroska
+            Username: {props.nickname}
+            {console.log(props)}
         </div>
     )
 }
