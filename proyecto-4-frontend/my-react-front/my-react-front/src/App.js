@@ -11,6 +11,7 @@ import Home from "./components/Home";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Login from './components/Login'
 import useToken from './hooks/useToken'
+import Userheader from './components/userheader/Userheader'
 
 function App() {
   const { token, setToken } = useToken();
@@ -23,6 +24,7 @@ function App() {
     <Router>
       <div className="App">
         <Nav />
+        <Userheader />
         <Switch>
           <Route path="/" exact component={Home} />
           <Route path="/admin" component={Admin} />
