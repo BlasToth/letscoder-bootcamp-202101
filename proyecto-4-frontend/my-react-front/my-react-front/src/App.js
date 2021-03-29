@@ -9,16 +9,16 @@ import Knownverbs from "./components/Knownverbs";
 import Halloffame from "./components/Halloffame";
 import Home from "./components/Home";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import { useState } from 'react';
 import Login from './components/Login'
+import useToken from './hooks/useToken'
 
 function App() {
-  const [token, setToken] = useState();
+  const { token, setToken } = useToken();
 
   if(!token) {
     return <Login setToken={setToken} />
   }
-  
+
   return (
     <Router>
       <div className="App">
