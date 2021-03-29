@@ -23,16 +23,17 @@ signupRouter
                 password: hashedPassword,
                 nickname: req.body.nickname
               });
-              console.log(user);
+              
               user
                 .save()
                 .then((result) => {
-                  console.log("Created User");
+                  console.log(`Created User: ${user}`);
+                  res.json(user);
                 })
                 .catch((err) => {
                   console.log(err);
                 });
-              res.send(user);
+              
         } catch  {
             res.status(500).send();
         }
