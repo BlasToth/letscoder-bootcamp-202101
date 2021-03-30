@@ -72,7 +72,7 @@ verbRouter.route("/answers").get(authenticateToken, (req, res) => {
           // console.log(usersToArray)
           const filteredUser = usersToArray.filter((el) => {
             console.log(req.user)
-            return el._id == req.user._id; //hardcoded ID --> TODO change it to dynamic
+            return el._id == req.user._id; 
           });
           // console.log(filteredUser)
           const filteredKnownVerbsOfTheUser = filteredUser[0].knownVerbs;
@@ -139,7 +139,7 @@ verbRouter.route("/answers").get(authenticateToken, (req, res) => {
               // send random v form end
               showVForm.push(gifUrl, audioUrl, sourceName);
               // res.header('auth-token', accessToken)
-              res.json(showVForm);
+              res.json({showVForm});
             }
           });
           // Find ends here
