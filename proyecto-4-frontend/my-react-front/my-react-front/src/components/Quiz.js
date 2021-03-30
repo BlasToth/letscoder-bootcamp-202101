@@ -5,16 +5,18 @@ function Quiz() {
     const [error, setError] = useState(null);
     const [isLoaded, setIsLoaded] = useState(false);
     const [items, setItems] = useState([]);
-  
+    let quiz = [];
+
     useEffect(() => {
       fetch("verbs/onerandomverb") //right now it will receive: Please login! hence the error
         .then((res) => res.json())
         .then(
           (result) => {
-            const data = result;
+            quiz.push(result);
+            console.log(quiz[0].sourceName)
             setIsLoaded(true);
             setItems(result);
-            return data;
+            
           },
           (error) => {
             setIsLoaded(true);
@@ -41,7 +43,7 @@ function Quiz() {
     } else {
       return (
 
-                <h1>Quiz</h1>
+                <h1>{quiz[0].sourceName}</h1>
           )}
 
       }
