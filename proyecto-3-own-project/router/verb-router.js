@@ -71,14 +71,14 @@ verbRouter.route("/answers").get(authenticateToken, (req, res) => {
           const usersToArray = [...users];
           // console.log(usersToArray)
           const filteredUser = usersToArray.filter((el) => {
-            console.log(req.user)
+            // console.log(req.user)
             return el._id == req.user._id; 
           });
           // console.log(filteredUser)
           const filteredKnownVerbsOfTheUser = filteredUser[0].knownVerbs;
           // console.log("ID: " + filteredKnownVerbsOfTheUser); // 3 ID
           const slicedId = filteredKnownVerbsOfTheUser.slice(",");
-          console.log(slicedId);
+          // console.log(slicedId);
           const verbsToArray = [...verbs];
           let verbsToArrayId = [];
           for (let i = 0; i < verbsToArray.length; i++) {
