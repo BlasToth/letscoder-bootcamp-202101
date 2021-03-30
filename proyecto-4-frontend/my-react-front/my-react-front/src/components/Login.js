@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import './Login.css';
 import PropTypes from 'prop-types';
+import { Link, Router } from 'react-router-dom';
 
 async function loginUser(credentials) {
     return fetch('http://localhost:4000/login', {
@@ -46,6 +47,10 @@ export default function Login({ setToken }) {
           LOG IN
         </button>
       </form>
+
+      <a href="/home"><p>Or create an account</p></a>
+      
+      
     </div>
   );
 }
