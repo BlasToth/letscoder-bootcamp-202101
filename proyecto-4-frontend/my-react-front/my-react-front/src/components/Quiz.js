@@ -37,7 +37,7 @@ function Quiz() {
         headers: {
           'Authorization': `Bearer ${token}`
         }
-      }) //right now it will receive: Please login! hence the error
+      }) 
         .then(
           (result) => {
             console.log(result.data.showVForm)
@@ -52,6 +52,7 @@ function Quiz() {
     }, []);
 
     let [v1, v2, v3, verbId, wordArray, gifUrl, audioUrl, sourceName] = items;
+    console.log(wordArray)
     const sendAnswerToBack = [];
     const gap = "______";
     if (v1 === "case 0") {
@@ -75,9 +76,12 @@ function Quiz() {
     } else {
       return (
         <>
-        <h1>Cuál es la forma correcta del verbo irregular: <strong>{items[7]}</strong>?</h1>
+        <h1>Cuál es la forma correcta del verbo irregular: <strong>{sourceName}</strong>?</h1>
                 <h2>{v1}, {v2}, {v3}</h2>
-                {/* <h2>{items[4][0]}, {items[4][1]}, {items[4][2]}, {items[4][3]}</h2> */}
+                {wordArray.map((answer) => {
+                  return <button>{answer}</button>
+                })}
+
                 <img src={gifUrl} alt="Verb card"></img>
         </>
           )}
