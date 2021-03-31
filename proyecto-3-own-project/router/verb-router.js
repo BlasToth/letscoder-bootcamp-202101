@@ -139,6 +139,7 @@ verbRouter.route("/answers").get(authenticateToken, (req, res) => {
               // send random v form end
               showVForm.push(gifUrl, audioUrl, sourceName);
               // res.header('auth-token', accessToken)
+              res.setHeader("Access-Control-Allow-Origin", "http://localhost:3000");
               res.json({showVForm});
             }
           });

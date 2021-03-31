@@ -13,9 +13,9 @@ const authenticateToken = require("./middlewares.js");
 const cors = require("cors");
 
 
+app.use(cors());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use(cors());
 
 // deprecation
 mongoose.set('useFindAndModify', false);
