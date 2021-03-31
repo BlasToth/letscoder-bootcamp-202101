@@ -12,7 +12,7 @@ function audioHandler() {
     });
   }
 }
-const num = 5;
+
 const localStorageToken= JSON.parse(localStorage.getItem("token"));
 const token = (localStorageToken) ? localStorageToken.token : null;
 // console.warn(token)
@@ -49,10 +49,11 @@ function Quiz() {
             setError(error);
           }
         );
+        console.log("AXIOS LOADS")
     }, []);
 
     let [v1, v2, v3, verbId, wordArray, gifUrl, audioUrl, sourceName] = items;
-    console.log(wordArray)
+    
     const sendAnswerToBack = [];
     const gap = "______";
     if (v1 === "case 0") {
@@ -68,7 +69,7 @@ function Quiz() {
       v3 = gap;
     }
     // console.log(sendAnswerToBack)
-  
+  console.log(wordArray);
     if (error) {
       return <div>Error: {error.message}</div>;
     } else if (!isLoaded) {
@@ -76,13 +77,14 @@ function Quiz() {
     } else {
       return (
         <>
+        <div>
         <h1>Cuál es la forma correcta del verbo irregular: <strong>{sourceName}</strong>?</h1>
                 <h2>{v1}, {v2}, {v3}</h2>
-                {wordArray.map((answer) => {
-                  return <button>{answer}</button>
+                {wordArray && wordArray.map((word) => {
+                  return <button key={word}>{word}</button>
                 })}
-
                 <img src={gifUrl} alt="Verb card"></img>
+                </div>    
         </>
           )}
       }
