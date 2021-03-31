@@ -57,6 +57,16 @@ verbRouter.route("/verbs").get((req, res) => {
   });
 });
 
+verbRouter.route("/knownverbs").get( authenticateToken, (req, res) => {
+  User.find({knownVerbs: []}, (err, verbs) => {
+    if (err) {
+      return res.status(404).send(err.message);
+    }
+    // res.setHeader("Access-Control-Allow-Origin", "http://localhost:3000");
+    return res.send(verbs);
+  });
+});
+
 // send possible answers to FE
 verbRouter.route("/answers").get(authenticateToken, (req, res) => {
   Verb.find({}, (err, verbs) => {
