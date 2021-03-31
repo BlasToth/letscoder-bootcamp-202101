@@ -3,8 +3,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from 'axios';
 import audioHandler from '../js/logic/audio-handler'
 
-
-
 const localStorageToken= JSON.parse(localStorage.getItem("token"));
 const token = (localStorageToken) ? localStorageToken.token : null;
 console.warn(token)
@@ -19,24 +17,6 @@ axios.interceptors.request.use(
     return Promise.reject(error);
   }
   );
-
-  function handleSendAnswerToBack() {
-
-    axios.post("http://localhost:4000/verbs/check", {
-        headers: {
-          'Authorization': `Bearer tdOa3ARns3LpFSJhPeAtyq1z1dSys3ymkCS`
-        }
-      }) 
-        .then(
-          (result) => {
-            console.log(result)
-          },
-          (error) => {
-            console.log(error)
-          }
-        );
-    
-  }
   
 function Quiz() {
     const [error, setError] = useState(null);
@@ -80,6 +60,27 @@ function Quiz() {
       v3 = gap;
     }
     console.log(sendAnswerToBack)
+
+    function handleSendAnswerToBack() {
+
+      axios.post('http://localhost:4000/verbs/check', {
+        body: sendAnswerToBack
+      }, {
+        headers: {
+          'Authorization': `Basic ${token}` 
+        }
+      })
+          .then(
+            (result) => {
+              console.log(result)
+            },
+            (error) => {
+              console.log(error)
+            }
+          );
+      
+    }
+
     if (error) {
       return <div>Error: {error.message}</div>;
     } else if (!isLoaded) {
@@ -97,6 +98,7 @@ function Quiz() {
 
                 })}
                 <button onClick={handleSendAnswerToBack}>SEND</button>
+
                 <img src={gifUrl} alt="Verb card"></img>  
                 <figure>
                             <figcaption
