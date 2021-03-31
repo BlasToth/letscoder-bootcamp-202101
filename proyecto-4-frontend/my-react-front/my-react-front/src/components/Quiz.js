@@ -29,28 +29,23 @@ axios.interceptors.request.use(
     return Promise.reject(error);
   }
   );
-  
-  function handleSendAnswerToBack(sendAnswerToBack) {
+
+  function handleSendAnswerToBack() {
+
+    axios.post("http://localhost:4000/verbs/check", {
+        headers: {
+          'Authorization': `Bearer tdOa3ARns3LpFSJhPeAtyq1z1dSys3ymkCS`
+        }
+      }) 
+        .then(
+          (result) => {
+            console.log(result)
+          },
+          (error) => {
+            console.log(error)
+          }
+        );
     
-    fetch('http://localhost:4000/verbs/check', {
-      method: 'POST',
-      headers: {
-        'Authorization': `Bearer ${token}`
-      },
-      body: {decide: sendAnswerToBack}
-    }).then(res => {
-      return res.json();
-    })
-    .then(data => {
-      console.log(data) //FE console verdict
-      // TODO change color by verdict
-      if (data.verdict === true) {
-        document.body.classList.add('correct'); 
-      } else {
-        document.body.classList.add('not-correct');
-      }
-      
-    }) 
   }
   
 function Quiz() {
@@ -75,6 +70,7 @@ function Quiz() {
             setError(error);
           }
         );
+        handleSendAnswerToBack();
     }, []);
 
     let [v1, v2, v3, verbId, wordArray, gifUrl, audioUrl, sourceName] = items;
