@@ -13,9 +13,12 @@ function audioHandler() {
   }
 }
 
+
+
 const localStorageToken= JSON.parse(localStorage.getItem("token"));
 const token = (localStorageToken) ? localStorageToken.token : null;
-// console.warn(token)
+console.warn(token)
+
 
 axios.interceptors.request.use(
   config => {
@@ -25,8 +28,31 @@ axios.interceptors.request.use(
   error => {
     return Promise.reject(error);
   }
-);
-
+  );
+  
+  function handleSendAnswerToBack(sendAnswerToBack) {
+    
+    fetch('http://localhost:4000/verbs/check', {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${token}`
+      },
+      body: {decide: sendAnswerToBack}
+    }).then(res => {
+      return res.json();
+    })
+    .then(data => {
+      console.log(data) //FE console verdict
+      // TODO change color by verdict
+      if (data.verdict === true) {
+        document.body.classList.add('correct'); 
+      } else {
+        document.body.classList.add('not-correct');
+      }
+      
+    }) 
+  }
+  
 function Quiz() {
     const [error, setError] = useState(null);
     const [isLoaded, setIsLoaded] = useState(false);
@@ -49,7 +75,6 @@ function Quiz() {
             setError(error);
           }
         );
-        console.log("AXIOS LOADS")
     }, []);
 
     let [v1, v2, v3, verbId, wordArray, gifUrl, audioUrl, sourceName] = items;
@@ -68,8 +93,7 @@ function Quiz() {
       sendAnswerToBack.push("case 2", verbId);
       v3 = gap;
     }
-    // console.log(sendAnswerToBack)
-  console.log(wordArray);
+    console.log(sendAnswerToBack)
     if (error) {
       return <div>Error: {error.message}</div>;
     } else if (!isLoaded) {
@@ -77,14 +101,31 @@ function Quiz() {
     } else {
       return (
         <>
-        <div>
         <h1>Cuál es la forma correcta del verbo irregular: <strong>{sourceName}</strong>?</h1>
                 <h2>{v1}, {v2}, {v3}</h2>
                 {wordArray && wordArray.map((word) => {
-                  return <button key={word}>{word}</button>
+                  return <button key={word} onClick={() => {
+                    sendAnswerToBack[2] = word;
+                    console.log(sendAnswerToBack)
+                    }}>{word}</button>
+
                 })}
-                <img src={gifUrl} alt="Verb card"></img>
-                </div>    
+                <button onClick={handleSendAnswerToBack}>SEND</button>
+                <img src={gifUrl} alt="Verb card"></img>  
+                <figure>
+                            <figcaption
+                              className="figcaption"
+                              onClick={audioHandler}
+                            >
+                              🔉
+                            </figcaption>
+                            <audio className="audio" hidden>
+                              <source
+                                src={audioUrl}
+                                type="audio/mp3"
+                              ></source>
+                            </audio>
+                          </figure>  
         </>
           )}
       }
