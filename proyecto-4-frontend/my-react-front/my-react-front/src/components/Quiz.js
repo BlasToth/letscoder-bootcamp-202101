@@ -1,17 +1,7 @@
 import { useEffect, useState } from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from 'axios';
-
-function audioHandler() {
-  const figcaptions = document.querySelectorAll(".figcaption");
-  const sounds = document.querySelectorAll(".audio");
-
-  for (let i = 0; i < figcaptions.length; i++) {
-    figcaptions[i].addEventListener("click", () => {
-      sounds[i].play();
-    });
-  }
-}
+import audioHandler from '../js/logic/audio-handler'
 
 
 
