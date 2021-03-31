@@ -165,8 +165,8 @@ verbRouter.route("/answers").get(authenticateToken, (req, res) => {
 verbRouter.route("/check").post(authenticateToken, (req, res) => {
   const userId = req.user._id;
   // console.log(req.user._id);
-  console.log(req.body);
-  const response = req.body;
+  console.log(req.body.body);
+  const response = req.body.body;
 
   // check if the answer is correct
   Verb.find({ _id: response[1] }, (err, verb) => {
