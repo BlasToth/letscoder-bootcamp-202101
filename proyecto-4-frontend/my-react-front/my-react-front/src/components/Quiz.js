@@ -22,6 +22,7 @@ function Quiz() {
     const [error, setError] = useState(null);
     const [isLoaded, setIsLoaded] = useState(false);
     const [items, setItems] = useState([]);
+    const [noMoreVerbs, setNoMoreVerbs] = useState(false);
   
     useEffect(() => {
       axios.get("http://localhost:4000/verbs/answers", {
@@ -31,6 +32,11 @@ function Quiz() {
       }) 
         .then(
           (result) => {
+            if (!result.data.showVForm) {
+              setIsLoaded(true);
+              setNoMoreVerbs(true);
+             return console.log("NO more verbs");
+            }
             console.log(result.data.showVForm)
             setIsLoaded(true);
             setItems(result.data.showVForm);
@@ -40,7 +46,7 @@ function Quiz() {
             setError(error);
           }
         );
-        handleSendAnswerToBack();
+        
     }, []);
 
     let [v1, v2, v3, verbId, wordArray, gifUrl, audioUrl, sourceName] = items;
@@ -72,7 +78,12 @@ function Quiz() {
       })
           .then(
             (result) => {
-              console.log(result)
+              console.log(result.data.verdict)
+              if (result.data.verdict === true) {
+                document.body.classList.add('correct'); 
+              }else {
+                document.body.classList.add('not-correct');
+              }
             },
             (error) => {
               console.log(error)
@@ -85,6 +96,8 @@ function Quiz() {
       return <div>Error: {error.message}</div>;
     } else if (!isLoaded) {
       return <div>Loading...</div>;
+    }  else if (noMoreVerbs) {
+      return <div><h1>THAT'S IT FOLKS! NO MORE VERBS TO LEARN!</h1></div>;
     } else {
       return (
         <>
