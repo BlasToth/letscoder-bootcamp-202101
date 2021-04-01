@@ -27,6 +27,10 @@ function Quiz() {
     const [items, setItems] = useState([]);
     const [noMoreVerbs, setNoMoreVerbs] = useState(false);
     const [buttonText, setButtonText] = useState(false);
+    const [active, setActive] = useState({
+      activeObject: null,
+      objects: [{ id: 1 }, { id: 2 }, { id: 3 }, { id: 4 }]
+    });
 
     const buttonTextState = buttonText ? "NEXT" : "SEND";
 
@@ -57,6 +61,7 @@ function Quiz() {
     function axiosGetAnswersPlusButtonTextHandler() {
       axiosGetAnswers();
       setButtonText(!buttonText);
+      setActive({ ...active, activeObject: null })
     }
 
     function handleBackground() {
@@ -65,6 +70,17 @@ function Quiz() {
       } else document.body.classList.remove("not-correct");
     }
 
+    function toggleActive(index) {
+      setActive({ ...active, activeObject: active.objects[index] })
+    }
+
+    function toggleActiveStyles(index) {
+      if (active.objects[index] === active.activeObject) {
+        return "active";
+      } else {
+        return "inactive";
+      }
+    }
   
     useEffect(() => {
       axiosGetAnswers(); 
@@ -127,12 +143,13 @@ function Quiz() {
         <>
         <h1>Cuál es la forma correcta del verbo irregular: <strong>{sourceName}</strong>?</h1>
                 <h2>{v1}, {v2}, {v3}</h2>
-                {wordArray && wordArray.map((word) => {
-                  return <button key={word} onClick={() => {
+                {wordArray && wordArray.map((word, index) => {
+                  return <button key={index} onClick={() => {
+                    toggleActive(index)
                     sendAnswerToBack[2] = word;
                     console.log(sendAnswerToBack);
                     }}
-                    className="inactive"
+                    className={toggleActiveStyles(index)}
                     >{word}</button>
 
                 })}
