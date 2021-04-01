@@ -58,6 +58,12 @@ function Quiz() {
       setButtonText(!buttonText);
     }
 
+    function handleBackground() {
+      if (document.body.classList === "correct"){
+        document.body.classList.remove("correct");
+      } else document.body.classList.remove("not-correct");
+    }
+
   
     useEffect(() => {
       axiosGetAnswers(); 
@@ -128,13 +134,16 @@ function Quiz() {
 
                 })}
                 {buttonText === false && (
-            <button onClick={handleSendAnswerToBack}>{buttonTextState}</button>
+            <button onClick={() => {
+          handleSendAnswerToBack();
+        }}>{buttonTextState}</button>
         )}
 
         {buttonText === true && 
-        <>
-        <button onClick={axiosGetAnswersPlusButtonTextHandler}>{buttonTextState} </button>
-        </>
+        <button onClick={() => {
+          axiosGetAnswersPlusButtonTextHandler();
+          handleBackground();
+        }}>{buttonTextState} </button>
           }
 
                 <img src={gifUrl} alt="Verb card"></img>  
