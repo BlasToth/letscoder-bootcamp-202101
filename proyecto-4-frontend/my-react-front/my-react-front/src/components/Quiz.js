@@ -149,7 +149,6 @@ function Quiz() {
                     sendAnswerToBack[2] = word;
                     
                     toggleActive(index)
-                    handleSendAnswerToBack();
                     console.log(sendAnswerToBack);
                     }}
                     className={toggleActiveStyles(index)}
@@ -158,7 +157,7 @@ function Quiz() {
                 })}
                 {buttonText === false && (
             <button onClick={() => {
-          
+          handleSendAnswerToBack();
         }}>{buttonTextState}</button>
         )}
 
