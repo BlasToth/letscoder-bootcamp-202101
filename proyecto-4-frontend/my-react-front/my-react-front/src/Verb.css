@@ -122,14 +122,11 @@
 
 /* quiz */
 
-.btn {
+.active {
   background-color: lightseagreen;
 }
 
-.send-btn {
+.inactive {
   background-color: mediumpurple;
-  width: 200px;
-  text-align: center;
   color:rgb(253, 246, 236);
-  margin: 20px;
 }

@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from 'axios';
-import audioHandler from '../js/logic/audio-handler'
+import audioHandler from '../js/logic/audio-handler';
+import './Quiz.css';
 
 let localStorageToken= JSON.parse(localStorage.getItem("token"));
 let token = (localStorageToken) ? localStorageToken.token : null;
@@ -129,8 +130,10 @@ function Quiz() {
                 {wordArray && wordArray.map((word) => {
                   return <button key={word} onClick={() => {
                     sendAnswerToBack[2] = word;
-                    console.log(sendAnswerToBack)
-                    }}>{word}</button>
+                    console.log(sendAnswerToBack);
+                    }}
+                    className="inactive"
+                    >{word}</button>
 
                 })}
                 {buttonText === false && (
