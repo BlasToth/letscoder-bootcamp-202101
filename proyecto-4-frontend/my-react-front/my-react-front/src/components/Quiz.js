@@ -53,6 +53,11 @@ function Quiz() {
         );
     }
 
+    function axiosGetAnswersPlusButtonTextHandler() {
+      axiosGetAnswers();
+      setButtonText(!buttonText);
+    }
+
   
     useEffect(() => {
       axiosGetAnswers(); 
@@ -128,7 +133,7 @@ function Quiz() {
 
         {buttonText === true && 
         <>
-        <button onClick={handleSendAnswerToBack}>{buttonTextState} </button>
+        <button onClick={axiosGetAnswersPlusButtonTextHandler}>{buttonTextState} </button>
         </>
           }
 
