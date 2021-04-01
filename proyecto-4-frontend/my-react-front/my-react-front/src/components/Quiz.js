@@ -3,9 +3,9 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from 'axios';
 import audioHandler from '../js/logic/audio-handler'
 
-const localStorageToken= JSON.parse(localStorage.getItem("token"));
-const token = (localStorageToken) ? localStorageToken.token : null;
-console.warn(token)
+let localStorageToken= JSON.parse(localStorage.getItem("token"));
+let token = (localStorageToken) ? localStorageToken.token : null;
+// console.warn(token)
 
 
 axios.interceptors.request.use(
@@ -17,14 +17,19 @@ axios.interceptors.request.use(
     return Promise.reject(error);
   }
   );
+
+  
   
 function Quiz() {
     const [error, setError] = useState(null);
     const [isLoaded, setIsLoaded] = useState(false);
     const [items, setItems] = useState([]);
     const [noMoreVerbs, setNoMoreVerbs] = useState(false);
-  
-    useEffect(() => {
+    const [buttonText, setButtonText] = useState(false);
+
+    const buttonTextState = buttonText ? "NEXT" : "SEND";
+
+    function axiosGetAnswers() {
       axios.get("http://localhost:4000/verbs/answers", {
         headers: {
           'Authorization': `Bearer ${token}`
@@ -37,7 +42,7 @@ function Quiz() {
               setNoMoreVerbs(true);
              return console.log("NO more verbs");
             }
-            console.log(result.data.showVForm)
+            // console.log(result.data.showVForm)
             setIsLoaded(true);
             setItems(result.data.showVForm);
           },
@@ -46,7 +51,11 @@ function Quiz() {
             setError(error);
           }
         );
-        
+    }
+
+  
+    useEffect(() => {
+      axiosGetAnswers(); 
     }, []);
 
     let [v1, v2, v3, verbId, wordArray, gifUrl, audioUrl, sourceName] = items;
@@ -89,7 +98,10 @@ function Quiz() {
               console.log(error)
             }
           );
-      
+
+          setButtonText(!buttonText);
+      // TODO refresh token
+       
     }
 
     if (error) {
@@ -110,7 +122,15 @@ function Quiz() {
                     }}>{word}</button>
 
                 })}
-                <button onClick={handleSendAnswerToBack}>SEND</button>
+                {buttonText === false && (
+            <button onClick={handleSendAnswerToBack}>{buttonTextState}</button>
+        )}
+
+        {buttonText === true && 
+        <>
+        <button onClick={handleSendAnswerToBack}>{buttonTextState} </button>
+        </>
+          }
 
                 <img src={gifUrl} alt="Verb card"></img>  
                 <figure>
