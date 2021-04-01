@@ -19,9 +19,9 @@ axios.interceptors.request.use(
   }
   );
 
-  
-  
+
 function Quiz() {
+
     const [error, setError] = useState(null);
     const [isLoaded, setIsLoaded] = useState(false);
     const [items, setItems] = useState([]);
@@ -64,6 +64,34 @@ function Quiz() {
       setActive({ ...active, activeObject: null })
     }
 
+    function handleSendAnswerToBack() {
+      axios.post('http://localhost:4000/verbs/check', {
+        body: sendAnswerToBack
+      }, {
+        headers: {
+          'Authorization': `Basic ${token}` 
+        }
+      })
+          .then(
+            (result) => {
+              console.log(result.data.verdict)
+              if (result.data.verdict === true) {
+                document.body.classList.add('correct'); 
+              }else {
+                document.body.classList.add('not-correct');
+              }
+            },
+            (error) => {
+              console.log(error)
+            }
+          );
+
+          setButtonText(!buttonText);
+          
+      // TODO refresh token
+       
+    }
+
     function handleBackground() {
       if (document.body.classList === "correct"){
         document.body.classList.remove("correct");
@@ -87,50 +115,23 @@ function Quiz() {
     }, []);
 
     let [v1, v2, v3, verbId, wordArray, gifUrl, audioUrl, sourceName] = items;
-    
-    const sendAnswerToBack = [];
-    const gap = "______";
-    if (v1 === "case 0") {
-      sendAnswerToBack.push("case 0", verbId);
-      v1 = gap;
-    }
-    else if (v2 === "case 1") {
-      sendAnswerToBack.push("case 1", verbId);
-      v2 = gap;
-    }
-    else if (v3 === "case 2") {
-      sendAnswerToBack.push("case 2", verbId);
-      v3 = gap;
-    }
-    console.log(sendAnswerToBack)
+  
+      let sendAnswerToBack = [];
+      const gap = "______";
+      if (v1 === "case 0") {
+        sendAnswerToBack.push("case 0", verbId);
+        v1 = gap;
+      }
+      else if (v2 === "case 1") {
+        sendAnswerToBack.push("case 1", verbId);
+        v2 = gap;
+      }
+      else if (v3 === "case 2") {
+        sendAnswerToBack.push("case 2", verbId);
+        v3 = gap;
+      }
+      console.log(sendAnswerToBack)
 
-    function handleSendAnswerToBack() {
-
-      axios.post('http://localhost:4000/verbs/check', {
-        body: sendAnswerToBack
-      }, {
-        headers: {
-          'Authorization': `Basic ${token}` 
-        }
-      })
-          .then(
-            (result) => {
-              console.log(result.data.verdict)
-              if (result.data.verdict === true) {
-                document.body.classList.add('correct'); 
-              }else {
-                document.body.classList.add('not-correct');
-              }
-            },
-            (error) => {
-              console.log(error)
-            }
-          );
-
-          setButtonText(!buttonText);
-      // TODO refresh token
-       
-    }
 
     if (error) {
       return <div>Error: {error.message}</div>;
@@ -145,8 +146,10 @@ function Quiz() {
                 <h2>{v1}, {v2}, {v3}</h2>
                 {wordArray && wordArray.map((word, index) => {
                   return <button key={index} onClick={() => {
-                    toggleActive(index)
                     sendAnswerToBack[2] = word;
+                    
+                    toggleActive(index)
+                    handleSendAnswerToBack();
                     console.log(sendAnswerToBack);
                     }}
                     className={toggleActiveStyles(index)}
@@ -155,7 +158,7 @@ function Quiz() {
                 })}
                 {buttonText === false && (
             <button onClick={() => {
-          handleSendAnswerToBack();
+          
         }}>{buttonTextState}</button>
         )}
 

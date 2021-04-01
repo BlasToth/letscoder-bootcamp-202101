@@ -9,9 +9,9 @@ import Login from '../Login';
 
 
 export default function Userheader() {
-    const token = localStorage.getItem('token');
-    const decoded = jwt_decode(token);
-    const {nickname, points} = decoded;
+        const token = localStorage.getItem('token');
+        const decoded = jwt_decode(token);
+        const {nickname, points} = decoded;    
     
     return (
         <div className="user-header">
