@@ -48,9 +48,9 @@ rootRouter.route("/createverb")
         v1: req.body.v1,
         v2: req.body.v2,
         v3: req.body.v3,
-        wrongV1: req.body.wrongv1,
-        wrongV2: req.body.wrongv2,
-        wrongV3: req.body.wrongv3,
+        wrongV1: req.body.wrongV1,
+        wrongV2: req.body.wrongV2,
+        wrongV3: req.body.wrongV3,
         gifUrl: fetchedGifUrl,
         audioUrl: fetchedSoundUrl,
       });
