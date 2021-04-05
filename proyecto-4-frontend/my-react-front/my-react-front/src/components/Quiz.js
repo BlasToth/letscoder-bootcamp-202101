@@ -31,6 +31,8 @@ function Quiz() {
       activeObject: null,
       objects: [{ id: 1 }, { id: 2 }, { id: 3 }, { id: 4 }]
     });
+    const [finalAnswerToBack, setFinalAnswerToBack] = useState([]);
+    console.log(finalAnswerToBack);
 
     const buttonTextState = buttonText ? "NEXT" : "SEND";
 
@@ -66,7 +68,7 @@ function Quiz() {
 
     function handleSendAnswerToBack() {
       axios.post('http://localhost:4000/verbs/check', {
-        body: sendAnswerToBack
+        body: finalAnswerToBack
       }, {
         headers: {
           'Authorization': `Basic ${token}` 
@@ -87,15 +89,15 @@ function Quiz() {
           );
 
           setButtonText(!buttonText);
-          
-      // TODO refresh token
-       
+                 
     }
 
     function handleBackground() {
-      if (document.body.classList === "correct"){
+      if (document.body.classList.value === "correct") {
         document.body.classList.remove("correct");
-      } else document.body.classList.remove("not-correct");
+      } else if (document.body.classList.value === "not-correct") {
+        document.body.classList.remove("not-correct")
+      }
     }
 
     function toggleActive(index) {
@@ -147,6 +149,7 @@ function Quiz() {
                 {wordArray && wordArray.map((word, index) => {
                   return <button key={index} onClick={() => {
                     sendAnswerToBack[2] = word;
+                   setFinalAnswerToBack(sendAnswerToBack)
                     
                     toggleActive(index)
                     console.log(sendAnswerToBack);
@@ -158,6 +161,7 @@ function Quiz() {
                 {buttonText === false && (
             <button onClick={() => {
           handleSendAnswerToBack();
+          
         }}>{buttonTextState}</button>
         )}
 
