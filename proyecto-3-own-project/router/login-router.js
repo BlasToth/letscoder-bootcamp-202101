@@ -67,6 +67,15 @@ loginRouter
         })
     })
 
+    loginRouter
+    .route("/usernick").get(authenticateToken, (req, res) => {
+        const userId = req.user._id;
+        console.log(userId + " req.user._id");
+        console.log(req.body + " req.body");
+        res.json({userId})
+        
+    })
+
     // loginRouter
     // .route('/:id')
     // .get( (req, res) => {
