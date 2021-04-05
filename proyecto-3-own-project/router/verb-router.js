@@ -172,27 +172,29 @@ verbRouter.route("/answers").get(authenticateToken, (req, res) => {
 // FE sends back the answer
 verbRouter.route("/check").post(authenticateToken, (req, res) => {
   const userId = req.user._id;
-  // console.log(req.user._id);
-  console.log(req.body);
-  const response = req.body;
+  console.log(req.user._id + " req.user._id");
+  console.log(req.body + " req.body");
+  const response = req.body.body;
+  console.log(response[1] + " resp1")
 
   // check if the answer is correct
-  Verb.find({ _id: response[1] }, (err, verb) => {
+  Verb.findById({ _id: `${response[1]}` }, (err, verb) => {
+    console.log(verb)
     if (err) {
       res.status(404).send(err.response.data);
     } else {
-      if (response[0] === "case 0" && response[2] === verb[0].v1) {
+      if (response[0] === "case 0" && response[2] === verb.v1) {
         addPoints(userId);
         addVerbToKnownArray(userId, response);
         // Verdict
         res.json({ verdict: true });
         // TODO remove the verb from the array to avoid repetition
-      } else if (response[0] === "case 1" && response[2] === verb[0].v2) {
+      } else if (response[0] === "case 1" && response[2] === verb.v2) {
         addPoints(userId);
         addVerbToKnownArray(userId, response);
         res.json({ verdict: true });
         // TODO remove the verb from the array to avoid repetition
-      } else if (response[0] === "case 2" && response[2] === verb[0].v3) {
+      } else if (response[0] === "case 2" && response[2] === verb.v3) {
         addPoints(userId);
         addVerbToKnownArray(userId, response);
         res.json({ verdict: true });
