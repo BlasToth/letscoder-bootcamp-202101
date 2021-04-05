@@ -33,6 +33,7 @@ function App() {
           <Route path="/quiz" component={Quiz} />
           <Route path="/knownverbs" component={Knownverbs} />
           <Route path="/halloffame" component={Halloffame} />
+          
         </Switch>
       </div>
     </Router>

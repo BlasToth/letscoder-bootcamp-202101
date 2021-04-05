@@ -15,6 +15,9 @@ export default function Logout() {
     function handleLogout() {
         localStorage.removeItem('token');
         setState(!state); 
+        if(!token) {
+            return <Login setToken={setToken} />
+          }
 
     }
 

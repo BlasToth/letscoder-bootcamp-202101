@@ -3,6 +3,8 @@ import './Login.css';
 import PropTypes from 'prop-types';
 import { Link, Router } from 'react-router-dom';
 
+
+
 async function loginUser(credentials) {
     return fetch('http://localhost:4000/login', {
         method: 'POST',
@@ -11,7 +13,9 @@ async function loginUser(credentials) {
         },
         body: JSON.stringify(credentials)
     })
-    .then(data => data.json())
+    .then(data => data.json()
+    .then(console.log(data))
+    )
 }
 
 export default function Login({ setToken }) {
