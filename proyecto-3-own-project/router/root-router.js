@@ -76,9 +76,14 @@ rootRouter.route("/createverb")
 
 rootRouter.route("/deleteverb")
 .delete((req, res) => {
-  Verb.deleteOne({ _id: "605afc3aea9a040f9481a346" }, function (err) {
-    if (err) return handleError(err);
-    else res.json({message: `Verb deleted  `})
+  console.log(req.body.idOfTheVerbToBeDeleted.id)
+  const idToDelete = req.body.idOfTheVerbToBeDeleted.id;
+  Verb.deleteOne({ _id: `${idToDelete}` }, function (err, result) {
+    if (err) res.send(err);
+    else {
+      console.log('Verb deleted')
+      res.json({message: `Verb deleted  `})
+    }
   });
 })
 
