@@ -21,7 +21,7 @@ function Home() {
       );
     }
     return(
-      <h1>One token</h1>
+      <h1>Home - Info</h1>
     )
 }
 

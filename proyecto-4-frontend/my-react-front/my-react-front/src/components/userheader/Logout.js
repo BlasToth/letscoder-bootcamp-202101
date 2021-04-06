@@ -10,14 +10,12 @@ export default function Logout() {
     const [state, setState] = useState(false);
     const { token, setToken } = useToken();
 
-    const buttonText = state ? "Log in" : "Log out";
+    const buttonText = state ? "Log in " : "Log out";
 
     function handleLogout() {
         localStorage.removeItem('token');
         setState(!state); 
-        if(!token) {
-            return <Login setToken={setToken} />
-          }
+        window.location.reload()
 
     }
 
@@ -27,11 +25,11 @@ export default function Logout() {
             <button onClick={handleLogout}>🚪 {buttonText}</button>
         )}
 
-        {state === true && 
-        <>
+        {state === true && (
+        
         <button onClick={handleLogout}>🚪 {buttonText} </button>
-        </>
-          }
+        
+        )}
             
         </div>
     )
