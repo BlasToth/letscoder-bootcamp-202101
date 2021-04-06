@@ -162,6 +162,8 @@ function Quiz() {
             <button onClick={() => {
           handleSendAnswerToBack();
           
+
+          
         }}>{buttonTextState}</button>
         )}
 
@@ -169,6 +171,8 @@ function Quiz() {
         <button onClick={() => {
           axiosGetAnswersPlusButtonTextHandler();
           handleBackground();
+          window.location.reload()
+          
         }}>{buttonTextState} </button>
           }
 
