@@ -5,23 +5,24 @@ import axios from 'axios';
 
 
 function Admindelete() {
-    const [id, setId] =useState();
-    console.log(id)
+    const [source, setSource] = useState();
+    console.log(source)
+
 
     const handleSubmit = async e => {
         e.preventDefault();
-        const idOfTheVerbToBeDeleted = await submitDeleteDataForm({
-            id
+        const theVerbToBeDeleted = await submitDeleteDataForm({
+            source
         });
     }
 
-    async function submitDeleteDataForm(idOfTheVerbToBeDeleted) {
+    async function submitDeleteDataForm(theVerbToBeDeleted) {
         axios.delete("http://localhost:4000/deleteverb", {
             headers: {
                 'Content-Type': 'application/json'
             },
             data: {
-              idOfTheVerbToBeDeleted
+              theVerbToBeDeleted
             }
           });
     }
@@ -31,7 +32,7 @@ function Admindelete() {
         <div className="delete-verb content">
         <h2>Delete a verb</h2>
             <form onSubmit={handleSubmit}>
-                <p>ID of the verb: <input type="text" name="id" required onChange={e => setId(e.target.value)} /></p>
+                <p>Source name of the verb: <input type="text" name="source" required onChange={e => setSource(e.target.value)} /></p>
                 <input type="submit" name="sub" value="DELETE" />
             </form>
         </div>
