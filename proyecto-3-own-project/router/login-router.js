@@ -23,7 +23,7 @@ loginRouter
             } else {
             //    res.send(users);
                const authUser = users.find(u => u.email === req.body.email);
-               console.log(req.body)
+            //    console.log(req.body)
                
                if (authUser == null) {
                    return res.status(400).send('Cannot find user');
@@ -68,37 +68,24 @@ loginRouter
     })
 
     loginRouter
-    .route("/usernick").get(authenticateToken, (req, res) => {
+    .route("/usernick")
+    .get(authenticateToken, (req, res) => {
         const userId = req.user._id;
         console.log(userId + " req.user._id");
-        console.log(req.body + " req.body");
-        res.json({userId})
-        
-    })
 
-    // loginRouter
-    // .route('/:id')
-    // .get( (req, res) => {
-    //     const currentUserId = req.params.id;
-    //     User.find({_id: currentUserId}, (err, user) => {
-    //         if (err) {
-    //             res.status(404).send(err.response.data);
-    //         } else {
-    //             // console.log("HERE IS THE ID: " + currentUserId)
-    //             // console.log(user[0].nickname)
-    //         const nick = user[0].nickname;
-    //         const points = user[0].points;
-            
-    //         res.render('user', { title: "Login", nick, points })
-               
-    //         }
-    //     })
+        // get actual user to send nickname and points
+        User.find({_id: `${userId}`}, (err, user) => {
+            if (err) {
+                res.status(404).send(err.response.data);
+            } else {
+           const { points, nickname } = user[0];
+           console.log(nickname + " " + points)
+           
+           res.json({userId, points, nickname})
+            }
+        });
 
-
-    // })
-
-        
-        
+    });
     
 
     

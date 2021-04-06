@@ -74,6 +74,36 @@ rootRouter.route("/createverb")
     });
 });
 
+rootRouter.route("/updateverb")
+.patch((req, res) => {
+  const change = req.body.verbUpdateForm.sourceName;
+  const changeTo = req.body.verbUpdateForm;
+  console.log(changeTo)
+  Verb.findOneAndUpdate(
+    {sourceName: `${change}`},
+    {
+      v1: changeTo.v1,
+    v2: changeTo.v2,
+    v3: changeTo.v3,
+    wrongV1: changeTo.wrongV1,
+    wrongV2: changeTo.wrongV2,
+    wrongV3: changeTo.wrongV3
+  },
+     { new: true },
+      function(err, model) {
+          if (!err) {
+            console.log("verb has been modified")
+              res.status(201).json({
+                  data: model
+              });
+          } else {
+              res.status(500).json({
+                  message: "not found any relative data"
+              })
+          }
+      });
+});
+
 rootRouter.route("/deleteverb")
 .delete((req, res) => {
     console.log(req.body.theVerbToBeDeleted.source)
