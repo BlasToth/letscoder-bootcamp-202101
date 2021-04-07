@@ -71,7 +71,7 @@ loginRouter
     .route("/usernick")
     .get(authenticateToken, (req, res) => {
         const userId = req.user._id;
-        console.log(userId + " req.user._id");
+        // console.log(userId + " req.user._id");
 
         // get actual user to send nickname and points
         User.find({_id: `${userId}`}, (err, user) => {
@@ -79,7 +79,7 @@ loginRouter
                 res.status(404).send(err.response.data);
             } else {
            const { points, nickname } = user[0];
-           console.log(nickname + " " + points)
+        //    console.log(nickname + " " + points)
            
            res.json({userId, points, nickname})
             }

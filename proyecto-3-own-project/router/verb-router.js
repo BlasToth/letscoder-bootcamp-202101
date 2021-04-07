@@ -33,7 +33,7 @@ function addVerbToKnownArray(currentUserId, response) {
       res.status(404).send(err.response.data);
     } else {
       // console.log("This is User.points from Verb: " + user[0].points)
-      console.log("This is: " + response[1]);
+      // console.log("This is: " + response[1]);
       userknownVerbs = response[1];
       User.findOneAndUpdate(
         { _id: currentUserId },
@@ -57,14 +57,31 @@ verbRouter.route("/verbs").get((req, res) => {
   });
 });
 
-verbRouter.route("/knownverbs").get( authenticateToken, (req, res) => {
-  User.find({knownVerbs: []}, (err, verbs) => {
-    if (err) {
-      return res.status(404).send(err.message);
-    }
-    // res.setHeader("Access-Control-Allow-Origin", "http://localhost:3000");
-    return res.send(verbs);
-  });
+verbRouter
+.route("/knownverbs")
+.get( authenticateToken, (req, res) => {
+  const userId = req.user._id;
+  // console.log(userId + " req.user._id");
+    // get actual user to send knownVerbs array
+    User.find({_id: `${userId}`}, (err, user) => {
+        if (err) {
+            res.status(404).send(err.response.data);
+        } else {
+          const arrayOfKnownVerbs = user[0].knownVerbs;
+        // console.log(arrayOfKnownVerbs)
+        Verb.find({ _id: { $in: arrayOfKnownVerbs } }, (err, verbs) => {
+          if (err) {
+            res.status(404).send(err.response.data);
+          } else {
+            // console.log(verbs)
+            if (verbs.length === 0) {
+              res.json({message: "You have no verbs yet! Try the Quiz!"})
+            } else res.json({verbs})
+          }
+        });
+      
+        }
+    });
 });
 
 // send possible answers to FE
@@ -102,9 +119,9 @@ verbRouter.route("/answers").get(authenticateToken, (req, res) => {
           let difference = verbsToArrayId.filter(
             (el) => !slicedId.includes(el)
           );
-          console.log(difference);
+          // console.log(difference);
           if (difference.length === 0) {
-            console.log("No more verbs")
+            // console.log("No more verbs")
             res.json({message: "Congratulations! You have learnt all the irregular verbs!"});
           } else {
             // Find the verbs with these new IDs
@@ -172,14 +189,14 @@ verbRouter.route("/answers").get(authenticateToken, (req, res) => {
 // FE sends back the answer
 verbRouter.route("/check").post(authenticateToken, (req, res) => {
   const userId = req.user._id;
-  console.log(req.user._id + " req.user._id");
-  console.log(req.body + " req.body");
+  // console.log(req.user._id + " req.user._id");
+  // console.log(req.body + " req.body");
   const response = req.body.body;
-  console.log(response[1] + " resp1")
+  // console.log(response[1] + " resp1")
 
   // check if the answer is correct
   Verb.findById({ _id: `${response[1]}` }, (err, verb) => {
-    console.log(verb)
+    // console.log(verb)
     if (err) {
       res.status(404).send(err.response.data);
     } else {

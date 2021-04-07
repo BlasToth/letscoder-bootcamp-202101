@@ -10,6 +10,7 @@ function authenticateToken(req, res, next) {
       if (err) return res.status(403).send("Invalid token");
       // console.log(token)
       req.user = user;
+      // console.log(user)
       next();
     })
   }
