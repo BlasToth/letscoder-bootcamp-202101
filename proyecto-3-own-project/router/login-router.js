@@ -93,15 +93,13 @@ loginRouter
         User.find({}, (err, users) => {
             if (err) {
                 res.status(404).send(err.response.data);
-            } else {     
-                let nickname = [];
-                let points = [];
-                for (let i = 0; i < users.length; i++) {
-                   nickname.push(users[i].nickname) 
-                   points.push(users[i].points) 
-                }  
+            } else {  
+                const mirda = users   
+                for (let i = 0; i < mirda.length; i++) {
+                    delete mirda[i]._id
+                }
             
-                // console.log(result)       
+                console.log(mirda[0]._id)       
                 res.json({users})
             }
         })
