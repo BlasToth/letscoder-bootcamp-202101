@@ -86,6 +86,26 @@ loginRouter
         });
 
     });
+
+    loginRouter
+    .route("/halloffame")
+    .get(authenticateToken, (req, res) => {
+        User.find({}, (err, users) => {
+            if (err) {
+                res.status(404).send(err.response.data);
+            } else {     
+                let nickname = [];
+                let points = [];
+                for (let i = 0; i < users.length; i++) {
+                   nickname.push(users[i].nickname) 
+                   points.push(users[i].points) 
+                }  
+            
+                // console.log(result)       
+                res.json({users})
+            }
+        })
+    })
     
 
     
