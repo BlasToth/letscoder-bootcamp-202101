@@ -1,5 +1,6 @@
 // import './Nav.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import './Halloffame.css';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import * as ReactBootStrap from 'react-bootstrap';
@@ -54,8 +55,8 @@ export default function Halloffame() {
      
      const renderUser = (user, index) => {
          return(
-             <tr key={index}>
-                 <td>{index + 1}</td>
+             <tr key={index} >
+                 <td >{index + 1} </td>
                  <td>{user.nickname}</td>
                  <td>{user.points}</td>
              </tr>
@@ -71,7 +72,7 @@ export default function Halloffame() {
          <div>
            <h1>Hall of fame</h1>
 <ReactBootStrap.Table striped bordered hover>
-  <thead>
+  <thead style={{ backgroundColor : "lightblue" }}>
     <tr>
       <th>#</th>
       <th>Nickname</th>
