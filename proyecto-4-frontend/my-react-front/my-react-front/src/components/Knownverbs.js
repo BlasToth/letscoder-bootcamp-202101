@@ -1,31 +1,42 @@
 // import './Nav.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react';
+import axios from 'axios';
 
-
+let localStorageToken= JSON.parse(localStorage.getItem("token"));
+let token = (localStorageToken) ? localStorageToken.token : null;
 
 export default function Knownverbs() {
-    useEffect(() => {
-      fetchItems();
-    }, []);
- 
-    const [items, setItems] = useState([]);
-    const [isLoaded, setIsLoaded] = useState(false);
-    const [error, setError] = useState(null);
   
- 
-    const fetchItems = async () => {
-      const data = await fetch(
-        '/verbs/verbs'
-      );
- 
-      const items = await data.json();
-      if (items.length) {
-        setIsLoaded(true);
-        setItems(items);
-      }
-      console.log(items);
-    }
+  const [items, setItems] = useState([]);
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [error, setError] = useState(null);
+  const [noVerbYet, setNoVerbYet] = useState("")
+  
+  useEffect(() => {
+    axios.get("http://localhost:4000/verbs/knownverbs", {
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
+      }) 
+        .then(
+          (result) => {
+            
+            console.log(result.data.verbs)
+            if (!result.data.verbs){
+              console.log(result.data.message)
+              setNoVerbYet(result.data.message)
+            }
+            setItems(result.data.verbs)
+            setIsLoaded(true);
+            // setItems(result);
+          },
+          (error) => {
+            setIsLoaded(true);
+            setError(error);
+          }
+        );
+  }, []);
    
      function audioHandler() {
        const figcaptions = document.querySelectorAll(".figcaption");
@@ -42,13 +53,17 @@ export default function Knownverbs() {
        return <div>Error: {error.message}</div>;
      } else if (!isLoaded) {
        return <div>Loading...</div>;
-     } else {
+     } else if (noVerbYet) {
+      return <div><h1>{noVerbYet}</h1></div>
+     }
+      else {
        return (
+         <div>
+           <h1>You already know: {items.length} verb(s)</h1>
          <ul>
            {items.map((item) => (
              <li key={item._id} style={{ listStyleType: "none" }}>
                <>
-                 {/* <Button variant="success" style={{ border: "2px solid black" }}>Test Button</Button> */}
                  <div className="verb">
                    <div className="row">
                      <div className="col-sm-6">
@@ -88,6 +103,7 @@ export default function Knownverbs() {
              </li>
            ))}
          </ul>
+         </div>
        );
      }
    }

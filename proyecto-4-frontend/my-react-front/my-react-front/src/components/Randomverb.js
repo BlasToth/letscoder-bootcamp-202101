@@ -7,7 +7,7 @@ function Randomverb() {
     const [items, setItems] = useState([]);
   
     useEffect(() => {
-      fetch("verbs/onerandomverb") //right now it will receive: Please login! hence the error
+      fetch("verbs/onerandomverb") 
         .then((res) => res.json())
         .then(
           (result) => {
