@@ -5,18 +5,7 @@ import { Link, Router } from 'react-router-dom';
 
 
 
-async function loginUser(credentials) {
-    return fetch('http://localhost:4000/login', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(credentials)
-    })
-    .then(data => data.json()
-    .then(console.log(data))
-    )
-}
+
 
 export default function Login({ setToken }) {
     const [email, setEmail] = useState();
@@ -29,8 +18,21 @@ export default function Login({ setToken }) {
             password
         });
         setToken(token);
-        window.location.reload()
+        // window.location.reload()
     }
+
+    async function loginUser(credentials) {
+      return fetch('http://localhost:4000/login', {
+          method: 'POST',
+          headers: {
+              'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(credentials)
+      })
+      .then(data => data.json()
+      .then(console.log(data))
+      )
+  }
 
   return (
     <div className="login-wrapper">
