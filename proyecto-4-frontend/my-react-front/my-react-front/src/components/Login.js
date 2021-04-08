@@ -53,11 +53,7 @@ export default function Login({ setToken }) {
         <button type="submit" >
           LOG IN
         </button>
-      </form>
-
-      <a href="/home"><p>Or create an account</p></a>
-      
-      
+      </form>      
     </div>
   );
 }

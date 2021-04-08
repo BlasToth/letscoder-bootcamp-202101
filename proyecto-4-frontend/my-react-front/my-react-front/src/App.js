@@ -10,6 +10,7 @@ import Halloffame from "./components/Halloffame";
 import Home from "./components/Home";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Login from './components/Login'
+import Handlelogin from './components/Handlelogin'
 import Signup from './components/Signup'
 import useToken from './hooks/useToken'
 import Userheader from './components/userheader/Userheader'
@@ -18,7 +19,7 @@ function App() {
   const { token, setToken } = useToken();
 
   if(!token) {
-    return <Login setToken={setToken} />
+    return <Handlelogin setToken={setToken} />
   }
 
   return (
