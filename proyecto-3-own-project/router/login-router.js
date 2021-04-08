@@ -34,12 +34,14 @@ loginRouter
                     if (result){
                         const nick = authUser.nickname;
                         const points = authUser.points;
+                        const role = authUser.role;
                         
                         // JWT
                         const accessToken = jwt.sign({
                             _id: authUser._id, 
                             nickname: nick,
-                            points: points
+                            points: points,
+                            role
                         }, process.env.ACCESS_TOKEN_SECRET);
 
                         // res.header('auth-token', accessToken)
