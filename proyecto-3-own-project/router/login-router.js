@@ -99,6 +99,7 @@ loginRouter
             }
         }).select("-email")
         .select("-password")
+        .select("-role")
         .limit(10)
         .sort("-points")
     })
