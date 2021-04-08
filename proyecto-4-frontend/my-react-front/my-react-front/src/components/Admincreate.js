@@ -2,11 +2,15 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import React from 'react';
 import { useState } from 'react';
 
+let localStorageToken= JSON.parse(localStorage.getItem("token"));
+let token = (localStorageToken) ? localStorageToken.token : null;
+console.log(token)
 
 async function submitVerbDataForm(verbFormData) {
     return fetch('http://localhost:4000/createverb', {
         method: 'POST',
         headers: {
+            'Authorization': `Bearer ${token}`,
             'Content-Type': 'application/json'
         },
         body: JSON.stringify(verbFormData)
