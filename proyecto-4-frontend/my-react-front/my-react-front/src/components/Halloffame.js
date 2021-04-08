@@ -23,17 +23,10 @@ export default function Halloffame() {
       }) 
         .then(
           (result) => {
-            
-            const toSort = result.data.users;
-            const sorted = toSort.sort((a,b) => {
-                return (a.points < b.points) ? 1 : -1
-            })
-            console.log(sorted)
-            setItems(sorted)
-            
-
+            console.log(result.data.users)
+            setItems(result.data.users)
+          
             setIsLoaded(true);
-            // setItems(result);
           },
           (error) => {
             setIsLoaded(true);
