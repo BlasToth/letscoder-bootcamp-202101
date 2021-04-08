@@ -98,6 +98,8 @@ loginRouter
                 res.json({users})
             }
         }).select("-email")
+        .limit(10)
+        .sort("-points")
     })
     
 
