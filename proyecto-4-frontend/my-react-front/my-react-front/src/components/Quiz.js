@@ -132,7 +132,6 @@ function Quiz() {
         sendAnswerToBack.push("case 2", verbId);
         v3 = gap;
       }
-      console.log(sendAnswerToBack)
 
 
     if (error) {
@@ -152,7 +151,6 @@ function Quiz() {
                    setFinalAnswerToBack(sendAnswerToBack)
                     
                     toggleActive(index)
-                    console.log(sendAnswerToBack);
                     }}
                     className={toggleActiveStyles(index)}
                     >{word}</button>
