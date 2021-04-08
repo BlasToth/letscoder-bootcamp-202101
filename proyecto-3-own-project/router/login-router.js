@@ -98,6 +98,7 @@ loginRouter
                 res.json({users})
             }
         }).select("-email")
+        .select("-password")
         .limit(10)
         .sort("-points")
     })
