@@ -94,15 +94,10 @@ loginRouter
             if (err) {
                 res.status(404).send(err.response.data);
             } else {  
-                const mirda = users   
-                for (let i = 0; i < mirda.length; i++) {
-                    delete mirda[i]._id
-                }
-            
-                console.log(mirda[0]._id)       
+                console.log(users)       
                 res.json({users})
             }
-        })
+        }).select("-email")
     })
     
 
