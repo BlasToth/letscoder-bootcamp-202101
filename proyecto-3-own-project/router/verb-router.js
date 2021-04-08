@@ -2,7 +2,7 @@ const express = require("express");
 const verbRouter = express.Router();
 const Verb = require("../models/verb-model");
 const shuffle = require("../utils/shuffle");
-const authenticateToken = require("../middlewares.js");
+const { authenticateToken } = require("../middlewares.js");
 const jwt = require("jsonwebtoken");
 
 

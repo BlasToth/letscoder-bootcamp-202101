@@ -2,8 +2,9 @@ const express = require("express");
 const rootRouter = express.Router();
 const API_KEY = process.env.API;
 const API_KEY_S = process.env.API_S;
-const fetch = require("node-fetch");
 const axios = require("axios");
+const { authenticateAdmin, authenticateToken } = require("../middlewares");
+
 
 // everything inside /
 rootRouter.route("/")
@@ -20,7 +21,7 @@ rootRouter.route("/")
 
 
 rootRouter.route("/createverb")
-.post((req, res) => {
+.post(authenticateAdmin, (req, res) => {
   // console.log(req.body);
   const searchExp = req.body.v1;
   Promise.all([
@@ -75,7 +76,7 @@ rootRouter.route("/createverb")
 });
 
 rootRouter.route("/updateverb")
-.patch((req, res) => {
+.patch(authenticateAdmin, (req, res) => {
   const change = req.body.verbUpdateForm.sourceName;
   const changeTo = req.body.verbUpdateForm;
   console.log(changeTo)
@@ -105,7 +106,7 @@ rootRouter.route("/updateverb")
 });
 
 rootRouter.route("/deleteverb")
-.delete((req, res) => {
+.delete(authenticateAdmin, (req, res) => {
     console.log(req.body.theVerbToBeDeleted.source)
     const verbToDelete = req.body.theVerbToBeDeleted.source
 
