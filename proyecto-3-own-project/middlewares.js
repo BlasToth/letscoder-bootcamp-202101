@@ -19,10 +19,10 @@ function authenticateToken(req, res, next) {
     const authHeader = req.headers['authorization'];
     const token = authHeader && authHeader.split(' ')[1];
     console.log(token)
-    if (token == null) return res.status(401).send("Please login!");
+    if (token == null) return res.status(401).send("Please login with an addmin role!");
   
     jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
-      if (err) return res.status(403).send("Invalid token");
+      if (err) return res.status(403).send("Invalid token to access admin role");
       // console.log(token)
       console.log(user.role)
       if (user.role !== "admin") return res.status(403).send("Only admins!");
