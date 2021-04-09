@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import * as ReactBootStrap from 'react-bootstrap';
 
-let localStorageToken= JSON.parse(localStorage.getItem("token"));
+let localStorageToken = JSON.parse(localStorage.getItem("token"));
 let token = (localStorageToken) ? localStorageToken.token : null;
 
 export default function Halloffame() {

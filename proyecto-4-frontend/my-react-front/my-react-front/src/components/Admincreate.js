@@ -6,17 +6,7 @@ let localStorageToken= JSON.parse(localStorage.getItem("token"));
 let token = (localStorageToken) ? localStorageToken.token : null;
 console.log(token)
 
-async function submitVerbDataForm(verbFormData) {
-    return fetch('http://localhost:4000/createverb', {
-        method: 'POST',
-        headers: {
-            'Authorization': `Bearer ${token}`,
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(verbFormData)
-    })
-    .then(data => data.json())
-}
+
 
 function Admincreate() {
     const [sourceName, setSourceName] = useState();
@@ -39,6 +29,18 @@ function Admincreate() {
             wrongV2,
             wrongV3
         });
+    }
+
+    async function submitVerbDataForm(verbFormData) {
+        return fetch('http://localhost:4000/createverb', {
+            method: 'POST',
+            headers: {
+                'Authorization': `Bearer ${token}`,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(verbFormData)
+        })
+        .then(data => data.json())
     }
     
 

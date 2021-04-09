@@ -3,7 +3,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 
-let localStorageToken= JSON.parse(localStorage.getItem("token"));
+let localStorageToken = JSON.parse(localStorage.getItem("token"));
 let token = (localStorageToken) ? localStorageToken.token : null;
 
 export default function Knownverbs() {
