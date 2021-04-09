@@ -1,8 +1,5 @@
 import React, { useState } from "react";
 import './Login.css';
-import PropTypes from 'prop-types';
-import { Link, Router } from 'react-router-dom';
-
 
 export default function Login({ setToken }) {
     const [email, setEmail] = useState();
@@ -54,7 +51,3 @@ export default function Login({ setToken }) {
     </div>
   );
 }
-
-// Login.propTypes = {
-//     setToken: PropTypes.func.isRequired
-// }
