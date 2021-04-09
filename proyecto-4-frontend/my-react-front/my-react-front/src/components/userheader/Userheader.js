@@ -12,7 +12,7 @@ let localStorageToken = JSON.parse(localStorage.getItem("token"));
 let token = (localStorageToken) ? localStorageToken.token : null;
 
 
-export default function Userheader() {
+export default function Userheader(props) {
     const [nickname, setNickname] = useState("Anonymus");
     const [points, setPoints] = useState();
     // console.log(nickname)
@@ -34,7 +34,7 @@ export default function Userheader() {
     
     return (
         <div className="user-header">
-            <Username nickname={nickname} />
+            <Username nickname={nickname} authAdminState={props} />
             <Userpoints points={points}/>
             <Logout />
         </div>

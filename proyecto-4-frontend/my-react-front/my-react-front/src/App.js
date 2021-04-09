@@ -56,13 +56,13 @@ function authAdmin() {
     <Router>
       <div className="App">
         <Nav />
-        <Userheader />
+        <Userheader authAdminState={authAdminState}/>
         <Switch>
           <Route path="/" exact component={Home} />
+          
           <PrivateRoute path="/admin">
             <Admin />
           </PrivateRoute>
-          {/* <Route path="/admin" component={Admin} /> */}
 
           <Route path="/allverbs" component={Allverbs} />
           <Route path="/randomverb" component={Randomverb} />
