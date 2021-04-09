@@ -1,10 +1,9 @@
 import React, { useState } from "react";
 import './Login.css';
-import PropTypes from 'prop-types';
-import { Link, Router } from 'react-router-dom';
 
 
-export default function Login({ setToken }) {
+
+export default function Loginadmin({ setToken }) {
     const [email, setEmail] = useState();
     const [password, setPassword] = useState();
 
@@ -33,7 +32,7 @@ export default function Login({ setToken }) {
 
   return (
     <div className="login-wrapper">
-    <h1>Please Log In</h1>
+    <h1>Please Log In as an ADMIN</h1>
       <form onSubmit={handleSubmit}>
         <fieldset>
           <label>
@@ -54,7 +53,3 @@ export default function Login({ setToken }) {
     </div>
   );
 }
-
-// Login.propTypes = {
-//     setToken: PropTypes.func.isRequired
-// }

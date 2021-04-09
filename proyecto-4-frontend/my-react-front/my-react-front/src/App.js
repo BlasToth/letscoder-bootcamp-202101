@@ -8,18 +8,48 @@ import Quiz from "./components/Quiz";
 import Knownverbs from "./components/Knownverbs";
 import Halloffame from "./components/Halloffame";
 import Home from "./components/Home";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import Login from './components/Login'
-import Handlelogin from './components/Handlelogin'
-import Signup from './components/Signup'
-import useToken from './hooks/useToken'
-import Userheader from './components/userheader/Userheader'
+import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom";
+import Handlelogin from './components/Handlelogin';
+import useToken from './hooks/useToken';
+import Userheader from './components/userheader/Userheader';
+import jwt_decode from 'jwt-decode';
+import Loginadmin from "./components/Loginadmin";
+
 
 function App() {
   const { token, setToken } = useToken();
 
   if(!token) {
     return <Handlelogin setToken={setToken} />
+  }
+
+  // check for role
+let localStorageToken = JSON.parse(localStorage.getItem("token"));
+let tokenForRole = (localStorageToken) ? localStorageToken.token : "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.EyJfaWQiOiI2MDYxZmQ5NzgwzYnvv70idXV1dSIsInBvaW50cyI6NDAsInJvbGU.uPoudIpvpgDq1Ul40uEBlGlPgIuc2eU7ruI-mqwkyjQ";
+const decoded = jwt_decode(tokenForRole);
+console.log(decoded.role)
+let authAdminState;
+authAdmin();
+
+function authAdmin() {
+    if(decoded.role === "admin") {
+        console.log("TRUE")
+        return authAdminState = true;
+    } 
+    else {
+        console.log("FALSE")
+        return authAdminState = false;
+    }
+}
+
+  function PrivateRoute({ children, ...rest }) {
+    return(
+      <Route {...rest} render={() => {
+        return authAdminState === true
+        ? children
+        : <Loginadmin setToken={setToken} />
+      }}/>
+    )
   }
 
   return (
@@ -29,7 +59,11 @@ function App() {
         <Userheader />
         <Switch>
           <Route path="/" exact component={Home} />
-          <Route path="/admin" component={Admin} />
+          <PrivateRoute path="/admin">
+            <Admin />
+          </PrivateRoute>
+          {/* <Route path="/admin" component={Admin} /> */}
+
           <Route path="/allverbs" component={Allverbs} />
           <Route path="/randomverb" component={Randomverb} />
           <Route path="/quiz" component={Quiz} />

@@ -5,7 +5,6 @@ import Admindelete from './Admindelete';
 import Adminupdate from './Adminupdate';
 
 
-
 function Admin() {
     return (
         <>
