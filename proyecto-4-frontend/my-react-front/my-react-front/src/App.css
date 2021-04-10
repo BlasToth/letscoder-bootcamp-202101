@@ -20,3 +20,8 @@
     flex-direction: column;
     align-items: center;
 }
+
+.nav {
+    background-color: rebeccapurple;
+    width: 100%;
+}

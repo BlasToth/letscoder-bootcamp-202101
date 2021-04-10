@@ -5,9 +5,9 @@ import * as ReactBootStrap from "react-bootstrap";
 function Nav() {
   return (
     <ReactBootStrap.Navbar 
+    className="nav"
       collapseOnSelect
       expand="md"
-      bg="dark"
       variant="dark"
       sticky='top'
     >

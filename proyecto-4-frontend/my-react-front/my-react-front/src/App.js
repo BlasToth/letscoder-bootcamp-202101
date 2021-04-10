@@ -57,6 +57,7 @@ function authAdmin() {
     <Router>
       <div className="App">
         <Nav />
+        <div className="with-header">
         <Userheader authAdminState={authAdminState}/>
         <Switch>
           <Route path="/" exact component={Home} />
@@ -73,6 +74,7 @@ function authAdmin() {
           <Route component={Error404} />
           
         </Switch>
+      </div>
       </div>
     </Router>
   );
