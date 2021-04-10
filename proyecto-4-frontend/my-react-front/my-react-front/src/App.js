@@ -8,7 +8,7 @@ import Quiz from "./components/Quiz";
 import Knownverbs from "./components/Knownverbs";
 import Halloffame from "./components/Halloffame";
 import Home from "./components/Home";
-import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Handlelogin from './components/Handlelogin';
 import useToken from './hooks/useToken';
 import Userheader from './components/userheader/Userheader';

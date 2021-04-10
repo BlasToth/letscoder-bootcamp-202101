@@ -6,7 +6,7 @@ export default function error404() {
   return (
     <div className="error404">
       <h1>OH Fish!</h1>
-      <img className="error404-image" src={Fish}></img>
+      <img className="error404-image" src={Fish} alt="fish"></img>
       <div className="error404-text">
         <h4>This page is not found!</h4>
         <h2>I need to schedule a CALENDLY!</h2>
