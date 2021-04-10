@@ -1,35 +1,45 @@
 // import './Nav.css';
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Link } from "react-router-dom";
+import * as ReactBootStrap from "react-bootstrap";
 
 function Nav() {
   return (
-    <nav>
-      <h3>Logo</h3>
-      <ul>
-        <Link to="/">
-          <li>Home</li>
-        </Link>
-        <Link to="/admin">
-          <li>Admin</li>
-        </Link>
-        <Link to="/allverbs">
-          <li>All verbs</li>
-        </Link>
-        <Link to="/randomverb">
-          <li>Random Verb</li>
-        </Link>
-        <Link to="/quiz">
-          <li>Quiz</li>
-        </Link>
-        <Link to="/knownverbs">
-          <li>Known verbs</li>
-        </Link>
-        <Link to="/halloffame">
-          <li>Hall of fame</li>
-        </Link>
-      </ul>
-    </nav>
+    <ReactBootStrap.Navbar 
+      collapseOnSelect
+      expand="md"
+      bg="dark"
+      variant="dark"
+      sticky='top'
+    >
+      <ReactBootStrap.Navbar.Brand href="/">
+        English verbs👩🏻‍🏫
+      </ReactBootStrap.Navbar.Brand>
+      <ReactBootStrap.Navbar.Toggle aria-controls="responsive-ReactBootStrap.-nav" />
+      <ReactBootStrap.Navbar.Collapse id="responsive-navbar-nav">
+        <ReactBootStrap.Nav className="mr-auto">
+          <ReactBootStrap.Nav.Link href="/">HOME</ReactBootStrap.Nav.Link>
+          <ReactBootStrap.Nav.Link href="/admin">ADMIN</ReactBootStrap.Nav.Link>
+          <ReactBootStrap.Nav.Link href="/quiz">QUIZ</ReactBootStrap.Nav.Link>
+          <ReactBootStrap.Nav.Link href="/halloffame">
+            HALL OF FAME
+          </ReactBootStrap.Nav.Link>
+          <ReactBootStrap.NavDropdown
+            title="Verbs"
+            id="collasible-nav-dropdown"
+          >
+            <ReactBootStrap.NavDropdown.Item href="/allverbs">
+              ALL VERBS
+            </ReactBootStrap.NavDropdown.Item>
+            <ReactBootStrap.NavDropdown.Item href="/randomverb">
+              RANDOM VERB
+            </ReactBootStrap.NavDropdown.Item>
+            <ReactBootStrap.NavDropdown.Item href="/knownverbs">
+              KNOWN VERBS
+            </ReactBootStrap.NavDropdown.Item>
+          </ReactBootStrap.NavDropdown>
+        </ReactBootStrap.Nav>
+      </ReactBootStrap.Navbar.Collapse>
+    </ReactBootStrap.Navbar>
   );
 }
 
