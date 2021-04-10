@@ -78,9 +78,9 @@ function Quiz() {
             (result) => {
               console.log(result.data.verdict)
               if (result.data.verdict === true) {
-                document.body.classList.add('correct'); 
+                document.querySelector(".with-header").classList.add('correct'); 
               }else {
-                document.body.classList.add('not-correct');
+                document.querySelector(".with-header").classList.add('not-correct');
               }
             },
             (error) => {
@@ -93,10 +93,10 @@ function Quiz() {
     }
 
     function handleBackground() {
-      if (document.body.classList.value === "correct") {
-        document.body.classList.remove("correct");
-      } else if (document.body.classList.value === "not-correct") {
-        document.body.classList.remove("not-correct")
+      if (document.querySelector(".with-header").classList.value === "correct") {
+        document.querySelector(".with-header").classList.remove("correct");
+      } else if (document.querySelector(".with-header").classList.value === "not-correct") {
+        document.querySelector(".with-header").classList.remove("not-correct")
       }
     }
 
