@@ -1,10 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;700&display=swap');
+        html {
+          background-color: #00bcd4;
+        }
         body{
           max-width: 1400px;
           margin: 10px 0px;
           font-family: 'Noto Serif', serif;
         }
         .with-header{
+          height: 100%;
           padding: 0 10px;
           background-color: #00bcd4;
         }
