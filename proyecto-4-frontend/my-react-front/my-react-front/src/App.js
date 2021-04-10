@@ -28,17 +28,17 @@ function App() {
 let localStorageToken = JSON.parse(localStorage.getItem("token"));
 let tokenForRole = (localStorageToken) ? localStorageToken.token : "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.EyJfaWQiOiI2MDYxZmQ5NzgwzYnvv70idXV1dSIsInBvaW50cyI6NDAsInJvbGU.uPoudIpvpgDq1Ul40uEBlGlPgIuc2eU7ruI-mqwkyjQ";
 const decoded = jwt_decode(tokenForRole);
-console.log(decoded.role)
+
 let authAdminState;
 authAdmin();
 
 function authAdmin() {
     if(decoded.role === "admin") {
-        console.log("TRUE")
+        // console.log("TRUE")
         return authAdminState = true;
     } 
     else {
-        console.log("FALSE")
+        // console.log("FALSE")
         return authAdminState = false;
     }
 }

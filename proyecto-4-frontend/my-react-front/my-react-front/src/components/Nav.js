@@ -19,10 +19,6 @@ function Nav() {
         <ReactBootStrap.Nav className="mr-auto">
           <ReactBootStrap.Nav.Link href="/">HOME</ReactBootStrap.Nav.Link>
           <ReactBootStrap.Nav.Link href="/admin">ADMIN</ReactBootStrap.Nav.Link>
-          <ReactBootStrap.Nav.Link href="/quiz">QUIZ</ReactBootStrap.Nav.Link>
-          <ReactBootStrap.Nav.Link href="/halloffame">
-            HALL OF FAME
-          </ReactBootStrap.Nav.Link>
           <ReactBootStrap.NavDropdown
             title="Verbs"
             id="collasible-nav-dropdown"
@@ -37,6 +33,10 @@ function Nav() {
               KNOWN VERBS
             </ReactBootStrap.NavDropdown.Item>
           </ReactBootStrap.NavDropdown>
+          <ReactBootStrap.Nav.Link href="/quiz">QUIZ</ReactBootStrap.Nav.Link>
+          <ReactBootStrap.Nav.Link href="/halloffame">
+            HALL OF FAME
+          </ReactBootStrap.Nav.Link>
         </ReactBootStrap.Nav>
       </ReactBootStrap.Navbar.Collapse>
     </ReactBootStrap.Navbar>

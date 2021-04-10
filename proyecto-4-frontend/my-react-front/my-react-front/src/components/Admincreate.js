@@ -4,9 +4,6 @@ import { useState } from 'react';
 
 let localStorageToken= JSON.parse(localStorage.getItem("token"));
 let token = (localStorageToken) ? localStorageToken.token : null;
-console.log(token)
-
-
 
 function Admincreate() {
     const [sourceName, setSourceName] = useState();
