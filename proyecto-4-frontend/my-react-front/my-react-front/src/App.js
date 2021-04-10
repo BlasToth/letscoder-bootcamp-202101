@@ -14,6 +14,7 @@ import useToken from './hooks/useToken';
 import Userheader from './components/userheader/Userheader';
 import jwt_decode from 'jwt-decode';
 import Loginadmin from "./components/Loginadmin";
+import Error404 from "./components/Error404";
 
 
 function App() {
@@ -69,6 +70,7 @@ function authAdmin() {
           <Route path="/quiz" component={Quiz} />
           <Route path="/knownverbs" component={Knownverbs} />
           <Route path="/halloffame" component={Halloffame} />
+          <Route component={Error404} />
           
         </Switch>
       </div>
