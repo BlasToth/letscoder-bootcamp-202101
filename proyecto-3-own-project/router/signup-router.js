@@ -18,6 +18,7 @@ signupRouter
       const { body: { nickname, email, password } } = req;
       validateEmail(email);
       validatePassword(password);
+      
       validateNickname(nickname);
         try {
             // const salt = await bcrypt.genSalt();

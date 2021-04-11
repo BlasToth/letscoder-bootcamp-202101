@@ -19,7 +19,7 @@ loginRouter
     .post( (req, res) => {
         const {body: {email, password}} = req;
         validateEmail(email);
-        validatePassword(password);
+        validatePassword(password);        
         
         User.find({}, (err, users) => {
             if (err) {
