@@ -1,11 +1,9 @@
-import React, { createRef }from "react";
+import React from "react";
 import { Tooltip, OverlayTrigger } from "react-bootstrap";
 
 export default function Username(props) {
   const admin = props.authAdminState.authAdminState;
   const key = "🔑";
-  const myRef = createRef();
-
   if (props.nickname.length) {
     return (
       <>

@@ -8,7 +8,7 @@ export default function Handlelogin({ setToken }) {
   const [link, setLink] = useState(true)
 
   const activeState = active ? "login" : "signup"
-  const buttonText = link ? "Or create an account" : "Log in";
+  const buttonText = link ? "Or create an account" : " Or log in";
 
   function handleClick(e) {
     e.preventDefault()
@@ -22,7 +22,7 @@ export default function Handlelogin({ setToken }) {
 
       {activeState === "signup" && <Signup />}
 
-      <a href="#" onClick={handleClick} className="login-link"><p>{buttonText}</p></a>
+      <div onClick={handleClick} className="login-link"><p>{buttonText}</p></div>
     </>
   );
 }

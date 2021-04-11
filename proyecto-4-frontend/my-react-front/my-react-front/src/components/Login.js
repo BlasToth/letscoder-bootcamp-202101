@@ -45,7 +45,7 @@ export default function Login({ setToken }) {
           </label>
         </fieldset>
         <button type="submit" >
-          LOG IN
+         LOG IN
         </button>
       </form>      
     </div>

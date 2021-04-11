@@ -3,7 +3,6 @@ import { useEffect, useState } from 'react';
 import Username from './Username';
 import Userpoints from './Userpoints';
 import Logout from './Logout'
-import jwt_decode from "jwt-decode";
 import './Userheader.css';
 import axios from 'axios';
 
