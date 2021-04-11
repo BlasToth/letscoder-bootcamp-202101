@@ -10,12 +10,14 @@ async function signupUser(credentials) {
         body: JSON.stringify(credentials)
     })
     .then(data => data.json())
+    .then(data => console.log(data))
 }
 
 export default function Signup() {
     const [email, setEmail] = useState();
     const [password, setPassword] = useState();
     const [nickname, setNickname] = useState();
+    const [error, setError] = useState("");
 
         const handleSubmit = async e => {
             e.preventDefault();
@@ -26,7 +28,9 @@ export default function Signup() {
             });
             signupUser(regData);
         }
-
+  if (error) {
+    return <div>Error: {error.message}</div>;
+  }else
   return (
     <div className="signup-wrapper">
     <h1>Sign up if you are new here:</h1>
@@ -34,19 +38,19 @@ export default function Signup() {
         <fieldset>
           <label>
             <p>Email</p>
-            <input name="email" type="email" onChange={e => setEmail(e.target.value)} />
+            <input name="email" type="email" required onChange={e => setEmail(e.target.value)} />
           </label>
         </fieldset>
         <fieldset>
           <label>
             <p>Password</p>
-            <input name="password" type="password" onChange={e => setPassword(e.target.value)} />
+            <input name="password" type="password" required onChange={e => setPassword(e.target.value)} />
           </label>
         </fieldset>
         <fieldset>
             <label>
               <p>Nickname</p>
-              <input name="nickname" type="text" onChange={e => setNickname(e.target.value)} />
+              <input name="nickname" type="text" required onChange={e => setNickname(e.target.value)} />
             </label>
           </fieldset>
         <button type="submit" >

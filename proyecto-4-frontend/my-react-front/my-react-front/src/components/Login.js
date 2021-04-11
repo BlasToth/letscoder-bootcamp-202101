@@ -35,13 +35,13 @@ export default function Login({ setToken }) {
         <fieldset>
           <label>
             <p>Email</p>
-            <input name="email" type="email" onChange={e => setEmail(e.target.value)} />
+            <input name="email" type="email" required onChange={e => setEmail(e.target.value)} />
           </label>
         </fieldset>
         <fieldset>
           <label>
             <p>Password</p>
-            <input name="password" type="password" onChange={e => setPassword(e.target.value)} />
+            <input name="password" type="password" required onChange={e => setPassword(e.target.value)} />
           </label>
         </fieldset>
         <button type="submit" >
