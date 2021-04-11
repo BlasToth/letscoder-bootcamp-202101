@@ -6,6 +6,7 @@ const jwt = require('jsonwebtoken');
 const path = require('path');
 const { JsonWebTokenError } = require('jsonwebtoken');
 const { authenticateToken } = require('../middlewares');
+const { validateEmail, validatePassword } = require('../validations/validations')
 
 loginRouter
     .route('/')
@@ -16,6 +17,10 @@ loginRouter
 loginRouter
     .route('/')
     .post( (req, res) => {
+        const {body: {email, password}} = req;
+        validateEmail(email);
+        validatePassword(password);
+        
         User.find({}, (err, users) => {
             if (err) {
                 res.status(404).send(err.response.data);
@@ -31,34 +36,16 @@ loginRouter
                 bcrypt.compare(req.body.password, authUser.password)
                 .then((result) => {
                     if (result){
-                        const nick = authUser.nickname;
-                        const points = authUser.points;
                         const role = authUser.role;
                         
                         // JWT
                         const accessToken = jwt.sign({
                             _id: authUser._id, 
-                            nickname: nick,
-                            points: points,
                             role
                         }, process.env.ACCESS_TOKEN_SECRET);
 
                         // res.header('auth-token', accessToken)
                         res.json({token: accessToken})
-
-                        // JWT ends
-                        // Verb
-                        // Verb.find({}, (err, verbs) => {
-                        //     if (err) {
-                        //         res.status(404).send(err.response.data);
-                        //     } else {
-                        //        const dbVerbs = verbs;
-                            //    res.redirect("/login/" + authUser._id);
-                               
-                              
-                        //     }
-                        // })
-                        // Verb end
 
                     } else {
                         res.status(401).send("Acces denied") //json 401
@@ -95,7 +82,6 @@ loginRouter
             if (err) {
                 res.status(404).send(err.response.data);
             } else {  
-                console.log(users)       
                 res.json({users})
             }
         }).select("-email")
@@ -104,7 +90,5 @@ loginRouter
         .limit(10)
         .sort("-points")
     })
-    
-
     
 module.exports = loginRouter;
