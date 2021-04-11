@@ -23,9 +23,7 @@ export default function Login({ setToken }) {
           },
           body: JSON.stringify(credentials)
       })
-      .then(data => data.json()
-      .then(console.log(data))
-      )
+      .then(data => data.json())
   }
 
   return (

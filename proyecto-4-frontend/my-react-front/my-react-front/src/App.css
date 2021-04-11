@@ -29,3 +29,7 @@
     background-color: rebeccapurple;
     width: 100%;
 }
+.alert-no-answer {
+    margin-top: 10px;
+    background-color: #ff9800;
+}
