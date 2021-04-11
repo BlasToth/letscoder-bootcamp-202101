@@ -11,6 +11,7 @@ async function signupUser(credentials) {
     })
     .then(data => data.json())
     .then(data => console.log(data))
+    .catch(error => console.log(error))
 }
 
 export default function Signup() {
