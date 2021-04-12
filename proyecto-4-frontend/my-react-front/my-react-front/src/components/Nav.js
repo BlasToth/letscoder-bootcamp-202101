@@ -1,6 +1,7 @@
 // import './Nav.css';
 import "bootstrap/dist/css/bootstrap.min.css";
 import * as ReactBootStrap from "react-bootstrap";
+import Logo from "../images/logo_verb_shark_nav.png";
 
 function Nav() {
   return (
@@ -12,7 +13,7 @@ function Nav() {
       sticky='top'
     >
       <ReactBootStrap.Navbar.Brand href="/">
-        English verbs👩🏻‍🏫
+      <img className="logo - shark verb" src={Logo} width="140px" height="70px" alt="shark verb"></img>
       </ReactBootStrap.Navbar.Brand>
       <ReactBootStrap.Navbar.Toggle aria-controls="responsive-ReactBootStrap.-nav" />
       <ReactBootStrap.Navbar.Collapse id="responsive-navbar-nav">
