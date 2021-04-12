@@ -61,7 +61,9 @@ function authAdmin() {
       
       <Nav />
       <div className="with-header">
+      <div className="user-header">
       <Userheader authAdminState={authAdminState}/>
+      </div>
       <Switch>
         <Route path="/" exact component={Home} />
         

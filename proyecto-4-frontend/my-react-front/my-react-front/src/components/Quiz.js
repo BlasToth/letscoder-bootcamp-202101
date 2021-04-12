@@ -214,7 +214,7 @@ function Quiz() {
           </button>
         )}
 
-        <img src={gifUrl} alt="Verb card"></img>
+        <img src={gifUrl} width="100%" alt="Verb card"></img>
         <figure>
           <figcaption className="figcaption" onClick={audioHandler}>
             🔉
