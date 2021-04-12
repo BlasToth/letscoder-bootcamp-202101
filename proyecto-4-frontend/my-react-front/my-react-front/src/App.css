@@ -77,3 +77,45 @@ fieldset p {
     color: rgb(34, 30, 30);
     font-size: 1.2em;
 }
+.quiz-container {
+    
+}
+.quiz-question-text {
+    padding: 10px;
+    font-size: 2em;
+    font-weight: bolder;
+    text-align: justify;
+}
+.quiz-3-verbs {
+    display: flex;
+    font-size: 1.9em;
+    font-weight: bolder;
+}
+.figcaption {
+    display: contents;
+}
+.quiz-answer-buttons {
+    display: flex;
+    justify-content: center;
+    font-size: 1.5em;
+}
+.quiz-handler {
+    display: flex;
+    justify-content: center;
+    margin: 10px auto;
+    padding: 10px;
+}
+.quiz-handler__send, .quiz-handler__next {
+    border-radius: 5px;
+    background-color: thistle;
+    font-size: 1.5em;
+    font-weight: bolder;
+    justify-content: center;
+    width: 200px;
+    height: 50px
+}
+.quiz-gif {
+    border: 10px solid whitesmoke;
+    border-radius: 15px;
+    margin-bottom: 20px;
+}

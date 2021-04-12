@@ -160,69 +160,77 @@ function Quiz() {
   } else {
     return (
       <>
-      <Container>
-        <h1>
+      <Container className="quiz-container">
+        <div className="quiz-question-text">
           Cuál es la forma correcta del verbo irregular:{" "}
-          <strong>{sourceName}</strong>?
-        </h1>
-        <h2>
-          {v1}, {v2}, {v3}
-        </h2>
-        {wordArray &&
-          wordArray.map((word, index) => {
-            return (
-              <button
-                key={index}
-                onClick={() => {
-                  sendAnswerToBack[2] = word;
-                  setFinalAnswerToBack(sendAnswerToBack);
+          <strong>{sourceName}</strong>? 
+        </div>
+        <div className="quiz-3-verbs">
+            {v1}, {v2}, {v3} <figure>
+              <figcaption className="figcaption" onClick={audioHandler}>
+                🔉
+              </figcaption>
+              <audio className="audio" hidden>
+                <source src={audioUrl} type="audio/mp3"></source>
+              </audio>
+            </figure>
+        </div>
+        <div className="quiz-answer-buttons">
+          {wordArray &&
+            wordArray.map((word, index) => {
+              return (
+                <button
+                  className="quiz-answer-individual"
+                  key={index}
+                  onClick={() => {
+                    sendAnswerToBack[2] = word;
+                    setFinalAnswerToBack(sendAnswerToBack);
 
-                  toggleActive(index);
-                }}
-                className={toggleActiveStyles(index)}
-              >
-                {word}
-              </button>
-            );
-          })}
-        {buttonText === false && (
-          <button
-            onClick={() => {
-              if (finalAnswerToBack.length === 3) {
-                console.log(finalAnswerToBack.length);
-                handleSendAnswerToBack();
-              }
-              if (finalAnswerToBack.length !== 3) {
-                console.log(finalAnswerToBack.length);
-                setShow(true);
-              }
-            }}
-          >
-            {buttonTextState}
-          </button>
-        )}
+                    toggleActive(index);
+                  }}
+                  className={toggleActiveStyles(index)}
+                >
+                  {word}
+                </button>
+              );
+            })}
+            </div>
+            <div className="quiz-handler">
+              {buttonText === false && (
+                <button
+                  className="quiz-handler__send"
+                  onClick={() => {
+                    if (finalAnswerToBack.length === 3) {
+                      console.log(finalAnswerToBack.length);
+                      handleSendAnswerToBack();
+                    }
+                    if (finalAnswerToBack.length !== 3) {
+                      console.log(finalAnswerToBack.length);
+                      setShow(true);
+                    }
+                  }}
+                >
+                  {buttonTextState}
+                </button>
+              )}
 
-        {buttonText === true && (
-          <button
-            onClick={() => {
-              axiosGetAnswersPlusButtonTextHandler();
-              handleBackground();
-              window.location.reload();
-            }}
-          >
-            {buttonTextState}{" "}
-          </button>
-        )}
-
-        <img src={gifUrl} width="100%" alt="Verb card"></img>
-        <figure>
-          <figcaption className="figcaption" onClick={audioHandler}>
-            🔉
-          </figcaption>
-          <audio className="audio" hidden>
-            <source src={audioUrl} type="audio/mp3"></source>
-          </audio>
-        </figure>
+              {buttonText === true && (
+                <button
+                className="quiz-handler__next"
+                  onClick={() => {
+                    axiosGetAnswersPlusButtonTextHandler();
+                    handleBackground();
+                    window.location.reload();
+                  }}
+                >
+                  {buttonTextState}{" "}
+                </button>
+              )}
+          </div>
+          <div className="quiz-gif">
+          <img src={gifUrl} width="100%" alt="Verb card"></img> 
+          </div>
+        
         </Container>
       </>
     );
