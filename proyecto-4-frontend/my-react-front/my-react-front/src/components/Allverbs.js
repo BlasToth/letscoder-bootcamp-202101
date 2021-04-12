@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { Container } from "react-bootstrap";
 
 function Allverbs() {
    useEffect(() => {
@@ -21,7 +22,6 @@ function Allverbs() {
        setIsLoaded(true);
        setItems(items);
      }
-     console.log(items);
    }
   
     function audioHandler() {
@@ -41,6 +41,7 @@ function Allverbs() {
       return <div>Loading...</div>;
     } else {
       return (
+        <Container>
         <ul>
           {items.map((item) => (
             <li key={item._id} style={{ listStyleType: "none" }}>
@@ -67,7 +68,7 @@ function Allverbs() {
                               className="figcaption"
                               onClick={audioHandler}
                             >
-                              🔉
+                              <span>🔉</span>
                             </figcaption>
                             <audio className="audio" hidden>
                               <source
@@ -85,6 +86,7 @@ function Allverbs() {
             </li>
           ))}
         </ul>
+        </Container>
       );
     }
   }

@@ -34,7 +34,7 @@
         .mystyle-card {
           width: 18rem;
           padding: 5px;
-          margin: 3px;
+          margin: 5px auto;
           height: 420px;
           
         }
@@ -125,6 +125,9 @@
         /*sound emoji */
         figcaption {
           cursor: pointer;
+        }
+        .speaker-icon {
+          width: 50px;
         }
 
 /* quiz */
