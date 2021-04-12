@@ -1,30 +1,31 @@
 import React, { useState } from "react";
 import './Login.css';
+import { Alert } from "react-bootstrap";
+
 
 export default function Login({ setToken }) {
-    const [email, setEmail] = useState();
-    const [password, setPassword] = useState();
+  const [email, setEmail] = useState();
+  const [password, setPassword] = useState();
 
-    const handleSubmit = async e => {
-        e.preventDefault();
-        const token = await loginUser({
-            email,
-            password
-        });
-        setToken(token);
-        window.location.reload()
-    }
-
-    async function loginUser(credentials) {
-      return fetch('http://localhost:4000/login', {
-          method: 'POST',
-          headers: {
-              'Content-Type': 'application/json'
-          },
-          body: JSON.stringify(credentials)
-      })
-      .then(data => data.json())
-  }
+  const handleSubmit = async e => {
+      e.preventDefault();
+      const token = await loginUser({
+          email,
+          password
+      });
+      setToken(token);
+      window.location.reload()
+ }
+ async function loginUser(credentials) {
+  return fetch('http://localhost:4000/login', {
+      method: 'POST',
+      headers: {
+          'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(credentials)
+  })
+  .then(data => data.json())
+}
 
   return (
     <div className="login-wrapper">
