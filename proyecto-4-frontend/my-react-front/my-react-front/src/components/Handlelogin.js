@@ -2,6 +2,7 @@ import React from "react";
 import Login from "./Login";
 import Signup from "./Signup";
 import { useState } from "react";
+import Logo from "../images/logo_verb_shark.png";
 
 export default function Handlelogin({ setToken }) {
   const [active, setActive] = useState(true);
@@ -18,6 +19,8 @@ export default function Handlelogin({ setToken }) {
 
   return (
     <>
+      <img className="logo - shark verb" src={Logo} alt="shark verb"></img>
+
       {activeState === "login" && <Login setToken={setToken} />}
 
       {activeState === "signup" && <Signup />}
