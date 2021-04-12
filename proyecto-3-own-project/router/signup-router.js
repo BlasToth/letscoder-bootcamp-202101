@@ -3,7 +3,7 @@ const signupRouter = express.Router();
 const Signup = require('../models/signup-model');
 const path = require('path');
 const bcrypt = require('bcrypt');
-const { validateEmail, validatePassword, validateNickname } = require('../validations/validations')
+// const { validateEmail, validatePassword, validateNickname } = require('../validations/validations')
 
 
 signupRouter
@@ -15,11 +15,10 @@ signupRouter
 signupRouter
     .route('/')
     .post( async (req, res) => {
-      const { body: { nickname, email, password } } = req;
-      validateEmail(email);
-      validatePassword(password);
-      
-      validateNickname(nickname);
+      // const { body: { nickname, email, password } } = req;
+      // validateEmail(email);
+      // validatePassword(password);
+      // validateNickname(nickname);
         try {
             // const salt = await bcrypt.genSalt();
             const hashedPassword = await bcrypt.hash(req.body.password, 10);
@@ -34,10 +33,11 @@ signupRouter
                 .save()
                 .then((result) => {
                   console.log(`Created User: ${user}`);
-                  res.json(user);
+                  res.send(`Created User: ${user.nickname}`);
                 })
                 .catch((err) => {
                   console.log(err);
+                  res.json(`There was an error: ${err}`)
                 });
               
         } catch  {
