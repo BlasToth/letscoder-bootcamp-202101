@@ -8,7 +8,7 @@ import Adminupdate from './Adminupdate';
 function Admin() {
     return (
         <>
-        <h1>Admin page</h1>
+        <div className="title">Admin Page</div>
         <Admincreate />
         <Adminupdate />
         <Admindelete />

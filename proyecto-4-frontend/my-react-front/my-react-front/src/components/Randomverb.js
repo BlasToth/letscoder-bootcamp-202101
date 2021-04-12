@@ -38,7 +38,8 @@ function Randomverb() {
       return <div>Loading...</div>;
     } else {
       return (
-
+        <>
+        <div className="title">A Random Verb</div>
                 <div className="verb">
                   <div className="row">
                     <div className="col-sm-6">
@@ -74,6 +75,7 @@ function Randomverb() {
                     </div>
                   </div>
                 </div>
+              </>
           )}
 
       }

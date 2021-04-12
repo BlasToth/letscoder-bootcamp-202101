@@ -54,10 +54,12 @@ export default function Knownverbs() {
      } else if (!isLoaded) {
        return <div>Loading...</div>;
      } else if (noVerbYet) {
-      return <div><h1>{noVerbYet}</h1></div>
+      return <><div className="title">Known Verbs</div><div><h1>{noVerbYet}</h1></div></>
      }
       else {
        return (
+         <>
+         <div className="title">Known Verbs</div>
          <div>
            <h1>You already know: {items.length} verb(s)</h1>
          <ul>
@@ -104,6 +106,7 @@ export default function Knownverbs() {
            ))}
          </ul>
          </div>
+         </>
        );
      }
    }

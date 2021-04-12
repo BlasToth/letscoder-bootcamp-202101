@@ -21,7 +21,10 @@ function Home() {
       );
     }
     return(
-      <h1>Home - Info</h1>
+      <>
+      <div className="title">Home</div>
+      <div className="home-text">Si das pescado a un hombre hambriento, le nutres una jornada. Si le enseñas a pescar, le nutrirás toda la vida </div>
+      </>
     )
 }
 

@@ -42,6 +42,7 @@ function Allverbs() {
     } else {
       return (
         <Container>
+        <div className="title">All verbs</div>
         <ul>
           {items.map((item) => (
             <li key={item._id} style={{ listStyleType: "none" }}>
