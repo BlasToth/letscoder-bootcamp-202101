@@ -1,6 +1,7 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import React from 'react';
 import { useState } from 'react';
+import { Alert } from "react-bootstrap";
 
 let localStorageToken= JSON.parse(localStorage.getItem("token"));
 let token = (localStorageToken) ? localStorageToken.token : null;
@@ -13,6 +14,9 @@ function Admincreate() {
     const [wrongV1, setWrongV1] = useState();
     const [wrongV2, setWrongV2] = useState();
     const [wrongV3, setWrongV3] = useState();
+
+    const [verbCreate, setVerbCreate] = useState("");
+    const [show, setShow] = useState(true);
 
 
     const handleSubmit = async event => {
@@ -37,7 +41,13 @@ function Admincreate() {
             },
             body: JSON.stringify(verbFormData)
         })
-        .then(data => data.json())
+        .then((response) => {
+            return response.json();
+        })
+        .then(data => {
+            console.log(data.verb.sourceName);
+            setVerbCreate(data.verb.sourceName)
+        })
     }
     
 
@@ -81,6 +91,9 @@ function Admincreate() {
                 </label>
             </fieldset>
             </fieldset>
+            {verbCreate && show && <Alert  className="alert-update-success" onClose={() => setShow(false)} dismissible>
+        <Alert.Heading>verb created: <strong>{verbCreate}</strong></Alert.Heading>
+      </Alert>}
                 <input type="submit" name="sub" value="CREATE" />
             </form>
         </div>

@@ -57,3 +57,6 @@
     background-color: #fb5d51;
     border: 2px solid #9e1b11;
 }
+.alert-update-success {
+    background-color: greenyellow;
+}

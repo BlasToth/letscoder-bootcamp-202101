@@ -2,12 +2,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import React from 'react';
 import { useState } from 'react';
 import axios from 'axios';
-
-async function submitVerbDataForm(verbUpdateForm) {
-    axios.patch('http://localhost:4000/updateverb',
-         { verbUpdateForm }
-         );
-}
+import { Alert } from "react-bootstrap";
 
 function Adminupdate() {
     const [sourceName, setSourceName] = useState();
@@ -17,6 +12,9 @@ function Adminupdate() {
     const [wrongV1, setWrongV1] = useState();
     const [wrongV2, setWrongV2] = useState();
     const [wrongV3, setWrongV3] = useState();
+
+    const [verbUpdate, setVerbUpdate] = useState("");
+    const [show, setShow] = useState(true);
 
     const handleSubmit = async event => {
         event.preventDefault();
@@ -29,6 +27,15 @@ function Adminupdate() {
             wrongV2,
             wrongV3
         })
+    }
+
+    async function submitVerbDataForm(verbUpdateForm) {
+        axios.patch('http://localhost:4000/updateverb',
+             { verbUpdateForm }
+             )
+             .then(response => {
+                 setVerbUpdate(response.data.data.sourceName)
+             })
     }
 
 
@@ -72,6 +79,9 @@ function Adminupdate() {
                 </label>
             </fieldset>
             </fieldset>
+            {verbUpdate && show && <Alert  className="alert-update-success" onClose={() => setShow(false)} dismissible>
+        <Alert.Heading>verb modified: <strong>{verbUpdate}</strong></Alert.Heading>
+      </Alert>}
                 <input type="submit" name="sub" value="UPDATE" />
             </form>
         </div>
