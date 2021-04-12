@@ -11,7 +11,6 @@ export default function Signup() {
     const [error, setError] = useState();
     const [userSignupSuccess, setUserSignupSuccess] = useState("");
     const [showSuccess, setShowSuccess] = useState(true);
-    const [showError, setShowError] = useState(true);
 
         const handleSubmit = async e => {
             e.preventDefault();
