@@ -39,7 +39,21 @@
     padding: 5px 5px
 }
 .container-fluid {
-    background-color: red;
     padding-left: 0 !important;
     padding-right: 0 !important;
-  }
+}
+.create-verb, .update-verb, .delete-verb {
+    padding: 8px;
+    background-color: #90c354;
+    margin: 30px 10px;
+    border: 2px solid green;
+    border-radius: 10px;
+}
+.update-verb {
+    background-color: #f6ad41;
+    border: 2px solid #fc6500
+}
+.delete-verb {
+    background-color: #fb5d51;
+    border: 2px solid #9e1b11;
+}

@@ -6,6 +6,7 @@ import axios from 'axios';
 
 function Admindelete() {
     const [source, setSource] = useState();
+    const [verbDelete, setVerbDelete] = useState("");
     console.log(source)
 
 
@@ -24,7 +25,11 @@ function Admindelete() {
             data: {
               theVerbToBeDeleted
             }
-          });
+          })
+          .then(response => {
+              setVerbDelete(response.data.message)
+          })
+
     }
 
     return (
@@ -33,6 +38,7 @@ function Admindelete() {
         <h2>Delete a verb</h2>
             <form onSubmit={handleSubmit}>
                 <p>Source name of the verb: <input type="text" name="source" required onChange={e => setSource(e.target.value)} /></p>
+                {verbDelete && <p style={{color: "red"}}>{verbDelete}</p>}
                 <input type="submit" name="sub" value="DELETE" />
             </form>
         </div>
