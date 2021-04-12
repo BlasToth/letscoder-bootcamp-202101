@@ -33,7 +33,7 @@ signupRouter
                 .save()
                 .then((result) => {
                   console.log(`Created User: ${user}`);
-                  res.send(`Created User: ${user.nickname}`);
+                  res.json(`Created User: ${user.nickname}`);
                 })
                 .catch((err) => {
                   console.log(err);
