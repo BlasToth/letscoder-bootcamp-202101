@@ -46,13 +46,41 @@ function Admincreate() {
         <div className="create-verb content">
         <h2>Create new verb</h2>
             <form onSubmit={handleSubmit}>
+            <fieldset>
+                <label>
                 <p>Source name: <input type="text" name="sourceName" required onChange={event => setSourceName(event.target.value)} /></p>
+                </label>
+                <fieldset>
+                <label>
                 <p>V1: <input type="text" name="v1" required onChange={event => setV1(event.target.value)} /></p>
+                </label>
+            </fieldset>
+            <fieldset>
+                <label>
                 <p>V2: <input type="text" name="v2" required onChange={event => setV2(event.target.value)} /></p>
+                </label>
+            </fieldset>
+            <fieldset>
+                <label>
                 <p>V3: <input type="text" name="v3" required onChange={event => setV3(event.target.value)} /></p>
+                </label>
+            </fieldset>
+            <fieldset>
+                <label>
                 <p>WrongV1: <input type="text" name="wrongv1" required onChange={event => setWrongV1(event.target.value)} /></p>
+                </label>
+            </fieldset>
+            <fieldset>
+                <label>
                 <p>WrongV2: <input type="text" name="wrongv2" required onChange={event => setWrongV2(event.target.value)} /></p>
+                </label>
+            </fieldset>
+            <fieldset>
+                <label>
                 <p>WrongV3: <input type="text" name="wrongv3" required onChange={event => setWrongV3(event.target.value)} /></p>
+                </label>
+            </fieldset>
+            </fieldset>
                 <input type="submit" name="sub" value="CREATE" />
             </form>
         </div>
