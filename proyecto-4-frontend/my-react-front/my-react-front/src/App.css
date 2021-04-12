@@ -63,3 +63,7 @@
 .alert-update-error {
     background-color: #cf534a;
 }
+.alert-update-info {
+    background-color: #c9c2c1;
+    width: 330px;
+}

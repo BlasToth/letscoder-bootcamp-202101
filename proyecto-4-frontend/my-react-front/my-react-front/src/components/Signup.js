@@ -1,24 +1,17 @@
 import React, { useState } from "react";
 import './Signup.css';
+import { Alert } from "react-bootstrap";
 
-async function signupUser(credentials) {
-    return fetch('http://localhost:4000/signup', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(credentials)
-    })
-    .then(data => data.json())
-    .then(data => console.log(data))
-    .catch(error => console.log(error))
-}
+
 
 export default function Signup() {
     const [email, setEmail] = useState();
     const [password, setPassword] = useState();
     const [nickname, setNickname] = useState();
-    const [error, setError] = useState("");
+    const [error, setError] = useState();
+    const [userSignupSuccess, setUserSignupSuccess] = useState("");
+    const [showSuccess, setShowSuccess] = useState(true);
+    const [showError, setShowError] = useState(true);
 
         const handleSubmit = async e => {
             e.preventDefault();
@@ -29,6 +22,23 @@ export default function Signup() {
             });
             signupUser(regData);
         }
+        async function signupUser(credentials) {
+          return fetch('http://localhost:4000/signup', {
+              method: 'POST',
+              headers: {
+                  'Content-Type': 'application/json'
+              },
+              body: JSON.stringify(credentials)
+          })
+          .then((response) => {
+            return response.json();
+          })
+        .then(data => {
+          console.log(data)
+          setUserSignupSuccess(data)
+      })
+      }
+
   if (error) {
     return <div>Error: {error.message}</div>;
   }else
@@ -54,6 +64,9 @@ export default function Signup() {
               <input name="nickname" type="text" required onChange={e => setNickname(e.target.value)} />
             </label>
           </fieldset>
+          {userSignupSuccess && showSuccess && <Alert  className="alert-update-info" onClose={() => setShowSuccess(false)} dismissible>
+        <Alert.Heading><strong>{userSignupSuccess}</strong></Alert.Heading>
+      </Alert>}
         <button type="submit" >
           SIGN UP
         </button>
