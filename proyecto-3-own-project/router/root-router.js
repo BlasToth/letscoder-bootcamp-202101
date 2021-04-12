@@ -65,7 +65,7 @@ rootRouter.route("/createverb")
           res.send({verb})
         })
         .catch((err) => {
-          console.log(err);
+          res.send(err);
         });
     //   // res.redirect("/");
     })
