@@ -3,7 +3,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import axios from "axios";
 import audioHandler from "../js/logic/audio-handler";
 import "./Quiz.css";
-import { Alert } from "react-bootstrap";
+import { Alert, Container } from "react-bootstrap";
 
 let localStorageToken = JSON.parse(localStorage.getItem("token"));
 let token = localStorageToken ? localStorageToken.token : null;
@@ -160,6 +160,7 @@ function Quiz() {
   } else {
     return (
       <>
+      <Container>
         <h1>
           Cuál es la forma correcta del verbo irregular:{" "}
           <strong>{sourceName}</strong>?
@@ -222,6 +223,7 @@ function Quiz() {
             <source src={audioUrl} type="audio/mp3"></source>
           </audio>
         </figure>
+        </Container>
       </>
     );
   }

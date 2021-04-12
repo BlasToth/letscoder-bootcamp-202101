@@ -15,6 +15,7 @@ import Userheader from './components/userheader/Userheader';
 import jwt_decode from 'jwt-decode';
 import Loginadmin from "./components/Loginadmin";
 import Error404 from "./components/Error404";
+import { Container, Row, Col } from 'react-bootstrap';
 
 
 function App() {
@@ -55,27 +56,30 @@ function authAdmin() {
 
   return (
     <Router>
+      <Container fluid>
       <div className="App">
-        <Nav />
-        <div className="with-header">
-        <Userheader authAdminState={authAdminState}/>
-        <Switch>
-          <Route path="/" exact component={Home} />
-          
-          <PrivateRoute path="/admin">
-            <Admin />
-          </PrivateRoute>
+      
+      <Nav />
+      <div className="with-header">
+      <Userheader authAdminState={authAdminState}/>
+      <Switch>
+        <Route path="/" exact component={Home} />
+        
+        <PrivateRoute path="/admin">
+          <Admin />
+        </PrivateRoute>
 
-          <Route path="/allverbs" component={Allverbs} />
-          <Route path="/randomverb" component={Randomverb} />
-          <Route path="/quiz" component={Quiz} />
-          <Route path="/knownverbs" component={Knownverbs} />
-          <Route path="/halloffame" component={Halloffame} />
-          <Route component={Error404} />
-          
-        </Switch>
-      </div>
-      </div>
+        <Route path="/allverbs" component={Allverbs} />
+        <Route path="/randomverb" component={Randomverb} />
+        <Route path="/quiz" component={Quiz} />
+        <Route path="/knownverbs" component={Knownverbs} />
+        <Route path="/halloffame" component={Halloffame} />
+        <Route component={Error404} />
+        
+      </Switch>
+    </div>
+    </div>
+      </Container>
     </Router>
   );
 }
