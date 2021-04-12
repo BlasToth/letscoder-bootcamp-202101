@@ -4,16 +4,16 @@
 
 .table-hover tbody tr:hover {
     color: rgb(20, 4, 49) !important;
-    background-color: rgb(91, 164, 189);
+    background-color: rgb(70, 103, 151);
     font-weight: 500;
 }
 tr:first-child td {
-    background-color: #daa5208f;
+    background-color: #daa520;
 }
 tr:nth-child(2) td {
-    background-color: #c0c0c08f;
+    background-color: #c0c0c0;
 }
 tr:nth-child(3) td {
-    background-color: #cd803236;
+    background-color: #cd8032;
     border-bottom: 2px solid rgba(255, 0, 0, 0.5);
 }

@@ -37,8 +37,8 @@ export default function Halloffame() {
        
      const renderUser = (user, index) => {
          return(
-             <tr key={index} >
-                 <td >{index + 1} </td>
+             <tr style={{textAlign: "center"}} key={index} >
+                 <td>{index + 1} </td>
                  <td>{user.nickname}</td>
                  <td>{user.points}</td>
              </tr>
@@ -52,9 +52,9 @@ export default function Halloffame() {
      } else {
        return (
          <div>
-           <h1>Hall of fame</h1>
+           <div className="title">Hall of fame</div>
 <ReactBootStrap.Table striped bordered hover>
-  <thead style={{ backgroundColor : "lightblue" }}>
+  <thead style={{ backgroundColor : "lightblue", textAlign: "center" }}>
     <tr>
       <th>#</th>
       <th>Nickname</th>
