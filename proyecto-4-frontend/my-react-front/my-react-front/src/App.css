@@ -60,3 +60,6 @@
 .alert-update-success {
     background-color: greenyellow;
 }
+.alert-update-error {
+    background-color: #cf534a;
+}

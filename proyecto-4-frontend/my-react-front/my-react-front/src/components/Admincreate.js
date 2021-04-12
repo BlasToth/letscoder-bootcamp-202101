@@ -16,6 +16,7 @@ function Admincreate() {
     const [wrongV3, setWrongV3] = useState();
 
     const [verbCreate, setVerbCreate] = useState("");
+    const [verbCreateError, setVerbCreateError] = useState("")
     const [show, setShow] = useState(true);
 
 
@@ -45,8 +46,10 @@ function Admincreate() {
             return response.json();
         })
         .then(data => {
-            console.log(data.verb.sourceName);
             setVerbCreate(data.verb.sourceName)
+        })
+        .catch(err => {
+            setVerbCreateError("Verb is not created!")
         })
     }
     
@@ -93,6 +96,9 @@ function Admincreate() {
             </fieldset>
             {verbCreate && show && <Alert  className="alert-update-success" onClose={() => setShow(false)} dismissible>
         <Alert.Heading>verb created: <strong>{verbCreate}</strong></Alert.Heading>
+      </Alert>}
+      {verbCreateError && show && <Alert  className="alert-update-error" onClose={() => setShow(false)} dismissible>
+        <Alert.Heading>ERROR: <strong>{verbCreateError}</strong></Alert.Heading>
       </Alert>}
                 <input type="submit" name="sub" value="CREATE" />
             </form>
