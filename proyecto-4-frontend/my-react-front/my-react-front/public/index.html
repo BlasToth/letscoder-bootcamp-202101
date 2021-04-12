@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1 user-scalable=no" />
     <meta name="theme-color" content="#000000" />
     <meta
       name="description"
@@ -25,6 +25,15 @@
     -->
     <title>React App</title>
   </head>
+  <style>
+    /* override Bootstrap's container */
+    .container-fluid {
+        padding-right:0;
+        padding-left:0;
+        margin-right:auto;
+        margin-left:auto
+     }
+</style>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
