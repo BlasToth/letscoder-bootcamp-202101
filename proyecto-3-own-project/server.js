@@ -11,11 +11,13 @@ const roots = require("./router/root-router");
 const jwt = require("jsonwebtoken");
 const authenticateToken = require("./middlewares.js");
 const cors = require("cors");
+const path = require("path")
 
 
 app.use(cors());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use(express.static(path.join(__dirname, "client", "build")));
 
 // deprecation
 mongoose.set('useFindAndModify', false);
@@ -28,6 +30,9 @@ mongoose
     useCreateIndex: true,
   })
   .then((result) => {
+    app.get("*", (req, res) => {
+      res.sendFile(path.join(__dirname, "client", "build", "index.html"));
+  });
     app.listen(port, () => {
       // we only start listening when the connection is complete
       console.log(`Server is running on ${port}`);
