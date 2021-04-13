@@ -30,7 +30,7 @@ function Quiz() {
     objects: [{ id: 1 }, { id: 2 }, { id: 3 }, { id: 4 }],
   });
   const [finalAnswerToBack, setFinalAnswerToBack] = useState([]);
-  console.log(finalAnswerToBack);
+  // console.log(finalAnswerToBack);
 
   const buttonTextState = buttonText ? "NEXT" : "SEND";
 
@@ -82,7 +82,7 @@ function Quiz() {
       )
       .then(
         (result) => {
-          console.log(result.data.verdict);
+          // console.log(result.data.verdict);
           if (result.data.verdict === true) {
             document.querySelector(".with-header").classList.add("correct");
           } else {
@@ -90,7 +90,7 @@ function Quiz() {
           }
         },
         (error) => {
-          console.log(error);
+          // console.log(error);
         }
       );
 
@@ -201,11 +201,11 @@ function Quiz() {
                   className="quiz-handler__send"
                   onClick={() => {
                     if (finalAnswerToBack.length === 3) {
-                      console.log(finalAnswerToBack.length);
+                      // console.log(finalAnswerToBack.length);
                       handleSendAnswerToBack();
                     }
                     if (finalAnswerToBack.length !== 3) {
-                      console.log(finalAnswerToBack.length);
+                      // console.log(finalAnswerToBack.length);
                       setShow(true);
                     }
                   }}
