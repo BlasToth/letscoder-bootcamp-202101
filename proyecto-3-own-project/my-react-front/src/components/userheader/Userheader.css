@@ -1,0 +1,8 @@
+.user-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.strong {
+    font-weight: bolder;
+}
