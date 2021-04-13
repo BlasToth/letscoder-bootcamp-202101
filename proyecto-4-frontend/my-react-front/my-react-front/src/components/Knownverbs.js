@@ -21,10 +21,7 @@ export default function Knownverbs() {
       }) 
         .then(
           (result) => {
-            
-            console.log(result.data.verbs)
             if (!result.data.verbs){
-              console.log(result.data.message)
               setNoVerbYet(result.data.message)
             }
             setItems(result.data.verbs)
