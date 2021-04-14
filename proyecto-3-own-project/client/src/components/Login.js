@@ -16,7 +16,7 @@ export default function Login({ setToken }) {
       window.location.reload()
  }
  async function loginUser(credentials) {
-  return fetch('http://localhost:4000/login', {
+  return fetch('/login', {
       method: 'POST',
       headers: {
           'Content-Type': 'application/json'

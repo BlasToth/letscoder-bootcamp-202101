@@ -30,7 +30,7 @@ function Adminupdate() {
     }
 
     async function submitVerbDataForm(verbUpdateForm) {
-        axios.patch('http://localhost:4000/updateverb',
+        axios.patch('/updateverb',
              { verbUpdateForm }
              )
              .then(response => {

@@ -16,14 +16,13 @@ export default function Halloffame() {
 
 
   useEffect(() => {
-    axios.get("http://localhost:4000/login/halloffame", {
+    axios.get("/login/halloffame", {
         headers: {
           'Authorization': `Bearer ${token}`
         }
       }) 
         .then(
           (result) => {
-            console.log(result.data.users)
             setItems(result.data.users)
           
             setIsLoaded(true);

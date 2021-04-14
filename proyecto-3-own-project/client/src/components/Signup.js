@@ -22,7 +22,7 @@ export default function Signup() {
             signupUser(regData);
         }
         async function signupUser(credentials) {
-          return fetch('http://localhost:4000/signup', {
+          return fetch('/signup', {
               method: 'POST',
               headers: {
                   'Content-Type': 'application/json'

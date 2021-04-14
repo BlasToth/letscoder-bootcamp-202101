@@ -11,13 +11,14 @@ const roots = require("./router/root-router");
 const jwt = require("jsonwebtoken");
 const authenticateToken = require("./middlewares.js");
 const cors = require("cors");
-const path = require("path")
+const path = require("path");
 
 
 app.use(cors());
 app.use(express.urlencoded({ extended: true }));
+app.use('/favicon.ico', express.static('public/favicon.ico'));
 app.use(express.json());
-if (process.env.Node_ENV === "production") {
+if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.join(__dirname, "client", "build")));
   app.get("*", (req, res) => {
     res.sendFile(path.join(__dirname, "client", "build", "index.html"));
@@ -33,7 +34,7 @@ mongoose.set('useFindAndModify', false);
 
 // connect to DB with mongoose
 mongoose
-  .connect(DB_URL, {
+  .connect(`${DB_URL}`, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useCreateIndex: true,

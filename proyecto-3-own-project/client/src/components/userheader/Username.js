@@ -4,13 +4,14 @@ import { Tooltip, OverlayTrigger } from "react-bootstrap";
 export default function Username(props) {
   const admin = props.authAdminState.authAdminState;
   const key = "🔑";
-  if (props.nickname.length) {
+  const nickname = props.nickname;
+
     return (
       <>
         <div>
-          Username:{" "}
+          Username:
           <span className="strong">
-            {props.nickname}
+            {nickname}
             
             {admin ? (
               ["top"].map((placement) => (
@@ -34,5 +35,4 @@ export default function Username(props) {
         </div>
       </>
     );
-  }
 }

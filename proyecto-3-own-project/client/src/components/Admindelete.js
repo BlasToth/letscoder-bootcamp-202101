@@ -17,7 +17,7 @@ function Admindelete() {
 
   async function submitDeleteDataForm(theVerbToBeDeleted) {
     axios
-      .delete("http://localhost:4000/deleteverb", {
+      .delete("/deleteverb", {
         headers: {
           "Content-Type": "application/json",
         },
