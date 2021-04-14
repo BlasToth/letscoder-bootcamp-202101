@@ -48,9 +48,5 @@ app.use("/verbs",  verbs);
 app.use("/signup", signups);
 app.use("/login",  logins); 
 
-// not found
-app.use((req, res) => {
-  res.status(404).render({message: "404 - not found"});
-});
 
 
