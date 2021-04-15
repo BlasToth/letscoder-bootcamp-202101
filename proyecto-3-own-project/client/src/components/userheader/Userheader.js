@@ -13,20 +13,26 @@ let token = (localStorageToken) ? localStorageToken.token : null;
 
 export default function Userheader(props) {
     const [nickname, setNickname] = useState("");
-    const [points, setPoints] = useState();
+    const [points, setPoints] = useState(0);
     // console.log(nickname)
-    // console.log(points)
     
-    useEffect(() => {
-        axios.get('/login/usernick', {
+    async function axiosGetUserNick() {
+        let response = await axios.get('/login/usernick', {
             headers: {
                 'Authorization': `Bearer ${token}`
               }
         })
         .then((response) => {
             setPoints(response.data.points)
+            console.log(response.data.points)
             setNickname(response.data.nickname)
+            console.log(response.data.nickname)
           });
+    }
+    
+    useEffect(() => {
+        axiosGetUserNick()
+
     }, [])
 
     
