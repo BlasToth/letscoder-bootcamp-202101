@@ -7,7 +7,7 @@ function Randomverb() {
     const [items, setItems] = useState([]);
   
     useEffect(() => {
-      fetch("verbs/onerandomverb") 
+      fetch("/api/verbs/onerandomverb") 
         .then((res) => res.json())
         .then(
           (result) => {

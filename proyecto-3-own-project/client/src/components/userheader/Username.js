@@ -9,7 +9,7 @@ export default function Username(props) {
     return (
       <>
         <div>
-          Username:
+          Username:{" "}
           <span className="strong">
             {nickname}
             

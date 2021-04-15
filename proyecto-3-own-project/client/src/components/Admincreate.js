@@ -34,7 +34,7 @@ function Admincreate() {
     }
 
     async function submitVerbDataForm(verbFormData) {
-        return fetch('/createverb', {
+        return fetch('/api/createverb', {
             method: 'POST',
             headers: {
                 'Authorization': `Bearer ${token}`,

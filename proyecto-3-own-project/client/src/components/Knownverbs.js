@@ -14,7 +14,7 @@ export default function Knownverbs() {
   const [noVerbYet, setNoVerbYet] = useState("")
   
   useEffect(() => {
-    axios.get("/verbs/knownverbs", {
+    axios.get("/api/verbs/knownverbs", {
         headers: {
           'Authorization': `Bearer ${token}`
         }

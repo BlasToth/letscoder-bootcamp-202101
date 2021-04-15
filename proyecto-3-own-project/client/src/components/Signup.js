@@ -22,7 +22,7 @@ export default function Signup() {
             signupUser(regData);
         }
         async function signupUser(credentials) {
-          return fetch('/signup', {
+          return fetch('/api/signup', {
               method: 'POST',
               headers: {
                   'Content-Type': 'application/json'

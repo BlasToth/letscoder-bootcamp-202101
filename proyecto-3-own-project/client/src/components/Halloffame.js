@@ -16,7 +16,7 @@ export default function Halloffame() {
 
 
   useEffect(() => {
-    axios.get("/login/halloffame", {
+    axios.get("/api/login/halloffame", {
         headers: {
           'Authorization': `Bearer ${token}`
         }

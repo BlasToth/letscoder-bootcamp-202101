@@ -38,7 +38,7 @@ function Quiz() {
 
   function axiosGetAnswers() {
     axios
-      .get("/verbs/answers", {
+      .get("/api/verbs/answers", {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -48,10 +48,12 @@ function Quiz() {
           if (!result.data.showVForm) {
             setIsLoaded(true);
             setNoMoreVerbs(true);
-          }
-          // console.log(result.data.showVForm)
+          } else {
+            // console.log(result.data.showVForm)
           setIsLoaded(true);
           setItems(result.data.showVForm);
+          }
+          
         },
         (error) => {
           setIsLoaded(true);
@@ -69,7 +71,7 @@ function Quiz() {
   function handleSendAnswerToBack() {
     axios
       .post(
-        "/verbs/check",
+        "/api/verbs/check",
         {
           body: finalAnswerToBack,
         },

@@ -17,17 +17,13 @@ export default function Userheader(props) {
     // console.log(nickname)
     
     async function axiosGetUserNick() {
-        let response = await axios.get('/login/usernick', {
+        let response = await axios.get('/api/login/usernick', {
             headers: {
                 'Authorization': `Bearer ${token}`
               }
         })
-        .then((response) => {
             setPoints(response.data.points)
-            console.log(response.data.points)
-            setNickname(response.data.nickname)
-            console.log(response.data.nickname)
-          });
+            setNickname(response.data.nickname)    
     }
     
     useEffect(() => {

@@ -14,7 +14,7 @@ function Allverbs() {
 
    const fetchItems = async () => {
      const data = await fetch(
-       '/verbs/verbs'
+       '/api/verbs/verbs'
      );
 
      const items = await data.json();

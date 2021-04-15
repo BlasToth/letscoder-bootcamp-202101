@@ -18,7 +18,7 @@ export default function Loginadmin({ setToken }) {
     }
 
     async function loginUser(credentials) {
-      return fetch('/login', {
+      return fetch('/api/login', {
           method: 'POST',
           headers: {
               'Content-Type': 'application/json'

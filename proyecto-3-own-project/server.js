@@ -18,17 +18,7 @@ app.use(cors());
 app.use(express.urlencoded({ extended: true }));
 app.use('/favicon.ico', express.static('public/favicon.ico'));
 app.use(express.json());
-if (process.env.NODE_ENV === "production") {
-  app.use(express.static(path.join(__dirname, "client", "build")));
-  app.get("*", (req, res) => {
-    res.sendFile(path.join(__dirname, "client", "build", "index.html"));
-});
-} 
-else {
-  app.get("/", (req, res) => {
-    res.send("API is running");
-  });
-}
+
 
 // deprecation
 mongoose.set('useFindAndModify', false);
@@ -51,10 +41,20 @@ mongoose
   });
 
 // routes
-app.use("/", roots);
-app.use("/verbs",  verbs);
-app.use("/signup", signups);
-app.use("/login",  logins); 
-
+app.use("/api/", roots);
+app.use("/api/verbs",  verbs);
+app.use("/api/signup", signups);
+app.use("/api/login",  logins); 
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static(path.join(__dirname, "client", "build")));
+  app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname, "client", "build", "index.html"));
+});
+} 
+else {
+  app.get("/api/", (req, res) => {
+    res.send("API is running");
+  });
+}
 
 
