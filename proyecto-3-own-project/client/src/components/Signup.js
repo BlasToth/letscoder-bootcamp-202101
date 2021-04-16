@@ -10,6 +10,7 @@ export default function Signup() {
     const [nickname, setNickname] = useState();
     const [error, setError] = useState();
     const [userSignupSuccess, setUserSignupSuccess] = useState("");
+    const [userCreate, setUserCreate] = useState("");
     const [showSuccess, setShowSuccess] = useState(true);
 
         const handleSubmit = async e => {
@@ -33,9 +34,13 @@ export default function Signup() {
             return response.json();
           })
         .then(data => {
-          console.log(data)
-          console.log(data.message)
-          setUserSignupSuccess(data.message)
+          if (data.message !== undefined) {
+            console.log(data.message)
+            setUserSignupSuccess(data.message)
+          } else {
+            console.log(data)
+            setUserCreate(data)
+          }
       })
       }
 
@@ -66,6 +71,9 @@ export default function Signup() {
           </fieldset>
           {userSignupSuccess && showSuccess && <Alert  className="alert-update-info" onClose={() => setShowSuccess(false)} dismissible>
         <Alert.Heading><strong>{userSignupSuccess}</strong></Alert.Heading>
+      </Alert>}
+      {userCreate && showSuccess && <Alert  className="alert-update-info" onClose={() => setShowSuccess(false)} dismissible>
+        <Alert.Heading><strong>{userCreate}</strong></Alert.Heading>
       </Alert>}
         <button type="submit" >
           SIGN UP
