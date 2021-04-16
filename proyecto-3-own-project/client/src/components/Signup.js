@@ -69,12 +69,14 @@ export default function Signup() {
               <input name="nickname" type="text" required onChange={e => setNickname(e.target.value)} />
             </label>
           </fieldset>
-          {userSignupSuccess && showSuccess && <Alert  className="alert-update-info" onClose={() => setShowSuccess(false)} dismissible>
+          {userSignupSuccess && showSuccess && <Alert  className="alert-update-info" onClose={() => setShowSuccess(!showSuccess)} dismissible>
         <Alert.Heading><strong>{userSignupSuccess}</strong></Alert.Heading>
       </Alert>}
-      {userCreate && showSuccess && <Alert  className="alert-update-info" onClose={() => setShowSuccess(false)} dismissible>
+      
+      {userCreate && showSuccess && <Alert  className="alert-update-info" onClose={() => setShowSuccess(!showSuccess)} dismissible>
         <Alert.Heading><strong>{userCreate}</strong></Alert.Heading>
       </Alert>}
+
         <button type="submit" >
           SIGN UP
         </button>
