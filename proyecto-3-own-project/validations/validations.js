@@ -12,7 +12,7 @@ const validations = {
     },
     validateNickname(nickname){
         if(typeof nickname !== 'string') throw new TypeError(`${nickname} is not a nickname`)
-        if(nickname === "nickname") throw new Error (`Nickname cannot be ${nickname}`)
+        if(nickname === "nickname" || nickname === "kutya") throw new Error (`Nickname cannot be ${nickname}`)
     }
 }
 

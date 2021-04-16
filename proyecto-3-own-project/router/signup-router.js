@@ -16,23 +16,27 @@ signupRouter
     .route('/')
     .post( async (req, res) => {
       // const { body: { nickname, email, password } } = req;
-      // const nickname = await req.body.nickname;
       try {
         const email = req.body.email;
         const password = await req.body.password;
+        const nickname = await req.body.nickname;
   
         validateEmail(email);
         const valEmail = await User.findOne({email});
         if (valEmail) {
           return res.status(400).json({message: `The given email: ${email} - already exists`})
         }
-        if (password)
         validatePassword(password);
         
-        // validateNickname(nickname);
+        validateNickname(nickname);
+        const valNickname = await User.findOne({nickname});
+        if (valNickname) {
+          return res.status(400).json({message: `The given nickname: ${nickname} - already exists`})
+        }
         
       } catch (error) {
         res.status(400).send({message: error.message})
+        return
       }
         try {
             // const salt = await bcrypt.genSalt();
