@@ -1,7 +1,9 @@
 const validations = {
-    validateEmail(email){
-        if(typeof email !== 'string') throw new TypeError(`${email} is not an e-mail`)
-        if(!email.trim().length) throw new Error ('Email cannot be an empty string')
+    validateEmail(emailForm){
+        if (typeof emailForm !== 'string') throw new TypeError(`${emailForm} is not an e-mail`)
+        if (!/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(emailForm)){throw new Error(`This e-mail: ${emailForm} is not a valid email`)}
+        if(!emailForm.trim().length) throw new Error ('Email cannot be empty')
+        
     },
     validatePassword(password){
         if(typeof password !== 'string') throw new TypeError(`${password} is not a password`)

@@ -3,7 +3,7 @@ const signupRouter = express.Router();
 const Signup = require('../models/signup-model');
 const path = require('path');
 const bcrypt = require('bcrypt');
-// const { validateEmail, validatePassword, validateNickname } = require('../validations/validations')
+const { validateEmail, validatePassword, validateNickname } = require('../validations/validations')
 
 
 signupRouter
@@ -16,7 +16,16 @@ signupRouter
     .route('/')
     .post( async (req, res) => {
       // const { body: { nickname, email, password } } = req;
-      // validateEmail(email);
+      // const nickname = await req.body.nickname;
+      const emailForm = req.body.email;
+      // const password = await req.body.password;
+      console.log("ALGO" + emailForm)
+
+      validateEmail(emailForm);
+      const valEmail = await User.findOne({email: emailForm});
+      if(valEmail){
+        return res.status(400).json({message: `The given email: ${emailForm} - already exists`})
+      }
       // validatePassword(password);
       // validateNickname(nickname);
         try {

@@ -14,11 +14,11 @@ export default function Signup() {
 
         const handleSubmit = async e => {
             e.preventDefault();
-            const regData = await signupUser({
+            const regData= {
                 email,
                 password, 
                 nickname
-            });
+            }
             signupUser(regData);
         }
         async function signupUser(credentials) {
@@ -33,8 +33,8 @@ export default function Signup() {
             return response.json();
           })
         .then(data => {
-          console.log(data)
-          setUserSignupSuccess(data)
+          console.log(data.message)
+          setUserSignupSuccess(data.message)
       })
       }
 
