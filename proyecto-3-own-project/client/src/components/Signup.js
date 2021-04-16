@@ -33,6 +33,7 @@ export default function Signup() {
             return response.json();
           })
         .then(data => {
+          console.log(data)
           console.log(data.message)
           setUserSignupSuccess(data.message)
       })
