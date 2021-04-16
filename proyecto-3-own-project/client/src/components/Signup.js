@@ -12,6 +12,7 @@ export default function Signup() {
     const [userSignupSuccess, setUserSignupSuccess] = useState("");
     const [userCreate, setUserCreate] = useState("");
     const [showSuccess, setShowSuccess] = useState(true);
+    const [showFail, setShowFail] = useState(true);
 
         const handleSubmit = async e => {
             e.preventDefault();
@@ -36,9 +37,11 @@ export default function Signup() {
         .then(data => {
           if (data.message !== undefined) {
             console.log(data.message)
+            setShowSuccess(true)
             setUserSignupSuccess(data.message)
           } else {
             console.log(data)
+            setShowFail(true)
             setUserCreate(data)
           }
       })
@@ -69,11 +72,11 @@ export default function Signup() {
               <input name="nickname" type="text" required onChange={e => setNickname(e.target.value)} />
             </label>
           </fieldset>
-          {userSignupSuccess && showSuccess && <Alert  className="alert-update-info" onClose={() => setShowSuccess(!showSuccess)} dismissible>
+          {userSignupSuccess && showSuccess && <Alert  className="alert-update-error" onClose={() => setShowSuccess(false)} dismissible>
         <Alert.Heading><strong>{userSignupSuccess}</strong></Alert.Heading>
       </Alert>}
       
-      {userCreate && showSuccess && <Alert  className="alert-update-info" onClose={() => setShowSuccess(!showSuccess)} dismissible>
+      {userCreate && showFail && <Alert  className="alert-update-success" onClose={() => setShowFail(false)} dismissible>
         <Alert.Heading><strong>{userCreate}</strong></Alert.Heading>
       </Alert>}
 
