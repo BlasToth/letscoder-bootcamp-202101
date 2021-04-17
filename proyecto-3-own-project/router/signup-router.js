@@ -18,8 +18,8 @@ signupRouter
       // const { body: { nickname, email, password } } = req;
       try {
         const email = req.body.email;
-        const password = await req.body.password;
-        const nickname = await req.body.nickname;
+        const password = req.body.password;
+        const nickname = req.body.nickname;
   
         validateEmail(email);
         const valEmail = await User.findOne({email});

@@ -14,7 +14,6 @@ let token = (localStorageToken) ? localStorageToken.token : null;
 export default function Userheader(props) {
     const [nickname, setNickname] = useState("");
     const [points, setPoints] = useState(0);
-    // console.log(nickname)
     
     async function axiosGetUserNick() {
         let response = await axios.get('/api/login/usernick', {
@@ -24,6 +23,7 @@ export default function Userheader(props) {
         })
             setPoints(response.data.points)
             setNickname(response.data.nickname)    
+            
     }
     
     useEffect(() => {

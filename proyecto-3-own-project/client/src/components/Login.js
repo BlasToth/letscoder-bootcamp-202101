@@ -1,10 +1,13 @@
 import React, { useState } from "react";
 import './Login.css';
+import { Alert } from 'react-bootstrap'
 
 
 export default function Login({ setToken }) {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
+  const [userCreate, setUserCreate] = useState("");
+  const [showFail, setShowFail] = useState(true);
 
   const handleSubmit = async e => {
       e.preventDefault();
@@ -23,7 +26,20 @@ export default function Login({ setToken }) {
       },
       body: JSON.stringify(credentials)
   })
-  .then(data => data.json())
+  .then((response) => {
+    return response.json();
+  })
+  // .then(data => {
+  //   console.log(data);
+  // });
+  
+//   .then(data => {
+//     data.json()
+//       console.log(data.message)
+//       setShowFail(true)
+//       setUserCreate(data.message)
+// })
+  
 }
 
   return (
@@ -42,6 +58,11 @@ export default function Login({ setToken }) {
             <input name="password" type="password" required onChange={e => setPassword(e.target.value)} />
           </label>
         </fieldset>
+
+        {userCreate && showFail && <Alert  className="alert-update-success" onClose={() => setShowFail(false)} transition dismissible>
+        <Alert.Heading><strong>{userCreate}</strong></Alert.Heading>
+      </Alert>}
+
         <button type="submit" >
          LOG IN
         </button>

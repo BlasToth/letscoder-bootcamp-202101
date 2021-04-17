@@ -16,10 +16,22 @@ loginRouter
 
 loginRouter
     .route('/')
-    .post( (req, res) => {
-        const {body: {email, password}} = req;
-        validateEmail(email);
-        validatePassword(password);        
+    .post( async (req, res) => {
+        try {
+            const {body: {email, password}} = req;
+            validateEmail(email);
+            validatePassword(password);  
+            
+            const valUser = await User.findOne({ email: req.body.email });
+            if (!valUser) return res.status(401).send({ message: `We could not find this e-mail: ${email}` });
+
+            const valPassword = await bcrypt.compare(password, valUser.password);
+            if (!valPassword) return res.status(401).send({ message: "You might have misspelled your password" });
+
+        } catch (error) {
+            res.status(400).send({message: error.message})
+            return
+        }
         
         User.find({}, (err, users) => {
             if (err) {
