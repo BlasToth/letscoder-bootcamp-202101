@@ -2,6 +2,7 @@ import { useState } from "react";
 import './Signup.css';
 import { Alert } from "react-bootstrap";
 
+
 export default function Signup() {
     const [email, setEmail] = useState();
     const [password, setPassword] = useState();
@@ -11,8 +12,7 @@ export default function Signup() {
     const [userCreate, setUserCreate] = useState("");
     const [showSuccess, setShowSuccess] = useState(true);
     const [showFail, setShowFail] = useState(true);
-
-
+    
         const handleSubmit = async e => {
             e.preventDefault();
             const regData= {
