@@ -1,8 +1,6 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import './Signup.css';
 import { Alert } from "react-bootstrap";
-
-
 
 export default function Signup() {
     const [email, setEmail] = useState();
@@ -13,6 +11,7 @@ export default function Signup() {
     const [userCreate, setUserCreate] = useState("");
     const [showSuccess, setShowSuccess] = useState(true);
     const [showFail, setShowFail] = useState(true);
+
 
         const handleSubmit = async e => {
             e.preventDefault();
@@ -50,7 +49,7 @@ export default function Signup() {
   if (error) {
     return <div>Error: {error.message}</div>;
   }else
-  return (
+  return (       
     <div className="signup-wrapper">
     <h1>Sign up if you are new here:</h1>
       <form onSubmit={handleSubmit}>
@@ -72,11 +71,12 @@ export default function Signup() {
               <input name="nickname" type="text" required onChange={e => setNickname(e.target.value)} />
             </label>
           </fieldset>
-          {userSignupSuccess && showSuccess && <Alert  className="alert-update-error" onClose={() => setShowSuccess(false)} dismissible>
-        <Alert.Heading><strong>{userSignupSuccess}</strong></Alert.Heading>
-      </Alert>}
+        
+                {userSignupSuccess && showSuccess && <Alert  className="alert-update-error" onClose={() => setShowSuccess(false)} transition dismissible>
+              <Alert.Heading><strong>{userSignupSuccess}</strong></Alert.Heading>
+            </Alert>}
       
-      {userCreate && showFail && <Alert  className="alert-update-success" onClose={() => setShowFail(false)} dismissible>
+            {userCreate && showFail && <Alert  className="alert-update-success" onClose={() => setShowFail(false)} transition dismissible>
         <Alert.Heading><strong>{userCreate}</strong></Alert.Heading>
       </Alert>}
 
