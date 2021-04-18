@@ -1,3 +1,4 @@
+import React, { useEffect, useState } from 'react';
 import "./App.css";
 import MyComponent from "./MyComponent";
 import Nav from "./components/Nav";
@@ -17,6 +18,8 @@ import Loginadmin from "./components/Loginadmin";
 import Error404 from "./components/Error404";
 import { Container } from 'react-bootstrap';
 
+let points = JSON.parse(localStorage.getItem("points"));
+let nickname = JSON.parse(localStorage.getItem("nickname"));
 
 function App() {
   const { token, setToken } = useToken();
@@ -62,7 +65,7 @@ function authAdmin() {
       <Nav />
       <div className="with-header">
       <div className="user-header">
-      <Userheader authAdminState={authAdminState}/>
+      <Userheader authAdminState={authAdminState} nickname={nickname} points={points}/>
       </div>
       <Switch>
         <Route path="/" exact component={Home} />

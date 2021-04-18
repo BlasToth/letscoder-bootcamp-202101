@@ -25,17 +25,18 @@ export default function Userheader(props) {
             setNickname(response.data.nickname)    
             
     }
-    
+
+ 
     useEffect(() => {
         axiosGetUserNick()
-
     }, [])
-
+    const nicknameToProp = (nickname) ? nickname : props.nickname
+    const pointsToProp = (points) ? points : props.points
     
     return (
         <div className="user-header">
-            <Username nickname={nickname} authAdminState={props} />
-            <Userpoints points={points}/>
+            <Username nickname={nicknameToProp} authAdminState={props} />
+            <Userpoints points={pointsToProp}/>
             <Logout />
         </div>
     )

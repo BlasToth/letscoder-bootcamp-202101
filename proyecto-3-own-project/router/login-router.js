@@ -55,9 +55,24 @@ loginRouter
                             _id: authUser._id, 
                             role
                         }, process.env.ACCESS_TOKEN_SECRET);
-
+                        // Send nickname, points with token
+                            const userId = authUser._id;
+                            // console.log(userId + " req.user._id");
+                    
+                            // get actual user to send nickname and points
+                            User.find({_id: `${userId}`}, (err, user) => {
+                                if (err) {
+                                    res.status(404).send(err.response.data);
+                                } else {
+                            const { points, nickname } = user[0];
+                            //    console.log(nickname + " " + points)
+                            
+                            res.json({token: accessToken, userId, points, nickname})
+                                }
+                            });
+                        // End send nickname, points with token
                         // res.header('auth-token', accessToken)
-                        res.json({token: accessToken})
+                        // res.json({token: accessToken})
 
                     } else {
                         res.status(401).send("Acces denied") //json 401
