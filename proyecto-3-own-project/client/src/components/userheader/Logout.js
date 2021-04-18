@@ -8,6 +8,8 @@ export default function Logout() {
 
     function handleLogout() {
         localStorage.removeItem('token');
+        localStorage.removeItem('points');
+        localStorage.removeItem('nickname');
         setState(!state); 
         window.location.reload()
 
