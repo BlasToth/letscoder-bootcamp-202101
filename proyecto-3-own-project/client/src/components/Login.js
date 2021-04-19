@@ -16,6 +16,10 @@ export default function Login({ setToken }) {
           password
       });
       setToken(token);
+      if (token.message) {
+        setShowFail(true)
+      setUserCreate(token.message)
+      }
       if (token.token) {
         window.location.reload()
       }
@@ -61,7 +65,7 @@ export default function Login({ setToken }) {
           </label>
         </fieldset>
 
-        {userCreate && showFail && <Alert  className="alert-update-success" onClose={() => setShowFail(false)} transition dismissible>
+        {userCreate && showFail && <Alert  className="alert-update-error" onClose={() => setShowFail(false)} transition dismissible>
         <Alert.Heading><strong>{userCreate}</strong></Alert.Heading>
       </Alert>}
 
