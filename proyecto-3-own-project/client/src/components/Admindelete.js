@@ -9,7 +9,6 @@ function Admindelete() {
   const [show, setShow] = useState(true);
   const [option, setOption] = useState([]);
   const [changeItem, setChangeItem] = useState();
-  console.log(source)
   
   async function makeGetRequest() {
     const res = await axios.get('/api/verbs/verbs');
@@ -26,13 +25,6 @@ function Admindelete() {
       })
       setOption(newOptions)
   }
-
-  
-
-  // const handleChange = (e) => {
-  //   console.log(`Verb selected:  ${e.target.value}`);
-  //   setChangeItem(e.target.value);
-  // }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -52,7 +44,6 @@ function Admindelete() {
         },
       })
       .then((response) => {
-        console.log(response.data.message)
         setVerbDelete(response.data.message);
       });
   }
