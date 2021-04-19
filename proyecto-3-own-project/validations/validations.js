@@ -13,6 +13,12 @@ const validations = {
     validateNickname(nickname){
         if(typeof nickname !== 'string') throw new TypeError(`${nickname} is not a nickname`)
         if(nickname === "nickname" || nickname === "kutya") throw new Error (`Nickname cannot be ${nickname}`)
+    },
+    validateVerb(verb){
+        if (typeof verb !== 'string') throw new TypeError(`${verb} is not a verb - please use plain text`)
+        if(!verb.trim().length) throw new Error('The verb cannot be empty')
+
+
     }
 }
 
