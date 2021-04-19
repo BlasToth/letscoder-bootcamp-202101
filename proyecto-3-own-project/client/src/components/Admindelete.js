@@ -1,5 +1,5 @@
 import "bootstrap/dist/css/bootstrap.min.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 import { Alert } from "react-bootstrap";
 
@@ -7,6 +7,31 @@ function Admindelete() {
   const [source, setSource] = useState();
   const [verbDelete, setVerbDelete] = useState("");
   const [show, setShow] = useState(true);
+  const [option, setOption] = useState([]);
+  const [changeItem, setChangeItem] = useState();
+  
+  async function makeGetRequest() {
+    const res = await axios.get('/api/verbs/verbs');
+    const data = res.data;
+    return mapVerbs(data)
+  }
+  useEffect(() => {
+    makeGetRequest();
+  }, [])
+
+  function mapVerbs(data) {
+    const newOptions = data.map(verb => {
+      return [verb.sourceName] 
+      })
+      setOption(newOptions)
+  }
+
+  
+
+  const handleChange = (e) => {
+    console.log(`Verb selected:  ${e.target.value}`);
+    setChangeItem(e.target.value);
+  }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -39,12 +64,11 @@ function Admindelete() {
             <label>
               <p>
                 Source name of the verb:{" "}
-                <input
-                  type="text"
-                  name="source"
-                  required
-                  onChange={(e) => setSource(e.target.value)}
-                />
+                <select value={changeItem} onChange={handleChange}>
+            {option.map((opt) => (
+              <option key={opt} value={opt}>{opt}</option>
+            ))}
+          </select>
               </p>
             </label>
           </fieldset>
