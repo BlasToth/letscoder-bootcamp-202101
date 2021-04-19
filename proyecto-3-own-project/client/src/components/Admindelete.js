@@ -4,11 +4,12 @@ import axios from "axios";
 import { Alert } from "react-bootstrap";
 
 function Admindelete() {
-  const [source, setSource] = useState();
+  const [source, setSource] = useState("");
   const [verbDelete, setVerbDelete] = useState("");
   const [show, setShow] = useState(true);
   const [option, setOption] = useState([]);
   const [changeItem, setChangeItem] = useState();
+  console.log(source)
   
   async function makeGetRequest() {
     const res = await axios.get('/api/verbs/verbs');
@@ -28,15 +29,15 @@ function Admindelete() {
 
   
 
-  const handleChange = (e) => {
-    console.log(`Verb selected:  ${e.target.value}`);
-    setChangeItem(e.target.value);
-  }
+  // const handleChange = (e) => {
+  //   console.log(`Verb selected:  ${e.target.value}`);
+  //   setChangeItem(e.target.value);
+  // }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     const theVerbToBeDeleted = await submitDeleteDataForm({
-      source,
+      source
     });
   };
 
@@ -47,10 +48,11 @@ function Admindelete() {
           "Content-Type": "application/json",
         },
         data: {
-          theVerbToBeDeleted,
+          theVerbToBeDeleted
         },
       })
       .then((response) => {
+        console.log(response.data.message)
         setVerbDelete(response.data.message);
       });
   }
@@ -64,7 +66,7 @@ function Admindelete() {
             <label>
               <p>
                 Source name of the verb:{" "}
-                <select value={changeItem} onChange={handleChange}>
+                <select value={changeItem} onChange={(e) => setSource(e.target.value)}>
             {option.map((opt) => (
               <option key={opt} value={opt}>{opt}</option>
             ))}
