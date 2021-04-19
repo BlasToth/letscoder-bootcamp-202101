@@ -4,6 +4,8 @@ const API_KEY = process.env.API;
 const API_KEY_S = process.env.API_S;
 const axios = require("axios");
 const { authenticateAdmin, authenticateToken } = require("../middlewares");
+const { validateVerb } = require('../validations/validations');
+
 
 
 // everything inside /
@@ -21,7 +23,16 @@ rootRouter.route("/")
 
 
 rootRouter.route("/createverb")
-.post(authenticateAdmin, (req, res) => {
+.post(authenticateAdmin, async (req, res) => {
+  try {
+    const verb = req.body.v1;
+
+    const valVerb = await Verb.findOne({ v1: verb });
+    if (valVerb) return res.status(401).send({ message: `We already have this verb: ${verb}` });
+  } catch (error) {
+    res.status(409).send({message: error.message})
+    return
+  }
   // console.log(req.body);
   const searchExp = req.body.v1;
   Promise.all([

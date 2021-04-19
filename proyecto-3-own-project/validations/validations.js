@@ -17,8 +17,7 @@ const validations = {
     validateVerb(verb){
         if (typeof verb !== 'string') throw new TypeError(`${verb} is not a verb - please use plain text`)
         if(!verb.trim().length) throw new Error('The verb cannot be empty')
-
-
+        if(verb.length < 2 ) throw new Error ("An English verb is at least two characters long")
     }
 }
 

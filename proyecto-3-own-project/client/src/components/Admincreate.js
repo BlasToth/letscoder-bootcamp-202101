@@ -18,6 +18,7 @@ function Admincreate() {
     const [verbCreate, setVerbCreate] = useState("");
     const [verbCreateError, setVerbCreateError] = useState("")
     const [show, setShow] = useState(true);
+    const [showError, setShowError] = useState(true);
 
 
     const handleSubmit = async event => {
@@ -46,10 +47,19 @@ function Admincreate() {
             return response.json();
         })
         .then(data => {
-            setVerbCreate(data.verb.sourceName)
+            if (data.message !== undefined) {
+                setVerbCreateError(data.message)
+                setShowError(true)
+            }
+            if (data.verb !== undefined) {
+                setVerbCreate(data.verb.sourceName)
+                setShow(true)
+            }
         })
         .catch(err => {
-            setVerbCreateError("Verb is not created!")
+            console.log(err)
+            // setVerbCreateError(err.message)
+            // setShow(true)
         })
     }
     
@@ -97,7 +107,7 @@ function Admincreate() {
             {verbCreate && show && <Alert  className="alert-update-success" onClose={() => setShow(false)} dismissible>
         <Alert.Heading>verb created: <strong>{verbCreate}</strong></Alert.Heading>
       </Alert>}
-      {verbCreateError && show && <Alert  className="alert-update-error" onClose={() => setShow(false)} dismissible>
+      {verbCreateError && showError && <Alert  className="alert-update-error" onClose={() => setShowError(false)} dismissible>
         <Alert.Heading>ERROR: <strong>{verbCreateError}</strong></Alert.Heading>
       </Alert>}
                 <input type="submit" name="sub" value="CREATE" />
