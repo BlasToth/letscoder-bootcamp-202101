@@ -16,7 +16,9 @@ export default function Login({ setToken }) {
           password
       });
       setToken(token);
-      // window.location.reload()
+      if (token.token) {
+        window.location.reload()
+      }
  }
  async function loginUser(credentials) {
   return fetch('/api/login', {
