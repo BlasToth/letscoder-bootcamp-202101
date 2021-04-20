@@ -7,6 +7,10 @@ function Randomverb() {
     const [items, setItems] = useState([]);
   
     useEffect(() => {
+      fetchRandomVerb();
+    }, []);
+
+    function fetchRandomVerb() {
       fetch("/api/verbs/onerandomverb") 
         .then((res) => res.json())
         .then(
@@ -19,7 +23,7 @@ function Randomverb() {
             setError(error);
           }
         );
-    }, []);
+    }
 
     function audioHandler() {
       const figcaptions = document.querySelectorAll(".figcaption");
@@ -42,6 +46,7 @@ function Randomverb() {
         <div className="title">A Random Verb</div>
                 <div className="verb">
                   <div className="row">
+                <button className="randomverb-button" onClick={fetchRandomVerb}>I want a new random verb</button>
                     <div className="col-sm-6">
                       <div className="card mystyle-card">
                         <img
