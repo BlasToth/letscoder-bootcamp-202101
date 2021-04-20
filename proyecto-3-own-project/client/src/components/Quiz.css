@@ -6,3 +6,11 @@
     background-color: mediumpurple;
     color:rgb(253, 246, 236);
   }
+
+.row {
+  background-color: #80ccd5;
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+  border-radius: .25rem;
+}
