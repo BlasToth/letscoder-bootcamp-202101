@@ -5,6 +5,7 @@ function Randomverb() {
     const [error, setError] = useState(null);
     const [isLoaded, setIsLoaded] = useState(false);
     const [items, setItems] = useState([]);
+    console.log(items.audioUrl)
   
     useEffect(() => {
       fetchRandomVerb();
@@ -17,6 +18,7 @@ function Randomverb() {
           (result) => {
             setIsLoaded(true);
             setItems(result);
+            
           },
           (error) => {
             setIsLoaded(true);
@@ -25,15 +27,8 @@ function Randomverb() {
         );
     }
 
-    function audioHandler() {
-      const figcaptions = document.querySelectorAll(".figcaption");
-      const sounds = document.querySelectorAll(".audio");
-  
-      for (let i = 0; i < figcaptions.length; i++) {
-        figcaptions[i].addEventListener("click", () => {
-          sounds[i].play();
-        });
-      }
+    function refresh() {
+      window.location.reload(false)
     }
   
     if (error) {
@@ -46,7 +41,7 @@ function Randomverb() {
         <div className="title">A Random Verb</div>
                 <div className="verb">
                   <div className="row">
-                <button className="randomverb-button" onClick={fetchRandomVerb}>I want a new random verb</button>
+                <button className="randomverb-button" onClick={refresh}>I want a new random verb</button>
                     <div className="col-sm-6">
                       <div className="card mystyle-card">
                         <img
@@ -64,7 +59,7 @@ function Randomverb() {
                           <figure>
                             <figcaption
                               className="figcaption"
-                              onClick={audioHandler}
+                              onClick={() => document.querySelector(".audio").play()}
                             >
                               🔉
                             </figcaption>
