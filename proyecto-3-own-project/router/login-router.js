@@ -117,5 +117,20 @@ loginRouter
         .limit(10)
         .sort("-points")
     })
+
+    loginRouter
+    .route("/halloffameall")
+    .get(authenticateToken, (req, res) => {
+        User.find({}, (err, users) => {
+            if (err) {
+                res.status(404).send(err.response.data);
+            } else {  
+                res.json({users})
+            }
+        }).select("-email")
+        .select("-password")
+        .select("-role")
+        .sort("-points")
+    })
     
 module.exports = loginRouter;
