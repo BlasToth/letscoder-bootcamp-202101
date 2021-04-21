@@ -91,7 +91,9 @@ export default function Halloffame() {
     {items.map(renderUser)}
   </tbody>
 </ReactBootStrap.Table>
-       <button onClick={listHandler}>{buttonText}</button>
+    <div className="halloffame-button_container">
+       <button className="halloffame-button" onClick={listHandler}>{buttonText}</button>
+    </div>
          </div>
        );
      }

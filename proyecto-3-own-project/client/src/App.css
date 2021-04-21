@@ -155,3 +155,19 @@ fieldset p {
     background-color: rgb(168, 203, 255);
     color: #005dd4;
 }
+.halloffame-button_container {
+    display: flex;
+    justify-content: center;
+}
+
+.halloffame-button {
+    background-color: #005dd4;
+    padding: 10px;
+    font-size: 1.2em;
+    font-weight: 700;
+    color: aliceblue;
+    border: none;
+    border-radius: 5px;
+    margin: 10px;
+    height: auto;
+}
