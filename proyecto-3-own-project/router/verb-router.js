@@ -84,6 +84,15 @@ verbRouter
     });
 });
 
+verbRouter
+.route("/deleteknownverbs")
+.delete( authenticateToken, (req, res) => {
+  const userId = req.user._id;
+    User.update({_id: `${userId}`}, { $set: { knownVerbs: [] }}, function(err, affected){
+      console.log('affected: ', affected);
+    });
+});
+
 // send possible answers to FE
 verbRouter.route("/answers").get(authenticateToken, (req, res) => {
   Verb.find({}, (err, verbs) => {
