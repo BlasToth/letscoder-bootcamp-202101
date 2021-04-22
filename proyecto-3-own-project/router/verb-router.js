@@ -2,7 +2,7 @@ const express = require("express");
 const verbRouter = express.Router();
 const Verb = require("../models/verb-model");
 const shuffle = require("../utils/shuffle");
-const { authenticateToken } = require("../middlewares.js");
+const { authenticateToken, authenticateAdmin } = require("../middlewares.js");
 const jwt = require("jsonwebtoken");
 
 
@@ -86,10 +86,18 @@ verbRouter
 
 verbRouter
 .route("/deleteknownverbs")
-.delete( authenticateToken, (req, res) => {
+.patch( authenticateAdmin, (req, res) => {
   const userId = req.user._id;
-    User.update({_id: `${userId}`}, { $set: { knownVerbs: [] }}, function(err, affected){
-      console.log('affected: ', affected);
+    User.findByIdAndUpdate({_id: `${userId}`},
+     { $set: { knownVerbs: [] }},
+     { safe: true, upsert: true },
+     function(err, affected){
+       if(err) {
+         console.log(err);
+       }else {
+         console.log('affected: ', affected);
+         res.json(affected)
+       }
     });
 });
 

@@ -47,15 +47,14 @@ export default function Knownverbs() {
   }
 
   async function handleDeleteKnownVerbs() {
-    axios.delete('/api/deleteknownverbs', {
-      headers: {
-        "Content-Type": "application/json",
-      }
+    axios.patch('/api/verbs/deleteknownverbs', {
+      
     })
     .then((response) => {
       console.log(response.data.message);
     });
   }
+
 
   if (error) {
     return <div>Error: {error.message}</div>;
