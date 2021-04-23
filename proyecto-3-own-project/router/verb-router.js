@@ -95,8 +95,7 @@ verbRouter
        if(err) {
          console.log(err);
        }else {
-         console.log('affected: ', affected);
-         res.json(affected)
+         res.json({message: "Verb(s) deleted"})
        }
     });
 });

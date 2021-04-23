@@ -5,6 +5,7 @@ import axios from "axios";
 
 let localStorageToken = JSON.parse(localStorage.getItem("token"));
 let token = localStorageToken ? localStorageToken.token : null;
+console.log(token)
 
 export default function Knownverbs() {
   const [items, setItems] = useState([]);
@@ -16,7 +17,7 @@ export default function Knownverbs() {
     axios
       .get("/api/verbs/knownverbs", {
         headers: {
-          Authorization: `Bearer ${token}`,
+          'Authorization': `Bearer ${token}`,
         },
       })
       .then(
@@ -48,10 +49,12 @@ export default function Knownverbs() {
 
   async function handleDeleteKnownVerbs() {
     axios.patch('/api/verbs/deleteknownverbs', {
-      
+      headers: {
+        'Authorization': `Bearer ${token}`,
+    },
     })
     .then((response) => {
-      console.log(response.data.message);
+      console.log(response.data);
     });
   }
 
@@ -75,7 +78,9 @@ export default function Knownverbs() {
         <div className="title">Known Verbs</div>
         <div>
           <h1>You already know: {items.length} verb(s)</h1>
-          <button onClick={handleDeleteKnownVerbs}>Delete known verbs</button>
+          <div className="randomverb-button-container__known ">
+          <button className="randomverb-button" onClick={handleDeleteKnownVerbs}>Delete known verbs</button>
+          </div>
           <ul>
             {items.map((item) => (
               <li key={item._id} style={{ listStyleType: "none" }}>
