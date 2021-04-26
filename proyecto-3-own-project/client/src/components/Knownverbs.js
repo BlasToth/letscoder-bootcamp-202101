@@ -54,7 +54,7 @@ export default function Knownverbs() {
     },
     })
     .then((response) => {
-      console.log(response.data);
+      setNoVerbYet("You have deleted your verbs! Try the Quiz!")
     });
   }
 
