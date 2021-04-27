@@ -175,8 +175,9 @@ fieldset p {
     display: flex;
     justify-content: center;
 }
-nav ul {
-    justify-content: center !important;    
+nav, nav ul {
+    justify-content: center !important;  
+    padding-top: 5px; 
 }
 .page-item {
     background-color: #1de5e6;
