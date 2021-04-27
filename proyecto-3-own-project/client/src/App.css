@@ -175,3 +175,25 @@ fieldset p {
     display: flex;
     justify-content: center;
 }
+nav ul {
+    justify-content: center !important;    
+}
+.page-item {
+    background-color: #1de5e6;
+    font-size: 1.4em;
+    font-weight: bolder;
+    padding: 10px;
+    border: 2px solid whitesmoke;
+    border-radius: 5px;
+}
+.page-item:hover {
+    border: 1px solid rgb(8, 14, 68);
+}
+.pagination-link {
+    color: rgb(12 71 111);
+    font-weight: bold;
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: none !important;
+}
