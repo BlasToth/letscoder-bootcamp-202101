@@ -5,7 +5,6 @@ import axios from "axios";
 
 let localStorageToken = JSON.parse(localStorage.getItem("token"));
 let token = localStorageToken ? localStorageToken.token : null;
-console.log(token)
 
 export default function Knownverbs() {
   const [items, setItems] = useState([]);

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Container } from "react-bootstrap";
+import Pagination from './Pagination';
 
 function Allverbs() {
    useEffect(() => {
@@ -9,7 +10,10 @@ function Allverbs() {
 
    const [items, setItems] = useState([]);
    const [isLoaded, setIsLoaded] = useState(false);
-   const [error, setError] = useState(null);
+   const [error] = useState(null);
+   const [posts, setPosts] = useState([]);
+   const [currentPage, setCurrentPage] = useState(1);
+   const [postsPerPage] = useState(10);
  
 
    const fetchItems = async () => {
@@ -21,10 +25,11 @@ function Allverbs() {
      if (items.length) {
        setIsLoaded(true);
        setItems(items);
+       setPosts(items);
      }
    }
-  
-    function audioHandler() {
+
+   function audioHandler() {
       const figcaptions = document.querySelectorAll(".figcaption");
       const sounds = document.querySelectorAll(".audio");
   
@@ -34,6 +39,14 @@ function Allverbs() {
         });
       }
     }
+
+    // Get current posts
+    const indexOfLastPost = currentPage * postsPerPage;
+    const indexOfFirstPost = indexOfLastPost - postsPerPage;
+    const currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost)
+
+    // Change page
+    const paginate = (pageNumber) => setCurrentPage(pageNumber);
   
     if (error) {
       return <div>Error: {error.message}</div>;
@@ -41,13 +54,13 @@ function Allverbs() {
       return <div>Loading...</div>;
     } else {
       return (
+        <>
         <Container>
         <div className="title">All verbs</div>
         <ul>
-          {items.map((item) => (
+          {currentPosts.map((item) => (
             <li key={item._id} style={{ listStyleType: "none" }}>
               <>
-                {/* <Button variant="success" style={{ border: "2px solid black" }}>Test Button</Button> */}
                 <div className="verb">
                   <div className="row">
                     <div className="col-sm-6">
@@ -88,6 +101,8 @@ function Allverbs() {
           ))}
         </ul>
         </Container>
+        <Pagination postsPerPage={postsPerPage} totalPosts={posts.length} paginate={paginate} />
+        </>
       );
     }
   }
