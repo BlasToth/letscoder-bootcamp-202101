@@ -198,3 +198,8 @@ nav, nav ul {
 a:hover {
     text-decoration: none !important;
 }
+.spinner-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}

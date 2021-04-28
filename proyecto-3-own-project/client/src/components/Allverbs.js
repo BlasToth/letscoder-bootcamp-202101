@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Container } from "react-bootstrap";
+import { Container, Spinner } from "react-bootstrap";
 import Pagination from './Pagination';
 
 function Allverbs() {
@@ -51,7 +51,9 @@ function Allverbs() {
     if (error) {
       return <div>Error: {error.message}</div>;
     } else if (!isLoaded) {
-      return <div>Loading...</div>;
+      return <div className="spinner-container">
+      <Spinner className="spinner" animation="border" variant="success" />
+      </div>
     } else {
       return (
         <>
