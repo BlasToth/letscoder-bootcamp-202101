@@ -2,6 +2,8 @@
 
 ## DESCRIPTION
 
+Check out the project here: [Verb Shark](https://verb-shark.herokuapp.com/)
+
 This is an application to learn irregular verbs 
 
 You can:  
